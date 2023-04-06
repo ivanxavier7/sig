@@ -37,14 +37,77 @@
   }
 }
 
-.add-btn {
-  background-color: green;
-  color: white;
-  margin-right: 10px;
+header.topMenuBar {
+  background-color: black;
 }
 
-.decrease-btn {
-  background-color: red;
+div.leftNav {
+  margin-right: auto;
+}
+
+div.rightNav {
+  margin-left: auto;
+  margin-right: 10rem;
+}
+
+button.propertyMenuBtn {
+  background-color: green;
   color: white;
-  margin-left: 10px;
+  width: 15rem;
+  font-size: 1.1rem;
+  margin-right: 1rem;
+}
+
+button.loginMenuBtn {
+  background-color: white;
+  color: black;
+  width: 15rem;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+}
+
+button.MuiButtonBase-root.loginMenuBtn:hover {
+  background-color: green !important;
+}
+
+button.MuiButtonBase-root.propertyMenuBtn:hover {
+  background-color: blue !important;
+}
+
+button.listingsMenuBtn {
+  margin-right: 2rem;
+}
+
+button.agenciesMenuBtn {
+  margin-left: 2rem;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 92vh;
+}
+
+.overlayHomepageText {
+  position: absolute;
+  z-index: 100;
+  top: 100px;
+  left: 20px;
+  text-align: center;
+}
+
+h1.homepageText {
+  color: white;
+  font-weight: bolder;
+}
+
+button.homepageBtn {
+  font-size: 3.5rem;
+  border-radius: 15px;
+  background-color: green;
+  margin-top: 2rem;
+  box-shadow: 3px 3px 3px lightgray;
+}
+
+.primaryColor {
+  color: green;
 }
