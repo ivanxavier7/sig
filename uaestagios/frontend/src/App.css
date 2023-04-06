@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.add-btn {
+  background-color: green;
+  color: white;
+  margin-right: 10px;
+}
+
+.decrease-btn {
+  background-color: red;
+  color: white;
+  margin-left: 10px;
+}

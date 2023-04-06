@@ -1,26 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import SecondComponent from './Components/SecondComponent';
+import { BrowserRouter , Route, Routes} from 'react-router-dom'
 import React from 'react';
+import Home from './Components/Home';
+import Login from './Components/Login';
+import Listing from './Components/Listings';
 
 function App() {
-  function appleDisplay(n) {
-    if (n === 1) {
-      return `John has ${n} apple`;
-    }
-    else if (n > 1) {
-      return `John has ${n} apples`;
-    }
-    else {
-      return `John owes us ${Math.abs(n)} apples`;
-    }
-  }
   return (
-    <div>
-      <h1>{appleDisplay(1)}</h1>
-      <h1>{appleDisplay(2)}</h1>
-      <h1>{appleDisplay(-2)}</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={ <Home />} />
+        <Route path='/login' element={ <Login /> } />
+        <Route path='/listings' element={<Listing /> } />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
