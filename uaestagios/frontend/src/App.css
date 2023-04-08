@@ -111,3 +111,33 @@ button.homepageBtn {
 .primaryColor {
   color: green;
 }
+
+img.markerCardImage {
+  height: 14rem;
+  width: 18rem;
+}
+
+div.cardMarker {
+  padding-right: 1rem;
+  margin: 0.5rem 0.5rem 0.5rem 0rem;
+  border: 1px solid black;
+  position: relative;
+}
+
+img.cardMarkerImage {
+  padding-left: 1rem;
+  height: 20rem;
+  width: 29rem;
+}
+
+
+p.housePrice {
+  text-align: right;
+  position: absolute;
+  background-color: green;
+  z-index: 1000;
+  color: white;
+  top: 100px;
+  left: 20px;
+  padding: 5px;
+}
