@@ -1,0 +1,14 @@
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.leafletMap {
+  height: 100vh;
+  margin-top: 0.5rem;
+  background-color: white;
+}
+
+.css-7e0s21-MuiPaper-root-MuiAppBar-root {
+  background-color: white !important;
+}
