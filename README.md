@@ -59,3 +59,8 @@ sudo apt-get install npm
 npm install
 npm start
 ```
+
+# Para Fazer:
+
+1. Após o registo encaminhar para Login em vez da Homepage
+2. Corrigir Bug de conta não iniciada ao adicionar estágio - (Deve ter a haver com inconsistência entre /profile e /perfil
