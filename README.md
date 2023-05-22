@@ -38,7 +38,7 @@ pip3 install djoser
 pip3 install psycopg2-binary
 ```
 
-## GDAL:
+### GDAL:
 
 [Install GDAL Documentation](https://mothergeo-py.readthedocs.io/en/latest/development/how-to/gdal-ubuntu-pkg.html)
 
@@ -52,7 +52,7 @@ pip install GDAL==3.4.0
 
 ---
 
-### FrontEnd
+## FrontEnd
 
 ```bash
 sudo apt-get install npm
@@ -60,7 +60,7 @@ npm install
 npm start
 ```
 
-### Para Fazer:
+## Para Fazer:
 
 1. Após o registo encaminhar para Login em vez da Homepage
 2. Corrigir Bug de conta não iniciada ao adicionar estágio - (Deve ter a haver com inconsistência entre /profile e /perfil
