@@ -64,3 +64,8 @@ npm start
 
 1. Após o registo encaminhar para Login em vez da Homepage
 2. Corrigir Bug de conta não iniciada ao adicionar estágio - (Deve ter a haver com inconsistência entre /profile e /perfil
+3. Atualizar concelhos norte, centro (com o geopackage)
+4. Atualizar backend
+5. Adicionar campos em falta relacionados com estagios na BD
+6. Filtros Espaciais com base na distancia (minutos ou kms)
+
