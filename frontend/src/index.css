@@ -191,6 +191,12 @@ Button.submit-button:hover {
   color: white !important;
   z-index: 1000;
 }
+.map-layer-button {
+  position: absolute;
+  color: var(--cor-contraste) !important;
+  z-index: 1000;
+  right: 0;
+}
 
 #filter-card-bottom {
   margin-top: 5px;

@@ -42,6 +42,8 @@ import RoomIcon from "@mui/icons-material/Room";
 import HikingIcon from "@mui/icons-material/Hiking";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
+import SatelliteAltIcon from "@mui/icons-material/SatelliteAlt";
+import MapIcon from "@mui/icons-material/Map";
 //Choose starting place Button Icon
 import HomeIcon from "@mui/icons-material/Home";
 // Map icons
@@ -54,7 +56,21 @@ import myListings from "./Assets/Data/Dummydata";
 
 function Listings() {
   //Funcao do button group dos filtros, mudar para mostrar os tempos diferentes - Tomás
+  const ref = React.useRef(null);
   const [alignment, setAlignment] = React.useState("web");
+
+  const normalMap =
+    "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png";
+  const satelliteMap =
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+
+  const [mapLayer, setMapLayer] = React.useState(true);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.setUrl(mapLayer ? satelliteMap : normalMap);
+    }
+  }, [mapLayer]);
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
@@ -156,7 +172,7 @@ function Listings() {
         main: "#73A800",
       },
       secondary: {
-        main: "#488100",
+        main: "#ffffff",
       },
       error: {
         main: "#e57373",
@@ -302,7 +318,7 @@ function Listings() {
                         step={10}
                         marks
                         min={10}
-                        max={100}
+                        max={120}
                       />
                       <FormGroup>
                         <FormControlLabel
@@ -335,6 +351,16 @@ function Listings() {
                   <HomeIcon sx={{ mr: 2 }} />
                   ponto de partida
                 </Fab>
+                <Fab
+                  className="map-layer-button"
+                  variant=""
+                  size="small"
+                  color="secondary"
+                  aria-label="add"
+                  onClick={() => setMapLayer(!mapLayer)}
+                >
+                  <MapIcon />
+                </Fab>
               </div>
               <MapContainer
                 center={[40.574436706354, -8.44588251531503]}
@@ -342,9 +368,11 @@ function Listings() {
                 scrollWheelZoom={true}
               >
                 <TileLayer
+                  ref={ref}
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+                  url={mapLayer ? normalMap : satelliteMap}
                 />
+
                 <TheMapComponent />
 
                 {allListings.map((listing) => {
