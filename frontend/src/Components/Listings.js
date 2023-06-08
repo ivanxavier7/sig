@@ -35,6 +35,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  ButtonGroup,
 } from "@mui/material";
 
 import RoomIcon from "@mui/icons-material/Room";
@@ -53,6 +54,49 @@ import officeIconPng from "./Assets/Mapicons/office.png";
 // Assets
 import img1 from "./Assets/img1.jpg";
 import myListings from "./Assets/Data/Dummydata";
+
+import { useCallback, useMemo, useRef } from "react";
+const center = {
+  lat: 40.574436706354,
+  lng: -8.44588251531503,
+};
+
+function DraggableMarker() {
+  const [draggable, setDraggable] = useState(false);
+  const [position, setPosition] = useState(center);
+  const markerRef = useRef(null);
+  const eventHandlers = useMemo(
+    () => ({
+      dragend() {
+        const marker = markerRef.current;
+        if (marker != null) {
+          setPosition(marker.getLatLng());
+        }
+      },
+    }),
+    []
+  );
+  const toggleDraggable = useCallback(() => {
+    setDraggable((d) => !d);
+  }, []);
+
+  return (
+    <Marker
+      draggable={draggable}
+      eventHandlers={eventHandlers}
+      position={position}
+      ref={markerRef}
+    >
+      <Popup minWidth={90}>
+        <span onClick={toggleDraggable}>
+          {draggable
+            ? "Marker is draggable"
+            : "Click here to make marker draggable"}
+        </span>
+      </Popup>
+    </Marker>
+  );
+}
 
 function Listings() {
   //Funcao do button group dos filtros, mudar para mostrar os tempos diferentes - Tomás
@@ -239,118 +283,149 @@ function Listings() {
           <AppBar position="sticky">
             <div style={{ height: "100vh" }}>
               <div className="filter-container">
-                <Card className="filter-card">
-                  <CardContent sx={{ padding: 0 }}>
-                    <ToggleButtonGroup
-                      sx={{ width: "100%" }}
-                      color="primary"
-                      value={alignment}
-                      exclusive
-                      onChange={handleChange}
-                      aria-label="Platform"
-                    >
-                      <ToggleButton
-                        value="walking"
-                        sx={{ flexGrow: 1, width: "33.33%" }}
+                <div id="filter-sub-container">
+                  <Card className="filter-card">
+                    <CardContent sx={{ padding: 0 }}>
+                      <ToggleButtonGroup
+                        sx={{ width: "100%" }}
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="Platform"
                       >
-                        <Box
-                          display="flex"
-                          flexDirection="column"
-                          alignItems="center"
+                        <ToggleButton
+                          value="walking"
+                          sx={{ flexGrow: 1, width: "33.33%" }}
                         >
-                          <HikingIcon />
-                          <Typography variant="body2" sx={{ fontSize: 13 }}>
-                            A pé
-                          </Typography>
-                        </Box>
-                      </ToggleButton>
-                      <ToggleButton
-                        value="bike"
-                        sx={{
-                          flexGrow: 1,
-                          width: "33.33%",
-                        }}
-                      >
-                        <Box
-                          display="flex"
-                          flexDirection="column"
-                          alignItems="center"
+                          <Box
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                          >
+                            <HikingIcon />
+                            <Typography variant="body2" sx={{ fontSize: 13 }}>
+                              A pé
+                            </Typography>
+                          </Box>
+                        </ToggleButton>
+                        <ToggleButton
+                          value="bike"
                           sx={{
-                            paddingLeft: "20px",
-                            paddingRight: "20px",
+                            flexGrow: 1,
+                            width: "33.33%",
                           }}
                         >
-                          <DirectionsBikeIcon />
-                          <Typography variant="body2" sx={{ fontSize: 13 }}>
-                            Bicicleta
-                          </Typography>
-                        </Box>
-                      </ToggleButton>
-                      <ToggleButton
-                        value="driving"
-                        sx={{ flexGrow: 1, width: "33.33%" }}
-                      >
-                        <Box
-                          display="flex"
-                          flexDirection="column"
-                          alignItems="center"
-                        >
-                          <DriveEtaIcon />
-                          <Typography variant="body2" sx={{ fontSize: 13 }}>
-                            Carro
-                          </Typography>
-                        </Box>
-                      </ToggleButton>
-                    </ToggleButtonGroup>
-                    <div className="filter-card-content">
-                      <Typography
-                        sx={{ fontSize: 14, mt: "15px", mb: 0 }}
-                        color="text.secondary"
-                        gutterBottom
-                      >
-                        Tempo de viagem
-                      </Typography>
-                      <Slider
-                        aria-label="TempoViagem"
-                        defaultValue={30}
-                        getAriaValueText={valuetext}
-                        valueLabelDisplay="auto"
-                        step={10}
-                        marks
-                        min={10}
-                        max={120}
-                      />
-                      <FormGroup>
-                        <FormControlLabel
-                          control={<Checkbox defaultChecked />}
-                          label={
-                            <Typography
-                              sx={{ fontSize: 14 }}
-                              variant="body1"
-                              color="text.secondary"
-                            >
-                              Ver empresas sem ofertas
+                          <Box
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                            sx={{
+                              paddingLeft: "20px",
+                              paddingRight: "20px",
+                            }}
+                          >
+                            <DirectionsBikeIcon />
+                            <Typography variant="body2" sx={{ fontSize: 13 }}>
+                              Bicicleta
                             </Typography>
-                          }
+                          </Box>
+                        </ToggleButton>
+                        <ToggleButton
+                          value="driving"
+                          sx={{ flexGrow: 1, width: "33.33%" }}
+                        >
+                          <Box
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                          >
+                            <DriveEtaIcon />
+                            <Typography variant="body2" sx={{ fontSize: 13 }}>
+                              Carro
+                            </Typography>
+                          </Box>
+                        </ToggleButton>
+                      </ToggleButtonGroup>
+                      <div className="filter-card-content">
+                        <Typography
+                          sx={{ fontSize: 14, mt: "15px", mb: 0 }}
+                          color="text.secondary"
+                          gutterBottom
+                        >
+                          Tempo de viagem
+                        </Typography>
+                        <Slider
+                          aria-label="TempoViagem"
+                          defaultValue={30}
+                          getAriaValueText={valuetext}
+                          valueLabelDisplay="auto"
+                          step={10}
+                          marks
+                          min={10}
+                          max={120}
                         />
-                      </FormGroup>
-                    </div>
-                  </CardContent>
-                  <CardActions id="filter-card-bottom" color="error">
-                    <Button variant="text">Aplicar</Button>
-                    <Button variant="text">Reset</Button>
-                  </CardActions>
-                </Card>
-                <Fab
-                  className="starting-point-button"
-                  variant="extended"
-                  size="small"
-                  color="primary"
-                  aria-label="add"
-                >
-                  <HomeIcon sx={{ mr: 2 }} />
-                  ponto de partida
-                </Fab>
+                        <FormGroup>
+                          <FormControlLabel
+                            control={<Checkbox defaultChecked />}
+                            label={
+                              <Typography
+                                sx={{ fontSize: 14 }}
+                                variant="body1"
+                                color="text.secondary"
+                              >
+                                Ver empresas sem ofertas
+                              </Typography>
+                            }
+                          />
+                        </FormGroup>
+                      </div>
+                    </CardContent>
+                    <CardActions id="filter-card-bottom" color="error">
+                      <Button variant="text">Aplicar</Button>
+                      <Button variant="text">Reset</Button>
+                    </CardActions>
+                  </Card>
+                  <ButtonGroup
+                    fullWidth="true"
+                    id="filter-button-group"
+                    variant="contained"
+                    aria-label="outlined primary button group"
+                  >
+                    <Button
+                      className="starting-point-button "
+                      color="secondary"
+                    >
+                      <HomeIcon color="primary" />
+                      <Typography
+                        variant="body1"
+                        sx={{ fontSize: 14, fontWeight: "500" }}
+                        color="primary"
+                      ></Typography>
+                    </Button>
+
+                    <Button
+                      className="map-layer-button"
+                      color="secondary"
+                      onClick={() => setMapLayer(!mapLayer)}
+                    >
+                      <MapIcon />
+                    </Button>
+                  </ButtonGroup>
+                  {/* 
+                  <Fab
+                    className="starting-point-button"
+                    variant="extended"
+                    size="small"
+                    color="primary"
+                    aria-label="add"
+                  >
+                    <HomeIcon sx={{ mr: 2 }} />
+                    ponto de partida
+                  </Fab>
+                  */}
+                </div>
+                {/* 
                 <Fab
                   className="map-layer-button"
                   variant=""
@@ -361,6 +436,7 @@ function Listings() {
                 >
                   <MapIcon />
                 </Fab>
+                 */}
               </div>
               <MapContainer
                 center={[40.574436706354, -8.44588251531503]}
@@ -372,7 +448,7 @@ function Listings() {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url={mapLayer ? normalMap : satelliteMap}
                 />
-
+                <DraggableMarker />
                 <TheMapComponent />
 
                 {allListings.map((listing) => {
