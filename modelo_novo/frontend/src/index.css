@@ -1,0 +1,165 @@
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  --cor-contraste: rgb(115, 168, 0);
+  --cor-contraste-hover: rgb(93, 136, 0);
+  --cor-neutra: #ffff;
+}
+
+Button.submit-button {
+  background-color: var(--cor-contraste);
+  color: var(--cor-neutra);
+  font-size: 1.1rem;
+  margin-left: 1rem;
+  width: 100%;
+  border: none !important;
+}
+
+Button.submit-button:hover {
+  border: none !important;
+  background-color: var(--cor-contraste-hover);
+}
+
+.submeter-propriadade {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  border: 5px solid black;
+  padding: 3rem;
+}
+
+.upload_pictures {
+  background-color: blue;
+  color: var(--cor-neutra);
+  font-size: 0.8rem;
+  border: 1px solid black;
+  margin-left: 1rem;
+}
+
+/*Header.js*/
+
+/*Fim de Header.js*/
+
+/*Profile.js*/
+.welcome-text {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.highlight {
+  color: var(--cor-contraste);
+  font-weight: bolder;
+}
+
+.profile-container {
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid black;
+  margin-top: 2rem;
+  padding: 12px;
+}
+
+.image {
+  height: 15rem;
+  width: 20rem;
+}
+
+.grid-container {
+  height: 100vh;
+}
+/*Fim de Profile.js*/
+
+/*Register.js*/
+.form-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  border: 5px solid black;
+  padding: 3rem;
+}
+/*Fim de Register.js*/
+
+.bg-verde {
+  background-color: var(--cor-contraste);
+}
+.texto-contraste{
+  color: var(--cor-contraste) !important;
+}
+
+.botoes-navbar-hover:hover {
+  color: var(--cor-contraste);
+}
+
+#botao-login-navbar{
+  background-color:  var(--cor-contraste);
+  margin-left: 1rem;
+}
+.botao-user-hover:hover{
+  color: var(--cor-neutra)!important;
+}
+.container-home {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.imagem-bg-home {
+  width: 100%;
+  object-fit: cover;
+}
+
+.container-titulo-home {
+  z-index: 100;
+  background: rgba(64, 64, 64, 0.7);
+  backdrop-filter: blur(3.5px);
+  padding-left: 10rem;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+#titulo-home {
+  color: var(--cor-neutra);
+  font-size: 2.3rem;
+  font-weight: 500;
+}
+#botao-ver-estagios-home {
+  width: fit-content;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background-color: var(--cor-contraste);
+  margin-top: 10px;
+}
+
+/*estagio (listings)*/
+.imagem-card-estagio{
+  padding-right: 1rem;
+	padding-left: 1rem;
+	height: 20rem;
+	width: 30rem;
+	cursor: pointer;
+}
+
+/*login*/
+.container-login{
+  width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3rem;
+	border: 3px solid black;
+	padding: 3rem;
+}
+#botao-submit-login{
+  background-color: var(--cor-contraste);
+	color: var(--cor-neutra);
+	font-size: 1.1rem;
+	margin-left: 1rem;
+}
