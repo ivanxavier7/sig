@@ -138,7 +138,6 @@ function Listings() {
 
   const [latitude, setLatitude] = useState(51.48740865233002);
   const [longitude, setLongitude] = useState(-0.12667052265135625);
-
   const initialState = {
     mapInstance: null,
   };
@@ -159,24 +158,13 @@ function Listings() {
     return null;
   }
 
-  function GoEast() {
-    setLatitude(51.46567014039476);
-    setLongitude(0.2596173538795676);
-  }
-
-  function GoCenter() {
-    setLatitude(51.48740865233002);
-    setLongitude(-0.12667052265135625);
-  }
-
-  const polyOne = [
-    [51.505, -0.09],
-    [51.51, -0.1],
-    [51.51, -0.12],
-  ];
-
   const [allListings, setAllListings] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(true);
+
+  const [userLocation, setUserLocation] = useState([longitude, latitude]); // define localição do utilizador
+  const [transportMode, setTransportMode] = useState("driving-car"); // define modo de transporte
+  const [tempoViagem, setTempoViagem] = useState(30); // initial value
+  const [filteredResults, setFilteredResults] = useState(allListings);
 
   useEffect(() => {
     const source = Axios.CancelToken.source();
@@ -188,6 +176,7 @@ function Listings() {
         );
 
         setAllListings(response.data);
+        setFilteredResults(response.data);  // filteredResults 
         setDataIsLoading(false);
       } catch (error) {}
     }
@@ -228,11 +217,69 @@ function Listings() {
     return `${value} minutos`;
   }
 
+  async function fetchMatrixData() {
+    try {
+      // dar fetch aos listings
+      const response = await Axios.get("http://localhost:8000/api/listings/");
+      const listings = response.data;
+
+      // preparar dados para request
+      const locations = [userLocation];
+      const listingIDs = []; 
+      listings.forEach((listing) => {
+        locations.push([listing.longitude, listing.latitude]);
+        listingIDs.push(listing.id); 
+      });
+
+      // preparar POST
+      const postData = {
+        locations,
+        metrics: ["duration"],
+        units: "km",
+        sources: [0],
+      };
+
+      // dar fetch ao matrix do API e mandar header com API key (encriptar(?) depois para n ser visivel no front end)
+      const matrixResponse = await Axios.post(
+        `https://api.openrouteservice.org/v2/matrix/${transportMode}`,
+        postData,
+        {
+          headers: {
+            Authorization:
+              "5b3ce3597851110001cf62488b0d6f5e08f64786b7d400a1ec74d4ac",
+            "Content-Type": "application/json",
+            Accept:
+              "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8",
+          },
+        }
+      );
+
+      // filtar por destino [0] e extrair tempo que demora
+      const times = matrixResponse.data.durations[0];
+      console.log(times);
+
+      // filtar listings < tempo
+      const filteredListings = listings.filter((listing, index) => {
+        // converter de segundos para minutos
+        const travelTimeMinutes = times[index + 1] / 60;
+        console.log("Listing: " + listing + " Tempo:" + travelTimeMinutes + " Minutos");
+        return travelTimeMinutes <= tempoViagem;
+      });
+
+      console.log("Listings Filtrados <= tempo " + filteredListings);
+      //mandar para hook e mostrar so listings filtrados
+      setFilteredResults(filteredListings);
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container>
         <Grid item xs={4}>
-          {allListings.map((listing) => {
+          {filteredResults.map((listing) => {
             return (
               <Card
                 key={listing.id}
@@ -279,6 +326,7 @@ function Listings() {
             );
           })}
         </Grid>
+
         <Grid item xs={8} style={{ marginTop: "0.5rem", position: "relative" }}>
           <AppBar position="sticky">
             <div style={{ height: "100vh" }}>
@@ -287,13 +335,32 @@ function Listings() {
                   <Card className="filter-card">
                     <CardContent sx={{ padding: 0 }}>
                       <ToggleButtonGroup
-                        sx={{ width: "100%" }}
-                        color="primary"
-                        value={alignment}
-                        exclusive
-                        onChange={handleChange}
-                        aria-label="Platform"
-                      >
+                         sx={{ width: "100%" }}
+                         color="primary"
+                         value={alignment}
+                         exclusive
+                         onChange={(event, newMode) => {
+                           handleChange(event, newMode);
+                           if (newMode) {
+                             let newTransportMode;
+                             switch (newMode) {
+                               case "walking":
+                                 newTransportMode = "foot-walking"; //caminhar
+                                 break;
+                               case "bike":
+                                 newTransportMode = "cycling-road"; //bicicleta
+                                 break;
+                               case "driving":
+                                 newTransportMode = "driving-car"; //carro
+                                 break;
+                               default:
+                                 newTransportMode = "driving-car";
+                             }
+                             setTransportMode(newTransportMode);
+                           }
+                         }}
+                         aria-label="Platform"
+                       >
                         <ToggleButton
                           value="walking"
                           sx={{ flexGrow: 1, width: "33.33%" }}
@@ -364,6 +431,10 @@ function Listings() {
                           marks
                           min={10}
                           max={120}
+                          value={tempoViagem} // bind the state variable to the value
+                          onChange={(event, newValue) =>
+                            setTempoViagem(newValue)
+                          } // update the state when the value changes
                         />
                         <FormGroup>
                           <FormControlLabel
@@ -382,10 +453,13 @@ function Listings() {
                       </div>
                     </CardContent>
                     <CardActions id="filter-card-bottom" color="error">
-                      <Button variant="text">Aplicar</Button>
-                      <Button variant="text">Reset</Button>
+                      <Button variant="text" onClick={fetchMatrixData}>
+                        Aplicar
+                      </Button>
+                      <Button variant="text" onClick={() => setFilteredResults(allListings)}>Reset</Button>
                     </CardActions>
                   </Card>
+
                   <ButtonGroup
                     fullWidth="true"
                     id="filter-button-group"
@@ -451,7 +525,7 @@ function Listings() {
                 <DraggableMarker />
                 <TheMapComponent />
 
-                {allListings.map((listing) => {
+                {filteredResults.map((listing) => {
                   function IconDisplay() {
                     if (listing.listing_type === "House") {
                       return houseIcon;

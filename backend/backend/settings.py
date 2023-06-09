@@ -107,10 +107,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'grupo4_ptas2023',
-        'USER': 'grupo4_ptas2023',
-        'PASSWORD': 'grupo4_ptas2023',
-        'HOST': 'gis4cloud.com',
+        'NAME': 'lbrep_course_db',
+        'USER': 'postgres',
+        'PASSWORD': 'jacslam16',
+        'HOST': '127.0.0.1',
         'PORT': '5432'
     }
 }
