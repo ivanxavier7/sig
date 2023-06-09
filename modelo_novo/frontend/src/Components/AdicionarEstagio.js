@@ -603,7 +603,7 @@ function AddProperty() {
 
 
 			case "catchProgrammingLangSQLChange":
-				draft.programmingLangSQLScriptValue = action.programmingLangSQLScriptChosen;
+				draft.programmingLangSQLValue = action.programmingLangSQLChosen;
 				break;
 
 			case "catchProgrammingLangPHPChange":

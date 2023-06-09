@@ -285,17 +285,17 @@ function ListingUpdate(props) {
 		programmingLangRubyValue: props.listingData.programming_lang_ruby,
 		programmingLangDartValue: props.listingData.programming_lang_dart,
 		programmingLangScalaValue: props.listingData.programming_lang_scala,
-		programmingFWFrontEndAngular: props.listingData.programming_fw_frontend_angular,
-		programmingFWFrontEndjQuery: props.listingData.programming_fw_frontend_jquery,
-		programmingFWFrontEndReact: props.listingData.programming_fw_frontend_react,
-		programmingFWFrontEndRuby: props.listingData.programming_fw_frontend_ruby,
-		programmingFWFrontEndVuejs: props.listingData.programming_fw_frontend_vuejs,
-		programmingFWBackEndASPNet: props.listingData.programming_fw_backend_aspnet,
-		programmingFWBackEndDjango: props.listingData.programming_fw_backend_django,
-		programmingFWBackEndExpress: props.listingData.programming_fw_backend_express,
-		programmingFWBackEndLaravel: props.listingData.programming_fw_backend_laravel,
-		programmingFWBackEndNodejs: props.listingData.programming_fw_backend_nodejs,
-		programmingFWBackEndSpring: props.listingData.programming_fw_backend_spring,
+		programmingFWFrontEndAngularValue: props.listingData.programming_fw_frontend_angular,
+		programmingFWFrontEndjQueryValue: props.listingData.programming_fw_frontend_jquery,
+		programmingFWFrontEndReactValue: props.listingData.programming_fw_frontend_react,
+		programmingFWFrontEndRubyValue: props.listingData.programming_fw_frontend_ruby,
+		programmingFWFrontEndVuejsValue: props.listingData.programming_fw_frontend_vuejs,
+		programmingFWBackEndASPNetValue: props.listingData.programming_fw_backend_aspnet,
+		programmingFWBackEndDjangoValue: props.listingData.programming_fw_backend_django,
+		programmingFWBackEndExpressValue: props.listingData.programming_fw_backend_express,
+		programmingFWBackEndLaravelValue: props.listingData.programming_fw_backend_laravel,
+		programmingFWBackEndNodejsValue: props.listingData.programming_fw_backend_nodejs,
+		programmingFWBackEndSpringValue: props.listingData.programming_fw_backend_spring,
 		sendRequest: 0,
 		openSnack: false,
 		disabledBtn: false,
@@ -370,7 +370,7 @@ function ListingUpdate(props) {
 
 
 			case "catchProgrammingLangSQLChange":
-				draft.programmingLangSQLScriptValue = action.programmingLangSQLScriptChosen;
+				draft.programmingLangSQLValue = action.programmingLangSQLChosen;
 				break;
 
 			case "catchProgrammingLangPHPChange":
