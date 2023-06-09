@@ -125,8 +125,128 @@ const internshipBachelorOptions = [
 		label: "Mestrado",
 	},
 	{
-		value: "Doutoramento",
-		label: "Doutoramento",
+		value: "Cursos de Especialização",
+		label: "Cursos de Especialização",
+	},
+];
+
+const internshipCoursesCTeSPOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Cibersegurança",
+		label: "Cibersegurança",
+	},
+	{
+		value: "Gestão de PME",
+		label: "Gestão de PME",
+	},
+	{
+		value: "Instalações Elétricas e Automação",
+		label: "Instalações Elétricas e Automação",
+	},
+	{
+		value: "Manutenção Industrial",
+		label: "Manutenção Industrial",
+	},
+	{
+		value: "Programação de Sistemas de Informação",
+		label: "rogramação de Sistemas de Informação",
+	},
+	{
+		value: "Redes e Sistemas Informáticos",
+		label: "Redes e Sistemas Informáticos",
+	},
+	{
+		value: "Tecnologia Mecânica",
+		label: "Tecnologia Mecânica",
+	},
+];
+
+const internshipCoursesLicenciaturaOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Eletrónica e Mecânica Industrial",
+		label: "Eletrónica e Mecânica Industrial",
+	},
+	{
+		value: "Gestão Comercial",
+		label: "Gestão Comercial",
+	},
+	{
+		value: "Gestão da Qualidade",
+		label: "Gestão da Qualidade",
+	},
+	{
+		value: "Gestão Pública",
+		label: "Gestão Pública",
+	},
+	{
+		value: "Secretariado e Comunicação Empresarial",
+		label: "Secretariado e Comunicação Empresarial",
+	},
+	{
+		value: "Tecnologias da Informação",
+		label: "Tecnologias da Informação",
+	},
+];
+
+const internshipCoursesMestradoOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Assessoria de Direção e Comunicação nas Organizações",
+		label: "Assessoria de Direção e Comunicação nas Organizações",
+	},
+	{
+		value: "Gestão Comercial",
+		label: "Gestão Comercial",
+	},
+	{
+		value: "Gestão da Qualidade Total",
+		label: "Gestão da Qualidade Total",
+	},
+	{
+		value: "Gestão e Negócios Digitais",
+		label: "Gestão e Negócios Digitais",
+	},
+	{
+		value: "Informática Aplicada",
+		label: "Informática Aplicada",
+	},
+];
+
+const internshipCoursesCEOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Auditorias de Sistemas Integrados de Gestão",
+		label: "Auditorias de Sistemas Integrados de Gestão",
+	},
+	{
+		value: "Dados e Inteligência Artificial",
+		label: "Dados e Inteligência Artificial",
+	},
+	{
+		value: "Desenvolvimento de Aplicações Móveis",
+		label: "Desenvolvimento de Aplicações Móveis",
+	},
+	{
+		value: "Excelência nas Organizações",
+		label: "Excelência nas Organizações",
+	},
+	{
+		value: "Gestão de Negócios de Retalho",
+		label: "Gestão de Negócios de Retalho",
 	},
 ];
 
@@ -141,14 +261,20 @@ function ListingUpdate(props) {
 		propertyStatusValue: props.listingData.internship_status,
 		vacanciesValue: props.listingData.vacancies,
 		internshipBachelorValue: props.listingData.internship_bachelor,
+
+
+		internshipCoursesCTeSPValue: props.listingData.internship_courses_ctesp,
+		internshipCoursesLicenciaturaValue: props.listingData.internship_courses_licenciatura,
+		internshipCoursesMestradoValue: props.listingData.internship_courses_mestrado,
+		internshipCoursesCEValue: props.listingData.internship_courses_ce,
+
+
 		totalHoursValue: props.listingData.total_hours,
 		programmingLangPythonValue: props.listingData.programming_lang_python,
 		programmingLangJavaValue: props.listingData.programming_lang_java,
 		programmingLangC1Value: props.listingData.programming_lang_c_1,
 		programmingLangC2Value: props.listingData.programming_lang_c_2,
 		programmingLangJavaScriptValue: props.listingData.programming_lang_javascript,
-
-
 		programmingLangSQLValue: props.listingData.programming_lang_sql,
 		programmingLangPHPValue: props.listingData.programming_lang_php,
 		programmingLangGoValue: props.listingData.programming_lang_go,
@@ -159,21 +285,17 @@ function ListingUpdate(props) {
 		programmingLangRubyValue: props.listingData.programming_lang_ruby,
 		programmingLangDartValue: props.listingData.programming_lang_dart,
 		programmingLangScalaValue: props.listingData.programming_lang_scala,
-
 		programmingFWFrontEndAngular: props.listingData.programming_fw_frontend_angular,
 		programmingFWFrontEndjQuery: props.listingData.programming_fw_frontend_jquery,
 		programmingFWFrontEndReact: props.listingData.programming_fw_frontend_react,
 		programmingFWFrontEndRuby: props.listingData.programming_fw_frontend_ruby,
 		programmingFWFrontEndVuejs: props.listingData.programming_fw_frontend_vuejs,
-
 		programmingFWBackEndASPNet: props.listingData.programming_fw_backend_aspnet,
 		programmingFWBackEndDjango: props.listingData.programming_fw_backend_django,
 		programmingFWBackEndExpress: props.listingData.programming_fw_backend_express,
 		programmingFWBackEndLaravel: props.listingData.programming_fw_backend_laravel,
 		programmingFWBackEndNodejs: props.listingData.programming_fw_backend_nodejs,
 		programmingFWBackEndSpring: props.listingData.programming_fw_backend_spring,
-
-
 		sendRequest: 0,
 		openSnack: false,
 		disabledBtn: false,
@@ -203,6 +325,22 @@ function ListingUpdate(props) {
 
 			case "catchInternshipBachelorChange":
 				draft.internshipBachelorValue = action.internshipBachelorChosen;
+				break;
+
+			case "catchInternshipCoursesCTeSPChange":
+				draft.internshipCoursesCTeSPValue = action.internshipCoursesCTeSPChosen;
+				break;
+
+			case "catchInternshipCoursesLicenciaturaChange":
+				draft.internshipCoursesLicenciaturaValue = action.internshipCoursesLicenciaturaChosen;
+				break;
+
+			case "catchInternshipCoursesMestradoChange":
+				draft.internshipCoursesMestradoValue = action.internshipCoursesMestradoChosen;
+				break;
+
+			case "catchInternshipCoursesCEChange":
+				draft.internshipCoursesCEValue = action.internshipCoursesCEChosen;
 				break;
 
 			case "catchTotalHoursChange":
@@ -355,14 +493,16 @@ function ListingUpdate(props) {
 					formData.append("internship_status", state.propertyStatusValue);
 					formData.append("vacancies", state.vacanciesValue);
 					formData.append("internship_bachelor", state.internshipBachelorValue);
+					formData.append("internship_courses_ctesp", state.internshipCoursesCTeSPValue);
+					formData.append("internship_courses_licenciatura", state.internshipCoursesLicenciaturaValue);
+					formData.append("internship_courses_mestrado", state.internshipCoursesMestradoValue);
+					formData.append("internship_courses_ce", state.internshipCoursesCEValue);
 					formData.append("total_hours", 0);
 					formData.append("programming_lang_python", state.programmingLangPythonValue);
 					formData.append("programming_lang_java", state.programmingLangJavaValue);
 					formData.append("programming_lang_c_1", state.programmingLangC1Value);
 					formData.append("programming_lang_c_2", state.programmingLangC2Value);
 					formData.append("programming_lang_javascript", state.programmingLangJavaScriptValue);
-
-
 					formData.append("programming_lang_sql", state.programmingLangSQLValue);
 					formData.append("programming_lang_php", state.programmingLangPHPValue);
 					formData.append("programming_lang_go", state.programmingLangGoValue);
@@ -373,21 +513,17 @@ function ListingUpdate(props) {
 					formData.append("programming_lang_ruby", state.programmingLangRubyValue);
 					formData.append("programming_lang_dart", state.programmingLangDartValue);
 					formData.append("programming_lang_scala", state.programmingLangScalaValue);
-	
 					formData.append("programming_fw_frontend_angular", state.programmingFWFrontEndAngularValue);
 					formData.append("programming_fw_frontend_jquery", state.programmingFWFrontEndjQueryValue);
 					formData.append("programming_fw_frontend_react", state.programmingFWFrontEndReactValue);
 					formData.append("programming_fw_frontend_ruby", state.programmingFWFrontEndRubyValue);
 					formData.append("programming_fw_frontend_vuejs", state.programmingFWFrontEndVuejsValue);
-					
 					formData.append("programming_fw_backend_aspnet", state.programmingFWBackEndASPNetValue);
 					formData.append("programming_fw_backend_django", state.programmingFWBackEndDjangoValue);
 					formData.append("programming_fw_backend_express", state.programmingFWBackEndExpressValue);
 					formData.append("programming_fw_backend_laravel", state.programmingFWBackEndLaravelValue);
 					formData.append("programming_fw_backend_nodejs", state.programmingFWBackEndNodejsValue);
 					formData.append("programming_fw_backend_spring", state.programmingFWBackEndSpringValue);
-
-
 					formData.append("seller", GlobalState.userId);
 				} else {
 					formData.append("title", state.titleValue);
@@ -396,14 +532,16 @@ function ListingUpdate(props) {
 					formData.append("internship_status", state.propertyStatusValue);
 					formData.append("vacancies", state.vacanciesValue);
 					formData.append("internship_bachelor", state.internshipBachelorValue);
+					formData.append("internship_courses_ctesp", state.internshipCoursesCTeSPValue);
+					formData.append("internship_courses_licenciatura", state.internshipCoursesLicenciaturaValue);
+					formData.append("internship_courses_mestrado", state.internshipCoursesMestradoValue);
+					formData.append("internship_courses_ce", state.internshipCoursesCEValue);
 					formData.append("total_hours", state.totalHoursValue);
 					formData.append("programming_lang_python", state.programmingLangPythonValue);
 					formData.append("programming_lang_java", state.programmingLangJavaValue);
 					formData.append("programming_lang_c_1", state.programmingLangC1Value);
 					formData.append("programming_lang_c_2", state.programmingLangC2Value);
 					formData.append("programming_lang_javascript", state.programmingLangJavaScriptValue);
-
-
 					formData.append("programming_lang_sql", state.programmingLangSQLValue);
 					formData.append("programming_lang_php", state.programmingLangPHPValue);
 					formData.append("programming_lang_go", state.programmingLangGoValue);
@@ -413,21 +551,18 @@ function ListingUpdate(props) {
 					formData.append("programming_lang_rust", state.programmingLangRustValue);
 					formData.append("programming_lang_ruby", state.programmingLangRubyValue);
 					formData.append("programming_lang_dart", state.programmingLangDartValue);
-					formData.append("programming_lang_scala", state.programmingLangScalaValue);
-	
+					formData.append("programming_lang_scala", state.programmingLangScalaValue);	
 					formData.append("programming_fw_frontend_angular", state.programmingFWFrontEndAngularValue);
 					formData.append("programming_fw_frontend_jquery", state.programmingFWFrontEndjQueryValue);
 					formData.append("programming_fw_frontend_react", state.programmingFWFrontEndReactValue);
 					formData.append("programming_fw_frontend_ruby", state.programmingFWFrontEndRubyValue);
-					formData.append("programming_fw_frontend_vuejs", state.programmingFWFrontEndVuejsValue);
-					
+					formData.append("programming_fw_frontend_vuejs", state.programmingFWFrontEndVuejsValue);					
 					formData.append("programming_fw_backend_aspnet", state.programmingFWBackEndASPNetValue);
 					formData.append("programming_fw_backend_django", state.programmingFWBackEndDjangoValue);
 					formData.append("programming_fw_backend_express", state.programmingFWBackEndExpressValue);
 					formData.append("programming_fw_backend_laravel", state.programmingFWBackEndLaravelValue);
 					formData.append("programming_fw_backend_nodejs", state.programmingFWBackEndNodejsValue);
 					formData.append("programming_fw_backend_spring", state.programmingFWBackEndSpringValue);
-
 					formData.append("seller", GlobalState.userId);
 				}
 
@@ -568,38 +703,150 @@ function ListingUpdate(props) {
 					</Grid>
 
 					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="vacancies"
-							type="number"
-							label="Vagas Disponíveis*"
+						{state.internshipBachelorValue === "CTeSP" 
+						? 	<TextField
+								id="internshipCoursesCTeSP"
+								label="Cursos CTeSP"
+								variant="standard"
+								fullWidth
+								value={state.internshipCoursesCTeSPValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipCoursesCTeSPChange",
+										internshipCoursesCTeSPChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+								>
+								{internshipCoursesCTeSPOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+
+						: state.internshipBachelorValue === "Licenciatura"
+							? <TextField
+								id="internshipCoursesLicenciatura"
+								label="Cursos de Licenciatura"
+								variant="standard"
+								fullWidth
+								value={state.internshipCoursesLicenciaturaValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipCoursesLicenciaturaChange",
+										internshipCoursesLicenciaturaChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+								>
+								{internshipCoursesLicenciaturaOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+
+						: state.internshipBachelorValue === "Mestrado"
+						? <TextField
+							id="internshipCoursesMestrado"
+							label="Cursos de Mestrado"
 							variant="standard"
 							fullWidth
-							value={state.vacanciesValue}
+							value={state.internshipCoursesMestradoValue}
 							onChange={(e) =>
 								dispatch({
-									type: "catchVacanciesChange",
-									vacanciesChosen: e.target.value,
+									type: "catchInternshipCoursesMestradoChange",
+									internshipCoursesMestradoChosen: e.target.value,
+								})
+							}
+							select
+							SelectProps={{
+								native: true,
+							}}
+							>
+							{internshipCoursesMestradoOptions.map((option) => (
+								<option key={option.value} value={option.value}>
+									{option.label}
+								</option>
+							))}
+						</TextField>
+
+						: state.internshipBachelorValue === "Cursos de Especialização"
+						? <TextField
+							id="internshipCoursesCE"
+							label="Cursos de Especialização"
+							variant="standard"
+							fullWidth
+							value={state.internshipCoursesCEValue}
+							onChange={(e) =>
+								dispatch({
+									type: "catchInternshipCoursesCEChange",
+									internshipCoursesCEChosen: e.target.value,
+								})
+							}
+							select
+							SelectProps={{
+								native: true,
+							}}
+							>
+							{internshipCoursesCEOptions.map((option) => (
+								<option key={option.value} value={option.value}>
+									{option.label}
+								</option>
+							))}
+						</TextField>
+						: <TextField
+							id="internshipCoursesDefault"
+							label="Curso"
+							variant="standard"
+							fullWidth
+							>
+								Selecione o grau primeiro
+						</TextField>
+						}
+					</Grid>
+				</Grid>
+
+				<Grid item container justifyContent="space-between">
+					<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="vacancies"
+								type="number"
+								label="Vagas Disponíveis*"
+								variant="standard"
+								fullWidth
+								value={state.vacanciesValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchVacanciesChange",
+										vacanciesChosen: e.target.value,
+									})
+								}
+							/>
+					</Grid>
+					<Grid item xs={5} container style={{ marginTop: "1rem" }}>
+						<TextField
+							id="totalHours"
+							label="Total de horas"
+							type="number"
+							variant="standard"
+							fullWidth
+							value={state.totalHoursValue}
+							onChange={(e) =>
+								dispatch({
+									type: "catchTotalHoursChange",
+									totalHoursChosen: e.target.value,
 								})
 							}
 						/>
 					</Grid>
-				</Grid>
-
-				<Grid item xs={5} container style={{ marginTop: "1rem" }}>
-					<TextField
-						id="totalHours"
-						label="Total de horas"
-						type="number"
-						variant="standard"
-						fullWidth
-						value={state.totalHoursValue}
-						onChange={(e) =>
-							dispatch({
-								type: "catchTotalHoursChange",
-								totalHoursChosen: e.target.value,
-							})
-						}
-					/>
 				</Grid>
 
 				<Grid item container style={{ marginTop: "1rem" }}>
