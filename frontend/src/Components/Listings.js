@@ -36,9 +36,11 @@ import {
   FormControlLabel,
   Checkbox,
   ButtonGroup,
+  Chip,
 } from "@mui/material";
 
 import RoomIcon from "@mui/icons-material/Room";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 //Filter Card Icons
 import HikingIcon from "@mui/icons-material/Hiking";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
@@ -99,6 +101,30 @@ function DraggableMarker() {
 }
 
 function Listings() {
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [userMarker, setUserMarker] = useState(null);
+
+  const fetchUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLocation = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+          setLocation(userLocation);
+          setUserMarker(userLocation); // meter o marker
+          console.log("COORDS = " + position.coords.latitude);
+        },
+        (error) => {
+          console.error("Error occurred: " + error.message);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
   //Funcao do button group dos filtros, mudar para mostrar os tempos diferentes - Tomás
   const ref = React.useRef(null);
   const [alignment, setAlignment] = React.useState("web");
@@ -136,9 +162,6 @@ function Listings() {
     iconSize: [40, 40],
   });
 
-  const [latitude, setLatitude] = useState(51.48740865233002);
-  const [longitude, setLongitude] = useState(-0.12667052265135625);
-
   const initialState = {
     mapInstance: null,
   };
@@ -159,24 +182,11 @@ function Listings() {
     return null;
   }
 
-  function GoEast() {
-    setLatitude(51.46567014039476);
-    setLongitude(0.2596173538795676);
-  }
-
-  function GoCenter() {
-    setLatitude(51.48740865233002);
-    setLongitude(-0.12667052265135625);
-  }
-
-  const polyOne = [
-    [51.505, -0.09],
-    [51.51, -0.1],
-    [51.51, -0.12],
-  ];
-
   const [allListings, setAllListings] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(true);
+  const [transportMode, setTransportMode] = useState("driving-car"); // define modo de transporte
+  const [tempoViagem, setTempoViagem] = useState(30); // initial value
+  const [filteredResults, setFilteredResults] = useState(allListings);
 
   useEffect(() => {
     const source = Axios.CancelToken.source();
@@ -188,6 +198,7 @@ function Listings() {
         );
 
         setAllListings(response.data);
+        setFilteredResults(response.data); // filteredResults
         setDataIsLoading(false);
       } catch (error) {}
     }
@@ -221,6 +232,7 @@ function Listings() {
       error: {
         main: "#e57373",
       },
+      divider: "#73A800",
     },
   });
 
@@ -228,23 +240,92 @@ function Listings() {
     return `${value} minutos`;
   }
 
+  async function fetchMatrixData() {
+    try {
+      // dar fetch aos listings
+      const response = await Axios.get("http://localhost:8000/api/listings/");
+      const listings = response.data;
+
+      // preparar dados para request
+      const locations = [[location.longitude, location.latitude]];
+
+      console.log("LOCATION" + locations);
+      const listingIDs = [];
+      listings.forEach((listing) => {
+        locations.push([listing.longitude, listing.latitude]);
+        listingIDs.push(listing.id);
+      });
+
+      // preparar POST
+      const postData = {
+        locations,
+        metrics: ["duration"],
+        units: "km",
+        sources: [0],
+      };
+
+      // dar fetch ao matrix do API e mandar header com API key (encriptar(?) depois para n ser visivel no front end)
+      const matrixResponse = await Axios.post(
+        `https://api.openrouteservice.org/v2/matrix/${transportMode}`,
+        postData,
+        {
+          headers: {
+            Authorization:
+              "5b3ce3597851110001cf62488b0d6f5e08f64786b7d400a1ec74d4ac",
+            "Content-Type": "application/json",
+            Accept:
+              "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8",
+          },
+        }
+      );
+
+      // filtar por destino [0] e extrair tempo que demora
+      const times = matrixResponse.data.durations[0];
+      console.log(times);
+
+      // filtar listings < tempo
+      const filteredListings = listings.filter((listing, index) => {
+        // converter de segundos para minutos
+        const travelTimeMinutes = times[index + 1] / 60;
+        const travelTimeSeconds = times[index + 1] % 60;
+
+        console.log(
+          "Listing: " +
+            listing +
+            " Tempo:" +
+            travelTimeMinutes +
+            " Minutos " +
+            " Segundos " +
+            travelTimeSeconds
+        );
+        return travelTimeMinutes <= tempoViagem;
+      });
+
+      console.log("Listings Filtrados <= tempo " + filteredListings);
+      //mandar para hook e mostrar so listings filtrados
+      setFilteredResults(filteredListings);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container>
         <Grid item xs={4}>
-          {allListings.map((listing) => {
+          {filteredResults.map((listing) => {
             return (
               <Card
+                className="internship-info-card"
                 key={listing.id}
                 style={{
-                  margin: "0.5rem",
-                  border: "1px solid black",
-                  position: "relative",
+                  backgroundImage: `url(${listing.picture1})`,
                 }}
               >
                 <CardHeader
                   action={
                     <IconButton
+                      color="secondary"
                       aria-label="settings"
                       onClick={() =>
                         state.mapInstance.flyTo(
@@ -256,19 +337,33 @@ function Listings() {
                       <RoomIcon />
                     </IconButton>
                   }
-                  title={listing.title}
+                  title={
+                    <Typography
+                      className="internship-card-title"
+                      onClick={() => navigate(`/listings/${listing.id}`)}
+                      variant="h5"
+                      color="secondary"
+                    >
+                      {listing.title}
+                      <ArrowForwardIosIcon sx={{ ml: 1 }} />
+                    </Typography>
+                  }
                 />
+                {/* 
                 <CardMedia
-                  className="imagem-card-estagio"
+                  className="internship-card-image"
                   component="img"
                   image={listing.picture1}
                   alt={listing.title}
                   onClick={() => navigate(`/listings/${listing.id}`)}
                 />
+                */}
                 <CardContent>
                   <Typography variant="body2">
-                    {listing.description.substring(0, 200)}...
+                    {listing.description.substring(0, 200)}
                   </Typography>
+                  <Chip label="React" color="error" className="react" />
+                  <Chip label="Angular" color="error" className="angular" />
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
@@ -279,6 +374,7 @@ function Listings() {
             );
           })}
         </Grid>
+
         <Grid item xs={8} style={{ marginTop: "0.5rem", position: "relative" }}>
           <AppBar position="sticky">
             <div style={{ height: "100vh" }}>
@@ -291,7 +387,26 @@ function Listings() {
                         color="primary"
                         value={alignment}
                         exclusive
-                        onChange={handleChange}
+                        onChange={(event, newMode) => {
+                          handleChange(event, newMode);
+                          if (newMode) {
+                            let newTransportMode;
+                            switch (newMode) {
+                              case "walking":
+                                newTransportMode = "foot-walking"; //caminhar
+                                break;
+                              case "bike":
+                                newTransportMode = "cycling-road"; //bicicleta
+                                break;
+                              case "driving":
+                                newTransportMode = "driving-car"; //carro
+                                break;
+                              default:
+                                newTransportMode = "driving-car";
+                            }
+                            setTransportMode(newTransportMode);
+                          }
+                        }}
                         aria-label="Platform"
                       >
                         <ToggleButton
@@ -364,6 +479,10 @@ function Listings() {
                           marks
                           min={10}
                           max={120}
+                          value={tempoViagem} // bind the state variable to the value
+                          onChange={(event, newValue) =>
+                            setTempoViagem(newValue)
+                          } // update the state when the value changes
                         />
                         <FormGroup>
                           <FormControlLabel
@@ -382,10 +501,18 @@ function Listings() {
                       </div>
                     </CardContent>
                     <CardActions id="filter-card-bottom" color="error">
-                      <Button variant="text">Aplicar</Button>
-                      <Button variant="text">Reset</Button>
+                      <Button variant="text" onClick={fetchMatrixData}>
+                        Aplicar
+                      </Button>
+                      <Button
+                        variant="text"
+                        onClick={() => setFilteredResults(allListings)}
+                      >
+                        Reset
+                      </Button>
                     </CardActions>
                   </Card>
+
                   <ButtonGroup
                     fullWidth="true"
                     id="filter-button-group"
@@ -393,6 +520,7 @@ function Listings() {
                     aria-label="outlined primary button group"
                   >
                     <Button
+                      onClick={fetchUserLocation}
                       className="starting-point-button "
                       color="secondary"
                     >
@@ -451,7 +579,7 @@ function Listings() {
                 <DraggableMarker />
                 <TheMapComponent />
 
-                {allListings.map((listing) => {
+                {filteredResults.map((listing) => {
                   function IconDisplay() {
                     if (listing.listing_type === "House") {
                       return houseIcon;
@@ -463,7 +591,6 @@ function Listings() {
                   }
                   return (
                     <Marker
-                      color="primary"
                       key={listing.id}
                       icon={IconDisplay()}
                       position={[listing.latitude, listing.longitude]}
@@ -493,19 +620,15 @@ function Listings() {
                     </Marker>
                   );
                 })}
+              
+                {userMarker && (
+                  <Marker
+                    position={[userMarker.latitude, userMarker.longitude]}
+                  >
+                    <Popup>A tua casa esta aqui!</Popup>
+                  </Marker>
+                )}
 
-                {/* <Marker icon={officeIcon} position={[latitude, longitude]}>
-									<Popup>
-										<Typography variant="h5">A title</Typography>
-										<img src={img1} style={{ height: "14rem", width: "18rem" }} />
-										<Typography variant="body1">
-											This is some text below the title
-										</Typography>
-										<Button variant="contained" fullWidth>
-											A Link
-										</Button>
-									</Popup>
-								</Marker> */}
               </MapContainer>
             </div>
           </AppBar>
