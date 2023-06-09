@@ -340,6 +340,19 @@ function ListingDetail() {
 							  }`}
 					</Typography>
 				</Grid>
+				<Grid item container xs={5} alignItems="center">
+					<Typography
+						variant="h6"
+						style={{ fontWeight: "bolder", color: "green" }}
+					>
+						{state.listingInfo.internship_bachelor === "CTeSP" ? state.listingInfo.internship_courses_ctesp
+							: state.listingInfo.internship_bachelor === "Licenciatura" ? state.listingInfo.internship_courses_licenciatura
+							: state.listingInfo.internship_bachelor === "Mestrado" ? state.listingInfo.internship_courses_mestrado
+							: state.listingInfo.internship_bachelor === "Cursos de Especialização" ? state.listingInfo.internship_courses_ce
+							: " "
+						}
+					</Typography>
+				</Grid>
 			</Grid>
 
 			<Grid

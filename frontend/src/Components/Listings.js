@@ -36,9 +36,11 @@ import {
   FormControlLabel,
   Checkbox,
   ButtonGroup,
+  Chip,
 } from "@mui/material";
 
 import RoomIcon from "@mui/icons-material/Room";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 //Filter Card Icons
 import HikingIcon from "@mui/icons-material/Hiking";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
@@ -99,6 +101,27 @@ function DraggableMarker() {
 }
 
 function Listings() {
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+
+  const fetchUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+          console.log("COORDS = " + location.latitude);
+        },
+        (error) => {
+          console.error("Error occurred: " + error.message);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
   //Funcao do button group dos filtros, mudar para mostrar os tempos diferentes - Tomás
   const ref = React.useRef(null);
   const [alignment, setAlignment] = React.useState("web");
@@ -210,6 +233,7 @@ function Listings() {
       error: {
         main: "#e57373",
       },
+      divider: "#73A800",
     },
   });
 
@@ -282,16 +306,16 @@ function Listings() {
           {filteredResults.map((listing) => {
             return (
               <Card
+                className="internship-info-card"
                 key={listing.id}
                 style={{
-                  margin: "0.5rem",
-                  border: "1px solid black",
-                  position: "relative",
+                  backgroundImage: `url(${listing.picture1})`,
                 }}
               >
                 <CardHeader
                   action={
                     <IconButton
+                      color="secondary"
                       aria-label="settings"
                       onClick={() =>
                         state.mapInstance.flyTo(
@@ -303,19 +327,33 @@ function Listings() {
                       <RoomIcon />
                     </IconButton>
                   }
-                  title={listing.title}
+                  title={
+                    <Typography
+                      className="internship-card-title"
+                      onClick={() => navigate(`/listings/${listing.id}`)}
+                      variant="h5"
+                      color="secondary"
+                    >
+                      {listing.title}
+                      <ArrowForwardIosIcon sx={{ ml: 1 }} />
+                    </Typography>
+                  }
                 />
+                {/* 
                 <CardMedia
-                  className="imagem-card-estagio"
+                  className="internship-card-image"
                   component="img"
                   image={listing.picture1}
                   alt={listing.title}
                   onClick={() => navigate(`/listings/${listing.id}`)}
                 />
+                */}
                 <CardContent>
                   <Typography variant="body2">
-                    {listing.description.substring(0, 200)}...
+                    {listing.description.substring(0, 200)}
                   </Typography>
+                  <Chip label="React" color="error" className="react" />
+                  <Chip label="Angular" color="error" className="angular" />
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
@@ -467,6 +505,7 @@ function Listings() {
                     aria-label="outlined primary button group"
                   >
                     <Button
+                      onClick={fetchUserLocation}
                       className="starting-point-button "
                       color="secondary"
                     >
@@ -537,7 +576,6 @@ function Listings() {
                   }
                   return (
                     <Marker
-                      color="primary"
                       key={listing.id}
                       icon={IconDisplay()}
                       position={[listing.latitude, listing.longitude]}
