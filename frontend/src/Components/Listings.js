@@ -102,16 +102,19 @@ function DraggableMarker() {
 
 function Listings() {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [userMarker, setUserMarker] = useState(null);
 
   const fetchUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setLocation({
+          const userLocation = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-          });
-          console.log("COORDS = " + location.latitude);
+          };
+          setLocation(userLocation);
+          setUserMarker(userLocation); // meter o marker
+          console.log("COORDS = " + position.coords.latitude);
         },
         (error) => {
           console.error("Error occurred: " + error.message);
@@ -159,8 +162,6 @@ function Listings() {
     iconSize: [40, 40],
   });
 
-  const [latitude, setLatitude] = useState(51.48740865233002);
-  const [longitude, setLongitude] = useState(-0.12667052265135625);
   const initialState = {
     mapInstance: null,
   };
@@ -183,8 +184,6 @@ function Listings() {
 
   const [allListings, setAllListings] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(true);
-
-  const [userLocation, setUserLocation] = useState([longitude, latitude]); // define localição do utilizador
   const [transportMode, setTransportMode] = useState("driving-car"); // define modo de transporte
   const [tempoViagem, setTempoViagem] = useState(30); // initial value
   const [filteredResults, setFilteredResults] = useState(allListings);
@@ -199,7 +198,7 @@ function Listings() {
         );
 
         setAllListings(response.data);
-        setFilteredResults(response.data);  // filteredResults 
+        setFilteredResults(response.data); // filteredResults
         setDataIsLoading(false);
       } catch (error) {}
     }
@@ -248,11 +247,13 @@ function Listings() {
       const listings = response.data;
 
       // preparar dados para request
-      const locations = [userLocation];
-      const listingIDs = []; 
+      const locations = [[location.longitude, location.latitude]];
+
+      console.log("LOCATION" + locations);
+      const listingIDs = [];
       listings.forEach((listing) => {
         locations.push([listing.longitude, listing.latitude]);
-        listingIDs.push(listing.id); 
+        listingIDs.push(listing.id);
       });
 
       // preparar POST
@@ -286,14 +287,23 @@ function Listings() {
       const filteredListings = listings.filter((listing, index) => {
         // converter de segundos para minutos
         const travelTimeMinutes = times[index + 1] / 60;
-        console.log("Listing: " + listing + " Tempo:" + travelTimeMinutes + " Minutos");
+        const travelTimeSeconds = times[index + 1] % 60;
+
+        console.log(
+          "Listing: " +
+            listing +
+            " Tempo:" +
+            travelTimeMinutes +
+            " Minutos " +
+            " Segundos " +
+            travelTimeSeconds
+        );
         return travelTimeMinutes <= tempoViagem;
       });
 
       console.log("Listings Filtrados <= tempo " + filteredListings);
       //mandar para hook e mostrar so listings filtrados
       setFilteredResults(filteredListings);
-
     } catch (error) {
       console.error(error);
     }
@@ -373,32 +383,32 @@ function Listings() {
                   <Card className="filter-card">
                     <CardContent sx={{ padding: 0 }}>
                       <ToggleButtonGroup
-                         sx={{ width: "100%" }}
-                         color="primary"
-                         value={alignment}
-                         exclusive
-                         onChange={(event, newMode) => {
-                           handleChange(event, newMode);
-                           if (newMode) {
-                             let newTransportMode;
-                             switch (newMode) {
-                               case "walking":
-                                 newTransportMode = "foot-walking"; //caminhar
-                                 break;
-                               case "bike":
-                                 newTransportMode = "cycling-road"; //bicicleta
-                                 break;
-                               case "driving":
-                                 newTransportMode = "driving-car"; //carro
-                                 break;
-                               default:
-                                 newTransportMode = "driving-car";
-                             }
-                             setTransportMode(newTransportMode);
-                           }
-                         }}
-                         aria-label="Platform"
-                       >
+                        sx={{ width: "100%" }}
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={(event, newMode) => {
+                          handleChange(event, newMode);
+                          if (newMode) {
+                            let newTransportMode;
+                            switch (newMode) {
+                              case "walking":
+                                newTransportMode = "foot-walking"; //caminhar
+                                break;
+                              case "bike":
+                                newTransportMode = "cycling-road"; //bicicleta
+                                break;
+                              case "driving":
+                                newTransportMode = "driving-car"; //carro
+                                break;
+                              default:
+                                newTransportMode = "driving-car";
+                            }
+                            setTransportMode(newTransportMode);
+                          }
+                        }}
+                        aria-label="Platform"
+                      >
                         <ToggleButton
                           value="walking"
                           sx={{ flexGrow: 1, width: "33.33%" }}
@@ -494,7 +504,12 @@ function Listings() {
                       <Button variant="text" onClick={fetchMatrixData}>
                         Aplicar
                       </Button>
-                      <Button variant="text" onClick={() => setFilteredResults(allListings)}>Reset</Button>
+                      <Button
+                        variant="text"
+                        onClick={() => setFilteredResults(allListings)}
+                      >
+                        Reset
+                      </Button>
                     </CardActions>
                   </Card>
 
@@ -605,19 +620,15 @@ function Listings() {
                     </Marker>
                   );
                 })}
+              
+                {userMarker && (
+                  <Marker
+                    position={[userMarker.latitude, userMarker.longitude]}
+                  >
+                    <Popup>A tua casa esta aqui!</Popup>
+                  </Marker>
+                )}
 
-                {/* <Marker icon={officeIcon} position={[latitude, longitude]}>
-									<Popup>
-										<Typography variant="h5">A title</Typography>
-										<img src={img1} style={{ height: "14rem", width: "18rem" }} />
-										<Typography variant="body1">
-											This is some text below the title
-										</Typography>
-										<Button variant="contained" fullWidth>
-											A Link
-										</Button>
-									</Popup>
-								</Marker> */}
               </MapContainer>
             </div>
           </AppBar>
