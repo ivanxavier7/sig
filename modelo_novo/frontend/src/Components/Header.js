@@ -67,7 +67,7 @@ function Header() {
   }, [openSnack]);
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "black" }}>
+    <AppBar position="static" className="custom-nav-bar">
       <Toolbar>
         <div style={{ marginRight: "auto", marginLeft: "10rem" }}>
           <Button color="inherit" onClick={() => navigate("/")}>
