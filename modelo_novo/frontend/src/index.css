@@ -173,6 +173,38 @@ div#root header.custom-nav-bar {
   z-index: 8000;
 }
 /*Body*/
-div#root div.MuiGrid-root.MuiGrid-container {
-  margin-top: 10vh;
+div#root div.MuiGrid-root.MuiGrid-container[style=""] {
+  margin-top: 80px;
+}
+
+/*Footer*/
+div#root footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding-top: 10vh;
+}
+
+p.footer-text, h6.footer-text {
+  color: white;
+}
+
+div#root div.container-home {
+
+}
+
+div#root span.footer-sig-name {
+  color: rgb(115, 168, 0);
+}
+
+div#root a.github-icon {
+  margin-left: 12px;
+  margin-right: 12px;
+  position: relative;
+  top: 6px;
+}
+
+div#root a.github-icon:hover,
+div#root a.copyrights-ua:hover {
+  color: rgb(115, 168, 0);
 }

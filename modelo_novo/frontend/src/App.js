@@ -18,6 +18,7 @@ import AgencyDetail from "./Components/AgencyDetail";
 import ListingDetail from "./Components/ListingDetail";
 import AccountCreated from "./Components/AccountCreated";
 import Activation from "./Components/Activation";
+import Footer from "./Components/Footer";
 // Contexts
 import DispatchContext from "./Contexts/DispatchContext";
 import StateContext from "./Contexts/StateContext";
@@ -85,6 +86,7 @@ function App() {
 						<Route path="/listings/:id" element={<ListingDetail />} />
 						<Route path="/listings" element={<Listings />} />
 					</Routes>
+					<Footer />
 				</BrowserRouter>
 				{/* </StyledEngineProvider> */}
 			</DispatchContext.Provider>
