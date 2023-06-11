@@ -88,7 +88,7 @@ function Empresas() {
       container
       justifyContent="flex-start"
       spacing={2}
-      style={{ padding: "2rem" }}
+      style={{padding: "13rem"}}
     >
       {state.empresasList.map((empresa) => {
         function ImoveisDisplay() {

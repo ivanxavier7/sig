@@ -34,7 +34,7 @@ function Header() {
 
   function HandleProfile() {
     setAnchorEl(null);
-    navigate("/perfil");
+    navigate("/profile");
   }
 
   const [openSnack, setOpenSnack] = useState(false);
@@ -67,7 +67,7 @@ function Header() {
   }, [openSnack]);
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "black" }}>
+    <AppBar position="static" className="custom-nav-bar">
       <Toolbar>
         <div style={{ marginRight: "auto", marginLeft: "10rem" }}>
           <Button color="inherit" onClick={() => navigate("/")}>
@@ -119,7 +119,7 @@ function Header() {
             id="botao-login-navbar"
               variant="contained"
             
-              className="perfil"
+              className="profile"
               onClick={() => navigate("/login")}
             >
               Login
@@ -135,10 +135,10 @@ function Header() {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem className="perfil" onClick={HandleProfile}>
+            <MenuItem className="profile" onClick={HandleProfile}>
               Perfil
             </MenuItem>
-            <MenuItem className="perfil" onClick={HandleLogout}>
+            <MenuItem className="profile" onClick={HandleLogout}>
               Logout
             </MenuItem>
           </Menu>

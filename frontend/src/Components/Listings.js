@@ -4,638 +4,255 @@ import { useImmerReducer } from "use-immer";
 import { useNavigate } from "react-router-dom";
 // React leaflet
 import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  Polyline,
-  Polygon,
-  useMap,
+	MapContainer,
+	TileLayer,
+	Marker,
+	Popup,
+	Polyline,
+	Polygon,
+	useMap,
 } from "react-leaflet";
 import { Icon } from "leaflet";
 // MUI
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
-  Grid,
-  AppBar,
-  Typography,
-  Button,
-  Card,
-  CardHeader,
-  CardMedia,
-  CardContent,
-  CircularProgress,
-  IconButton,
-  CardActions,
-  ToggleButton,
-  ToggleButtonGroup,
-  Slider,
-  Box,
-  Fab,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  ButtonGroup,
-  Chip,
+	Grid,
+	AppBar,
+	Typography,
+	Button,
+	Card,
+	CardHeader,
+	CardMedia,
+	CardContent,
+	CircularProgress,
+	IconButton,
+	CardActions,
 } from "@mui/material";
 
 import RoomIcon from "@mui/icons-material/Room";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-//Filter Card Icons
-import HikingIcon from "@mui/icons-material/Hiking";
-import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
-import DriveEtaIcon from "@mui/icons-material/DriveEta";
-import SatelliteAltIcon from "@mui/icons-material/SatelliteAlt";
-import MapIcon from "@mui/icons-material/Map";
-//Choose starting place Button Icon
-import HomeIcon from "@mui/icons-material/Home";
+
 // Map icons
-import houseIconPng from "./Assets/Mapicons/house.png";
-import apartmentIconPng from "./Assets/Mapicons/apartment.png";
-import officeIconPng from "./Assets/Mapicons/office.png";
+import curricularIconPng from "./Assets/Mapicons/curricular.png";
+import profissionalIconPng from "./Assets/Mapicons/profissional.png";
+import voluntarioIconPng from "./Assets/Mapicons/voluntario.png";
 // Assets
 import img1 from "./Assets/img1.jpg";
 import myListings from "./Assets/Data/Dummydata";
 
-import { useCallback, useMemo, useRef } from "react";
-const center = {
-  lat: 40.574436706354,
-  lng: -8.44588251531503,
-};
-
-function DraggableMarker() {
-  const [draggable, setDraggable] = useState(false);
-  const [position, setPosition] = useState(center);
-  const markerRef = useRef(null);
-  const eventHandlers = useMemo(
-    () => ({
-      dragend() {
-        const marker = markerRef.current;
-        if (marker != null) {
-          setPosition(marker.getLatLng());
-        }
-      },
-    }),
-    []
-  );
-  const toggleDraggable = useCallback(() => {
-    setDraggable((d) => !d);
-  }, []);
-
-  return (
-    <Marker
-      draggable={draggable}
-      eventHandlers={eventHandlers}
-      position={position}
-      ref={markerRef}
-    >
-      <Popup minWidth={90}>
-        <span onClick={toggleDraggable}>
-          {draggable
-            ? "Marker is draggable"
-            : "Click here to make marker draggable"}
-        </span>
-      </Popup>
-    </Marker>
-  );
-}
-
 function Listings() {
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
-  const [userMarker, setUserMarker] = useState(null);
+	const navigate = useNavigate();
+	const curricularIcon = new Icon({
+		iconUrl: curricularIconPng,
+		iconSize: [40, 40],
+	});
 
-  const fetchUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLocation = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          };
-          setLocation(userLocation);
-          setUserMarker(userLocation); // meter o marker
-          console.log("COORDS = " + position.coords.latitude);
-        },
-        (error) => {
-          console.error("Error occurred: " + error.message);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  };
+	const profissionalIcon = new Icon({
+		iconUrl: profissionalIconPng,
+		iconSize: [40, 40],
+	});
 
-  //Funcao do button group dos filtros, mudar para mostrar os tempos diferentes - Tomás
-  const ref = React.useRef(null);
-  const [alignment, setAlignment] = React.useState("web");
+	const voluntarioIcon = new Icon({
+		iconUrl: voluntarioIconPng,
+		iconSize: [40, 40],
+	});
 
-  const normalMap =
-    "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png";
-  const satelliteMap =
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+	const [latitude, setLatitude] = useState(51.48740865233002);
+	const [longitude, setLongitude] = useState(-0.12667052265135625);
 
-  const [mapLayer, setMapLayer] = React.useState(true);
+	const initialState = {
+		mapInstance: null,
+	};
 
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.setUrl(mapLayer ? satelliteMap : normalMap);
-    }
-  }, [mapLayer]);
+	function ReducerFuction(draft, action) {
+		switch (action.type) {
+			case "getMap":
+				draft.mapInstance = action.mapData;
+				break;
+		}
+	}
 
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
+	const [state, dispatch] = useImmerReducer(ReducerFuction, initialState);
 
-  const navigate = useNavigate();
-  const houseIcon = new Icon({
-    iconUrl: houseIconPng,
-    iconSize: [40, 40],
-  });
+	function TheMapComponent() {
+		const map = useMap();
+		dispatch({ type: "getMap", mapData: map });
+		return null;
+	}
 
-  const apartmentIcon = new Icon({
-    iconUrl: apartmentIconPng,
-    iconSize: [40, 40],
-  });
+	function GoEast() {
+		setLatitude(51.46567014039476);
+		setLongitude(0.2596173538795676);
+	}
 
-  const officeIcon = new Icon({
-    iconUrl: officeIconPng,
-    iconSize: [40, 40],
-  });
+	function GoCenter() {
+		setLatitude(51.48740865233002);
+		setLongitude(-0.12667052265135625);
+	}
 
-  const initialState = {
-    mapInstance: null,
-  };
+	const polyOne = [
+		[51.505, -0.09],
+		[51.51, -0.1],
+		[51.51, -0.12],
+	];
 
-  function ReducerFuction(draft, action) {
-    switch (action.type) {
-      case "getMap":
-        draft.mapInstance = action.mapData;
-        break;
-    }
-  }
+	const [allListings, setAllListings] = useState([]);
+	const [dataIsLoading, setDataIsLoading] = useState(true);
 
-  const [state, dispatch] = useImmerReducer(ReducerFuction, initialState);
+	useEffect(() => {
+		const source = Axios.CancelToken.source();
+		async function GetAllListings() {
+			try {
+				const response = await Axios.get(
+					"http://localhost:8000/api/listings/",
+					{ cancelToken: source.token }
+				);
 
-  function TheMapComponent() {
-    const map = useMap();
-    dispatch({ type: "getMap", mapData: map });
-    return null;
-  }
+				setAllListings(response.data);
+				setDataIsLoading(false);
+			} catch (error) {}
+		}
+		GetAllListings();
+		return () => {
+			source.cancel();
+		};
+	}, []);
 
-  const [allListings, setAllListings] = useState([]);
-  const [dataIsLoading, setDataIsLoading] = useState(true);
-  const [transportMode, setTransportMode] = useState("driving-car"); // define modo de transporte
-  const [tempoViagem, setTempoViagem] = useState(30); // initial value
-  const [filteredResults, setFilteredResults] = useState(allListings);
+	if (dataIsLoading === true) {
+		return (
+			<Grid
+				container
+				justifyContent="center"
+				alignItems="center"
+				style={{ height: "100vh" }}
+			>
+				<CircularProgress />
+			</Grid>
+		);
+	}
 
-  useEffect(() => {
-    const source = Axios.CancelToken.source();
-    async function GetAllListings() {
-      try {
-        const response = await Axios.get(
-          "http://localhost:8000/api/listings/",
-          { cancelToken: source.token }
-        );
+	return (
+		<Grid container>
+			<Grid item xs={4}>
+				{allListings.map((listing) => {
+					return (
+						<Card
+							key={listing.id}
+							style={{
+								margin: "0.5rem",
+								border: "1px solid black",
+								position: "relative",
+							}}
+						>
+							<CardHeader
+								action={
+									<IconButton
+										aria-label="settings"
+										onClick={() =>
+											state.mapInstance.flyTo(
+												[listing.latitude, listing.longitude],
+												16
+											)
+										}
+									>
+										<RoomIcon />
+									</IconButton>
+								}
+								title={listing.title}
+							/>
+							<CardMedia
+								className="imagem-card-estagio"
+								component="img"
+								image={listing.picture1}
+								alt={listing.title}
+								onClick={() => navigate(`/listings/${listing.id}`)}
+							/>
+							<CardContent>
+								<Typography variant="body2">
+									{listing.description.substring(0, 200)}...
+								</Typography>
+							</CardContent>
+							<CardActions disableSpacing>
+								<IconButton aria-label="add to favorites">
+									{listing.seller_agency_name}
+								</IconButton>
+							</CardActions>
+						</Card>
+					);
+				})}
+			</Grid>
+			<Grid item xs={8} style={{ marginTop: "0.5rem" }}>
+				<AppBar position="sticky">
+					<div style={{ height: "100vh" }}>
+						<MapContainer
+							center={[51.505, -0.09]}
+							zoom={12}
+							scrollWheelZoom={true}
+						>
+							 <TileLayer
+              					  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              					  url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+              					/>
+							<TheMapComponent />
 
-        setAllListings(response.data);
-        setFilteredResults(response.data); // filteredResults
-        setDataIsLoading(false);
-      } catch (error) {}
-    }
-    GetAllListings();
-    return () => {
-      source.cancel();
-    };
-  }, []);
+							{allListings.map((listing) => {
+								function IconDisplay() {
+									if (listing.listing_type === "Curricular") {
+										return curricularIcon;
+									} else if (listing.listing_type === "Profissional") {
+										return profissionalIcon;
+									} else if (listing.listing_type === "Voluntário") {
+										return voluntarioIcon;
+									}
+								}
+								return (
+									<Marker
+										key={listing.id}
+										icon={IconDisplay()}
+										position={[listing.latitude, listing.longitude]}
+									>
+										<Popup>
+											<Typography variant="h5">{listing.title}</Typography>
+											<img
+												src={listing.picture1}
+												style={{
+													height: "14rem",
+													width: "18rem",
+													cursor: "pointer",
+												}}
+												onClick={() => navigate(`/listings/${listing.id}`)}
+											/>
+											<Typography variant="body1">
+												{listing.description.substring(0, 150)}...
+											</Typography>
+											<Button
+												variant="contained"
+												fullWidth
+												onClick={() => navigate(`/listings/${listing.id}`)}
+											>
+												Details
+											</Button>
+										</Popup>
+									</Marker>
+								);
+							})}
 
-  if (dataIsLoading === true) {
-    return (
-      <Grid
-        container
-        justifyContent="center"
-        alignItems="center"
-        style={{ height: "10vh" }}
-      >
-        <CircularProgress />
-      </Grid>
-    );
-  }
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#73A800",
-      },
-      secondary: {
-        main: "#ffffff",
-      },
-      error: {
-        main: "#e57373",
-      },
-      divider: "#73A800",
-    },
-  });
-
-  function valuetext(value) {
-    return `${value} minutos`;
-  }
-
-  async function fetchMatrixData() {
-    try {
-      // dar fetch aos listings
-      const response = await Axios.get("http://localhost:8000/api/listings/");
-      const listings = response.data;
-
-      // preparar dados para request
-      const locations = [[location.longitude, location.latitude]];
-
-      console.log("LOCATION" + locations);
-      const listingIDs = [];
-      listings.forEach((listing) => {
-        locations.push([listing.longitude, listing.latitude]);
-        listingIDs.push(listing.id);
-      });
-
-      // preparar POST
-      const postData = {
-        locations,
-        metrics: ["duration"],
-        units: "km",
-        sources: [0],
-      };
-
-      // dar fetch ao matrix do API e mandar header com API key (encriptar(?) depois para n ser visivel no front end)
-      const matrixResponse = await Axios.post(
-        `https://api.openrouteservice.org/v2/matrix/${transportMode}`,
-        postData,
-        {
-          headers: {
-            Authorization:
-              "5b3ce3597851110001cf62488b0d6f5e08f64786b7d400a1ec74d4ac",
-            "Content-Type": "application/json",
-            Accept:
-              "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8",
-          },
-        }
-      );
-
-      // filtar por destino [0] e extrair tempo que demora
-      const times = matrixResponse.data.durations[0];
-      console.log(times);
-
-      // filtar listings < tempo
-      const filteredListings = listings.filter((listing, index) => {
-        // converter de segundos para minutos
-        const travelTimeMinutes = times[index + 1] / 60;
-        const travelTimeSeconds = times[index + 1] % 60;
-
-        console.log(
-          "Listing: " +
-            listing +
-            " Tempo:" +
-            travelTimeMinutes +
-            " Minutos " +
-            " Segundos " +
-            travelTimeSeconds
-        );
-        return travelTimeMinutes <= tempoViagem;
-      });
-
-      console.log("Listings Filtrados <= tempo " + filteredListings);
-      //mandar para hook e mostrar so listings filtrados
-      setFilteredResults(filteredListings);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Grid container>
-        <Grid item xs={4}>
-          {filteredResults.map((listing) => {
-            return (
-              <Card
-                className="internship-info-card"
-                key={listing.id}
-                style={{
-                  backgroundImage: `url(${listing.picture1})`,
-                }}
-              >
-                <CardHeader
-                  action={
-                    <IconButton
-                      color="secondary"
-                      aria-label="settings"
-                      onClick={() =>
-                        state.mapInstance.flyTo(
-                          [listing.latitude, listing.longitude],
-                          16
-                        )
-                      }
-                    >
-                      <RoomIcon />
-                    </IconButton>
-                  }
-                  title={
-                    <Typography
-                      className="internship-card-title"
-                      onClick={() => navigate(`/listings/${listing.id}`)}
-                      variant="h5"
-                      color="secondary"
-                    >
-                      {listing.title}
-                      <ArrowForwardIosIcon sx={{ ml: 1 }} />
-                    </Typography>
-                  }
-                />
-                {/* 
-                <CardMedia
-                  className="internship-card-image"
-                  component="img"
-                  image={listing.picture1}
-                  alt={listing.title}
-                  onClick={() => navigate(`/listings/${listing.id}`)}
-                />
-                */}
-                <CardContent>
-                  <Typography variant="body2">
-                    {listing.description.substring(0, 200)}
-                  </Typography>
-                  <Chip label="React" color="error" className="react" />
-                  <Chip label="Angular" color="error" className="angular" />
-                </CardContent>
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    {listing.seller_agency_name}
-                  </IconButton>
-                </CardActions>
-              </Card>
-            );
-          })}
-        </Grid>
-
-        <Grid item xs={8} style={{ marginTop: "0.5rem", position: "relative" }}>
-          <AppBar position="sticky">
-            <div style={{ height: "100vh" }}>
-              <div className="filter-container">
-                <div id="filter-sub-container">
-                  <Card className="filter-card">
-                    <CardContent sx={{ padding: 0 }}>
-                      <ToggleButtonGroup
-                        sx={{ width: "100%" }}
-                        color="primary"
-                        value={alignment}
-                        exclusive
-                        onChange={(event, newMode) => {
-                          handleChange(event, newMode);
-                          if (newMode) {
-                            let newTransportMode;
-                            switch (newMode) {
-                              case "walking":
-                                newTransportMode = "foot-walking"; //caminhar
-                                break;
-                              case "bike":
-                                newTransportMode = "cycling-road"; //bicicleta
-                                break;
-                              case "driving":
-                                newTransportMode = "driving-car"; //carro
-                                break;
-                              default:
-                                newTransportMode = "driving-car";
-                            }
-                            setTransportMode(newTransportMode);
-                          }
-                        }}
-                        aria-label="Platform"
-                      >
-                        <ToggleButton
-                          value="walking"
-                          sx={{ flexGrow: 1, width: "33.33%" }}
-                        >
-                          <Box
-                            display="flex"
-                            flexDirection="column"
-                            alignItems="center"
-                          >
-                            <HikingIcon />
-                            <Typography variant="body2" sx={{ fontSize: 13 }}>
-                              A pé
-                            </Typography>
-                          </Box>
-                        </ToggleButton>
-                        <ToggleButton
-                          value="bike"
-                          sx={{
-                            flexGrow: 1,
-                            width: "33.33%",
-                          }}
-                        >
-                          <Box
-                            display="flex"
-                            flexDirection="column"
-                            alignItems="center"
-                            sx={{
-                              paddingLeft: "20px",
-                              paddingRight: "20px",
-                            }}
-                          >
-                            <DirectionsBikeIcon />
-                            <Typography variant="body2" sx={{ fontSize: 13 }}>
-                              Bicicleta
-                            </Typography>
-                          </Box>
-                        </ToggleButton>
-                        <ToggleButton
-                          value="driving"
-                          sx={{ flexGrow: 1, width: "33.33%" }}
-                        >
-                          <Box
-                            display="flex"
-                            flexDirection="column"
-                            alignItems="center"
-                          >
-                            <DriveEtaIcon />
-                            <Typography variant="body2" sx={{ fontSize: 13 }}>
-                              Carro
-                            </Typography>
-                          </Box>
-                        </ToggleButton>
-                      </ToggleButtonGroup>
-                      <div className="filter-card-content">
-                        <Typography
-                          sx={{ fontSize: 14, mt: "15px", mb: 0 }}
-                          color="text.secondary"
-                          gutterBottom
-                        >
-                          Tempo de viagem
-                        </Typography>
-                        <Slider
-                          aria-label="TempoViagem"
-                          defaultValue={30}
-                          getAriaValueText={valuetext}
-                          valueLabelDisplay="auto"
-                          step={10}
-                          marks
-                          min={10}
-                          max={120}
-                          value={tempoViagem} // bind the state variable to the value
-                          onChange={(event, newValue) =>
-                            setTempoViagem(newValue)
-                          } // update the state when the value changes
-                        />
-                        <FormGroup>
-                          <FormControlLabel
-                            control={<Checkbox defaultChecked />}
-                            label={
-                              <Typography
-                                sx={{ fontSize: 14 }}
-                                variant="body1"
-                                color="text.secondary"
-                              >
-                                Ver empresas sem ofertas
-                              </Typography>
-                            }
-                          />
-                        </FormGroup>
-                      </div>
-                    </CardContent>
-                    <CardActions id="filter-card-bottom" color="error">
-                      <Button variant="text" onClick={fetchMatrixData}>
-                        Aplicar
-                      </Button>
-                      <Button
-                        variant="text"
-                        onClick={() => setFilteredResults(allListings)}
-                      >
-                        Reset
-                      </Button>
-                    </CardActions>
-                  </Card>
-
-                  <ButtonGroup
-                    fullWidth="true"
-                    id="filter-button-group"
-                    variant="contained"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button
-                      onClick={fetchUserLocation}
-                      className="starting-point-button "
-                      color="secondary"
-                    >
-                      <HomeIcon color="primary" />
-                      <Typography
-                        variant="body1"
-                        sx={{ fontSize: 14, fontWeight: "500" }}
-                        color="primary"
-                      ></Typography>
-                    </Button>
-
-                    <Button
-                      className="map-layer-button"
-                      color="secondary"
-                      onClick={() => setMapLayer(!mapLayer)}
-                    >
-                      <MapIcon />
-                    </Button>
-                  </ButtonGroup>
-                  {/* 
-                  <Fab
-                    className="starting-point-button"
-                    variant="extended"
-                    size="small"
-                    color="primary"
-                    aria-label="add"
-                  >
-                    <HomeIcon sx={{ mr: 2 }} />
-                    ponto de partida
-                  </Fab>
-                  */}
-                </div>
-                {/* 
-                <Fab
-                  className="map-layer-button"
-                  variant=""
-                  size="small"
-                  color="secondary"
-                  aria-label="add"
-                  onClick={() => setMapLayer(!mapLayer)}
-                >
-                  <MapIcon />
-                </Fab>
-                 */}
-              </div>
-              <MapContainer
-                center={[40.574436706354, -8.44588251531503]}
-                zoom={12}
-                scrollWheelZoom={true}
-              >
-                <TileLayer
-                  ref={ref}
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url={mapLayer ? normalMap : satelliteMap}
-                />
-                <DraggableMarker />
-                <TheMapComponent />
-
-                {filteredResults.map((listing) => {
-                  function IconDisplay() {
-                    if (listing.listing_type === "House") {
-                      return houseIcon;
-                    } else if (listing.listing_type === "Apartment") {
-                      return apartmentIcon;
-                    } else if (listing.listing_type === "Office") {
-                      return officeIcon;
-                    }
-                  }
-                  return (
-                    <Marker
-                      key={listing.id}
-                      icon={IconDisplay()}
-                      position={[listing.latitude, listing.longitude]}
-                    >
-                      <Popup>
-                        <Typography variant="h5">{listing.title}</Typography>
-                        <img
-                          src={listing.picture1}
-                          style={{
-                            height: "14rem",
-                            width: "18rem",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => navigate(`/listings/${listing.id}`)}
-                        />
-                        <Typography variant="body1">
-                          {listing.description.substring(0, 150)}...
-                        </Typography>
-                        <Button
-                          variant="contained"
-                          fullWidth
-                          onClick={() => navigate(`/listings/${listing.id}`)}
-                        >
-                          Details
-                        </Button>
-                      </Popup>
-                    </Marker>
-                  );
-                })}
-              
-                {userMarker && (
-                  <Marker
-                    position={[userMarker.latitude, userMarker.longitude]}
-                  >
-                    <Popup>A tua casa esta aqui!</Popup>
-                  </Marker>
-                )}
-
-              </MapContainer>
-            </div>
-          </AppBar>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
-  );
+							{/* <Marker icon={officeIcon} position={[latitude, longitude]}>
+								<Popup>
+									<Typography variant="h5">A title</Typography>
+									<img src={img1} style={{ height: "14rem", width: "18rem" }} />
+									<Typography variant="body1">
+										This is some text below the title
+									</Typography>
+									<Button variant="contained" fullWidth>
+										A Link
+									</Button>
+								</Popup>
+							</Marker> */}
+						</MapContainer>
+					</div>
+				</AppBar>
+			</Grid>
+		</Grid>
+	);
 }
 
 export default Listings;

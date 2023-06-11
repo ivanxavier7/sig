@@ -12,12 +12,13 @@ import Listings from "./Components/Listings";
 import Header from "./Components/Header";
 import Register from "./Components/Register";
 import AdicionarEstagio from "./Components/AdicionarEstagio";
-import Perfil from "./Components/Perfil";
+import Profile from "./Components/Profile";
 import Empresas from "./Components/Empresas";
 import AgencyDetail from "./Components/AgencyDetail";
 import ListingDetail from "./Components/ListingDetail";
 import AccountCreated from "./Components/AccountCreated";
 import Activation from "./Components/Activation";
+import Footer from "./Components/Footer";
 // Contexts
 import DispatchContext from "./Contexts/DispatchContext";
 import StateContext from "./Contexts/StateContext";
@@ -79,12 +80,13 @@ function App() {
 						<Route path="/created" element={<AccountCreated />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/adicionarestagio" element={<AdicionarEstagio />} />
-						<Route path="/perfil" element={<Perfil />} />
+						<Route path="/profile" element={<Profile />} />
 						<Route path="/empresas" element={<Empresas />} />
 						<Route path="/empresas/:id" element={<AgencyDetail />} />
 						<Route path="/listings/:id" element={<ListingDetail />} />
 						<Route path="/listings" element={<Listings />} />
 					</Routes>
+					<Footer />
 				</BrowserRouter>
 				{/* </StyledEngineProvider> */}
 			</DispatchContext.Provider>

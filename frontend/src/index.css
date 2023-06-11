@@ -4,19 +4,9 @@
 }
 
 :root {
-  --cor-contraste: #73a800;
-  --cor-contraste-hover: #73a800;
+  --cor-contraste: rgb(115, 168, 0);
+  --cor-contraste-hover: rgb(93, 136, 0);
   --cor-neutra: #ffff;
-  --REACT: #61dafb;
-}
-
-.react {
-  color: var(--cor-neutra) !important;
-  background-color: #61dafb !important;
-}
-.angular {
-  color: var(--cor-neutra) !important;
-  background-color: #c3002f !important;
 }
 
 Button.submit-button {
@@ -54,7 +44,7 @@ Button.submit-button:hover {
 
 /*Fim de Header.js*/
 
-/*Perfil.js*/
+/*Profile.js*/
 .welcome-text {
   text-align: center;
   margin-top: 1rem;
@@ -81,7 +71,7 @@ Button.submit-button:hover {
 .grid-container {
   height: 100vh;
 }
-/*Fim de Perfil.js*/
+/*Fim de Profile.js*/
 
 /*Register.js*/
 .form-container {
@@ -97,20 +87,20 @@ Button.submit-button:hover {
 .bg-verde {
   background-color: var(--cor-contraste);
 }
-.texto-contraste {
+.texto-contraste{
   color: var(--cor-contraste) !important;
 }
 
 .botoes-navbar-hover:hover {
-  color: var(--cor-contraste) !important;
+  color: var(--cor-contraste);
 }
 
-#botao-login-navbar {
-  background-color: var(--cor-contraste);
+#botao-login-navbar{
+  background-color:  var(--cor-contraste);
   margin-left: 1rem;
 }
-.botao-user-hover:hover {
-  color: var(--cor-neutra) !important;
+.botao-user-hover:hover{
+  color: var(--cor-neutra)!important;
 }
 .container-home {
   background-size: cover;
@@ -150,119 +140,71 @@ Button.submit-button:hover {
 }
 
 /*estagio (listings)*/
-.internship-info-card {
-  position: relative;
-  height: 16rem;
-  margin: 1rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 10px !important;
-}
-
-.internship-info-card::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-image: inherit;
-  background: inherit;
-  filter: blur(2px) brightness(0.4);
-  z-index: 1;
-  transform: scale(1.03);
-}
-
-.internship-info-card > * {
-  position: relative;
-  z-index: 2;
-  color: #ffff;
-}
-
-.internship-card-title {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  cursor: pointer;
-}
-
-.internship-card-image {
+.imagem-card-estagio{
   padding-right: 1rem;
-  padding-left: 1rem;
-  width: 30rem;
-  cursor: pointer;
+	padding-left: 1rem;
+	height: 20rem;
+	width: 30rem;
+	cursor: pointer;
 }
 
 /*login*/
-.container-login {
+.container-login{
   width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  border: 3px solid black;
-  padding: 3rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3rem;
+	border: 3px solid black;
+	padding: 3rem;
 }
-#botao-submit-login {
+#botao-submit-login{
   background-color: var(--cor-contraste);
-  color: var(--cor-neutra);
-  font-size: 1.1rem;
-  margin-left: 1rem;
+	color: var(--cor-neutra);
+	font-size: 1.1rem;
+	margin-left: 1rem;
+}
+/*nav-bar*/
+div#root header.custom-nav-bar {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 8000;
+}
+/*Body*/
+div#root div.MuiGrid-root.MuiGrid-container[style=""] {
+  margin-top: 80px;
 }
 
-.filter-container {
-  height: 90%;
-  right: 0;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  gap: 15px;
-  z-index: 10000;
+/*Footer*/
+div#root footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding-top: 10vh;
 }
 
-.filter-card {
-  z-index: 2000;
-  width: fit-content;
-  z-index: 1000;
+p.footer-text, h6.footer-text {
+  color: white;
 }
 
-.filter-card-content {
-  padding: 0 16px 0 16px;
-  margin-top: 20px;
+div#root div.container-home {
+
 }
 
-.starting-point-button {
-  margin-top: 10px;
-  color: white !important;
-  z-index: 1000;
-  margin-right: 15px;
-}
-.map-layer-button {
-  position: absolute;
-  color: var(--cor-contraste) !important;
-  z-index: 1000;
-  align-self: flex-end;
-}
-.old-map-layer-button {
-  position: absolute;
-  color: var(--cor-contraste) !important;
-  z-index: 1000;
-  align-self: flex-end;
+div#root span.footer-sig-name {
+  color: rgb(115, 168, 0);
 }
 
-#filter-card-bottom {
-  margin-top: 5px;
-  display: flex;
-  justify-content: space-between;
+div#root a.github-icon {
+  margin-left: 12px;
+  margin-right: 12px;
+  position: relative;
+  top: 6px;
 }
 
-#filter-sub-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 15px;
-  z-index: 10000;
-}
-
-#filter-button-group {
+div#root a.github-icon:hover,
+div#root a.copyrights-ua:hover {
+  color: rgb(115, 168, 0);
 }

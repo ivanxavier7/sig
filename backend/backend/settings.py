@@ -107,9 +107,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'lbrep_course_db',
+        'NAME': 'uaestagios_db',
         'USER': 'postgres',
-        'PASSWORD': 'jacslam16',
+        'PASSWORD': 'peido4ever',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
@@ -163,7 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 

@@ -177,14 +177,10 @@ function AgencyDetail() {
 									</Typography>
 								</CardContent>
 								<CardActions>
-									{listing.property_status === "Sale"
-										? `${listing.listing_type}: $${listing.price
-												.toString()
-												.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-										: `${listing.listing_type}: $${listing.price
+									{`${listing.listing_type}: $${listing.vacancies
 												.toString()
 												.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/${
-												listing.rental_frequency
+												listing.internship_bachelor
 										  }`}
 								</CardActions>
 							</Card>

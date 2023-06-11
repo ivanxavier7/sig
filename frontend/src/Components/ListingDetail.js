@@ -333,15 +333,24 @@ function ListingDetail() {
 						style={{ fontWeight: "bolder", color: "green" }}
 					>
 						{state.listingInfo.listing_type} |{" "}
-						{state.listingInfo.property_status === "Sale"
-							? `$${state.listingInfo.price
-									.toString()
-									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-							: `$${state.listingInfo.price
+						{`$${state.listingInfo.vacancies
 									.toString()
 									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/${
-									state.listingInfo.rental_frequency
+									state.listingInfo.internship_bachelor
 							  }`}
+					</Typography>
+				</Grid>
+				<Grid item container xs={5} alignItems="center">
+					<Typography
+						variant="h6"
+						style={{ fontWeight: "bolder", color: "green" }}
+					>
+						{state.listingInfo.internship_bachelor === "CTeSP" ? state.listingInfo.internship_courses_ctesp
+							: state.listingInfo.internship_bachelor === "Licenciatura" ? state.listingInfo.internship_courses_licenciatura
+							: state.listingInfo.internship_bachelor === "Mestrado" ? state.listingInfo.internship_courses_mestrado
+							: state.listingInfo.internship_bachelor === "Cursos de Especialização" ? state.listingInfo.internship_courses_ce
+							: " "
+						}
 					</Typography>
 				</Grid>
 			</Grid>
@@ -356,60 +365,271 @@ function ListingDetail() {
 					marginTop: "1rem",
 				}}
 			>
-				{state.listingInfo.rooms ? (
+
+				{state.listingInfo.total_hours == 1 ?
+				(
 					<Grid item xs={2} style={{ display: "flex" }}>
 						<Typography variant="h6">
-							{state.listingInfo.rooms} Rooms
+							{state.listingInfo.total_hours} hora
+						</Typography>
+					</Grid>
+				) : state.listingInfo.total_hours ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<Typography variant="h6">
+							{state.listingInfo.total_hours} horas
 						</Typography>
 					</Grid>
 				) : (
 					""
 				)}
 
-				{state.listingInfo.furnished ? (
+				<Grid item>
+					<Typography variant="h5">Linguagens de Programação</Typography>
+				</Grid>
+
+				{state.listingInfo.programming_lang_python ? (
 					<Grid item xs={2} style={{ display: "flex" }}>
 						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Furnished</Typography>
+						<Typography variant="h6">Python</Typography>
 					</Grid>
 				) : (
 					""
 				)}
 
-				{state.listingInfo.pool ? (
+				{state.listingInfo.programming_lang_python ? (
 					<Grid item xs={2} style={{ display: "flex" }}>
 						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Pool</Typography>
+						<Typography variant="h6">Java</Typography>
 					</Grid>
 				) : (
 					""
 				)}
 
-				{state.listingInfo.elevator ? (
+				{state.listingInfo.programming_lang_c_1 ? (
 					<Grid item xs={2} style={{ display: "flex" }}>
 						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Elevator</Typography>
+						<Typography variant="h6">C e C++</Typography>
 					</Grid>
 				) : (
 					""
 				)}
 
-				{state.listingInfo.cctv ? (
+				{state.listingInfo.programming_lang_c_2 ? (
 					<Grid item xs={2} style={{ display: "flex" }}>
 						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Cctv</Typography>
+						<Typography variant="h6">C#</Typography>
 					</Grid>
 				) : (
 					""
 				)}
 
-				{state.listingInfo.parking ? (
+				{state.listingInfo.programming_lang_javascript ? (
 					<Grid item xs={2} style={{ display: "flex" }}>
 						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Parking</Typography>
+						<Typography variant="h6">JavaScript</Typography>
 					</Grid>
 				) : (
 					""
 				)}
+
+				
+				{state.listingInfo.programming_lang_sql ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">SQL</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_lang_php ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">PHP</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_lang_go ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Go</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_lang_kotlin ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Kotlin</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_lang_matlab ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">MATLAB</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_lang_swift ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Swift</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+{				state.listingInfo.programming_lang_rust ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Rust</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+{				state.listingInfo.programming_lang_ruby ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Ruby</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_lang_dart ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Dart</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_lang_scala ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Scala</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				<Grid item>
+					<Typography variant="h5">Front-End FrameWorks</Typography>
+				</Grid>
+
+				{state.listingInfo.programming_fw_frontend_angular ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Angular</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_frontend_jquery ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">jQuery</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_frontend_react ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">React</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_frontend_ruby ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Ruby on Rails</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_frontend_vuejs ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Vue.js</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				<Grid item>
+					<Typography variant="h5">Back-End FrameWorks</Typography>
+				</Grid>
+
+				{state.listingInfo.programming_fw_backend_aspnet ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">ASP.Net</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_backend_django ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Django</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_backend_express ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Express</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_backend_laravel ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Laravel</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_backend_nodejs ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Node.js</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
+				{state.listingInfo.programming_fw_backend_spring ? (
+					<Grid item xs={2} style={{ display: "flex" }}>
+						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+						<Typography variant="h6">Spring</Typography>
+					</Grid>
+				) : (
+					""
+				)}
+
 			</Grid>
 
 			{/* Description */}

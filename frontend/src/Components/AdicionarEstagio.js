@@ -236,16 +236,16 @@ const listingTypeOptions = [
 		label: "",
 	},
 	{
-		value: "Apartment",
-		label: "Apartment",
+		value: "Curricular",
+		label: "Curricular",
 	},
 	{
-		value: "House",
-		label: "House",
+		value: "Profissional",
+		label: "Profissional",
 	},
 	{
-		value: "Office",
-		label: "Office",
+		value: "Voluntário",
+		label: "Voluntário",
 	},
 ];
 
@@ -255,33 +255,163 @@ const propertyStatusOptions = [
 		label: "",
 	},
 	{
-		value: "Sale",
-		label: "Sale",
+		value: "Presencial",
+		label: "Presencial",
 	},
 	{
-		value: "Rent",
-		label: "Rent",
+		value: "Remoto",
+		label: "Remoto",
+	},
+	{
+		value: "Híbrido",
+		label: "Híbrido",
 	},
 ];
 
-const rentalFrequencyOptions = [
+const internshipBachelorOptions = [
 	{
 		value: "",
 		label: "",
 	},
 	{
-		value: "Month",
-		label: "Month",
+		value: "CTeSP",
+		label: "CTeSP",
 	},
 	{
-		value: "Week",
-		label: "Week",
+		value: "Licenciatura",
+		label: "Licenciatura",
 	},
 	{
-		value: "Day",
-		label: "Day",
+		value: "Mestrado",
+		label: "Mestrado",
+	},
+	{
+		value: "Cursos de Especialização",
+		label: "Cursos de Especialização",
 	},
 ];
+
+
+const internshipCoursesCTeSPOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Cibersegurança",
+		label: "Cibersegurança",
+	},
+	{
+		value: "Gestão de PME",
+		label: "Gestão de PME",
+	},
+	{
+		value: "Instalações Elétricas e Automação",
+		label: "Instalações Elétricas e Automação",
+	},
+	{
+		value: "Manutenção Industrial",
+		label: "Manutenção Industrial",
+	},
+	{
+		value: "Programação de Sistemas de Informação",
+		label: "rogramação de Sistemas de Informação",
+	},
+	{
+		value: "Redes e Sistemas Informáticos",
+		label: "Redes e Sistemas Informáticos",
+	},
+	{
+		value: "Tecnologia Mecânica",
+		label: "Tecnologia Mecânica",
+	},
+];
+
+const internshipCoursesLicenciaturaOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Eletrónica e Mecânica Industrial",
+		label: "Eletrónica e Mecânica Industrial",
+	},
+	{
+		value: "Gestão Comercial",
+		label: "Gestão Comercial",
+	},
+	{
+		value: "Gestão da Qualidade",
+		label: "Gestão da Qualidade",
+	},
+	{
+		value: "Gestão Pública",
+		label: "Gestão Pública",
+	},
+	{
+		value: "Secretariado e Comunicação Empresarial",
+		label: "Secretariado e Comunicação Empresarial",
+	},
+	{
+		value: "Tecnologias da Informação",
+		label: "Tecnologias da Informação",
+	},
+];
+
+const internshipCoursesMestradoOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Assessoria de Direção e Comunicação nas Organizações",
+		label: "Assessoria de Direção e Comunicação nas Organizações",
+	},
+	{
+		value: "Gestão Comercial",
+		label: "Gestão Comercial",
+	},
+	{
+		value: "Gestão da Qualidade Total",
+		label: "Gestão da Qualidade Total",
+	},
+	{
+		value: "Gestão e Negócios Digitais",
+		label: "Gestão e Negócios Digitais",
+	},
+	{
+		value: "Informática Aplicada",
+		label: "Informática Aplicada",
+	},
+];
+
+const internshipCoursesCEOptions = [
+	{
+		value: "",
+		label: "",
+	},
+	{
+		value: "Auditorias de Sistemas Integrados de Gestão",
+		label: "Auditorias de Sistemas Integrados de Gestão",
+	},
+	{
+		value: "Dados e Inteligência Artificial",
+		label: "Dados e Inteligência Artificial",
+	},
+	{
+		value: "Desenvolvimento de Aplicações Móveis",
+		label: "Desenvolvimento de Aplicações Móveis",
+	},
+	{
+		value: "Excelência nas Organizações",
+		label: "Excelência nas Organizações",
+	},
+	{
+		value: "Gestão de Negócios de Retalho",
+		label: "Gestão de Negócios de Retalho",
+	},
+];
+
 
 function AddProperty() {
 	const navigate = useNavigate();
@@ -296,14 +426,43 @@ function AddProperty() {
 		latitudeValue: "",
 		longitudeValue: "",
 		propertyStatusValue: "",
-		priceValue: "",
-		rentalFrequencyValue: "",
-		roomsValue: "",
-		furnishedValue: false,
-		poolValue: false,
-		elevatorValue: false,
-		cctvValue: false,
-		parkingValue: false,
+		vacanciesValue: "",
+		internshipBachelorValue: "",
+
+
+		internshipCoursesCTeSPValue: "",
+		internshipCoursesLicenciaturaValue: "",
+		internshipCoursesMestradoValue: "",
+		internshipCoursesCEValue: "",
+
+
+		totalHoursValue: "",
+		programmingLangPythonValue: false,
+		programmingLangJavaValue: false,
+		programmingLangC1Value: false,
+		programmingLangC2Value: false,
+		programmingLangJavaScriptValue: false,
+		programmingLangSQLValue: false,
+		programmingLangPHPValue: false,
+		programmingLangGoValue: false,	
+		programmingLangKotlinValue: false,
+		programmingLangMATLABValue: false,
+		programmingLangSwiftValue: false,
+		programmingLangRustValue: false,
+		programmingLangRubyValue: false,
+		programmingLangDartValue: false,
+		programmingLangScalaValue: false,
+		programmingFWFrontEndAngularValue: false,
+		programmingFWFrontEndjQueryValue: false,
+		programmingFWFrontEndReactValue: false,
+		programmingFWFrontEndRubyValue: false,
+		programmingFWFrontEndVuejsValue: false,
+		programmingFWBackEndASPNetValue: false,
+		programmingFWBackEndDjangoValue: false,
+		programmingFWBackEndExpressValue: false,
+		programmingFWBackEndLaravelValue: false,
+		programmingFWBackEndNodejsValue: false,
+		programmingFWBackEndSpringValue: false,
 		picture1Value: "",
 		picture2Value: "",
 		picture3Value: "",
@@ -334,7 +493,7 @@ function AddProperty() {
 			hasErrors: false,
 			errorMessage: "",
 		},
-		priceErrors: {
+		vacanciesErrors: {
 			hasErrors: false,
 			errorMessage: "",
 		},
@@ -392,38 +551,139 @@ function AddProperty() {
 				draft.propertyStatusErrors.errorMessage = "";
 				break;
 
-			case "catchPriceChange":
-				draft.priceValue = action.priceChosen;
-				draft.priceErrors.hasErrors = false;
-				draft.priceErrors.errorMessage = "";
+			case "catchVacanciesChange":
+				draft.vacanciesValue = action.vacanciesChosen;
+				draft.vacanciesErrors.hasErrors = false;
+				draft.vacanciesErrors.errorMessage = "";
 				break;
 
-			case "catchRentalFrequencyChange":
-				draft.rentalFrequencyValue = action.rentalFrequencyChosen;
+			case "catchInternshipBachelorChange":
+				draft.internshipBachelorValue = action.internshipBachelorChosen;
 				break;
 
-			case "catchRoomsChange":
-				draft.roomsValue = action.roomsChosen;
+			case "catchInternshipCoursesCTeSPChange":
+				draft.internshipCoursesCTeSPValue = action.internshipCoursesCTeSPChosen;
 				break;
 
-			case "catchFurnishedChange":
-				draft.furnishedValue = action.furnishedChosen;
+			case "catchInternshipCoursesLicenciaturaChange":
+				draft.internshipCoursesLicenciaturaValue = action.internshipCoursesLicenciaturaChosen;
 				break;
 
-			case "catchPoolChange":
-				draft.poolValue = action.poolChosen;
+			case "catchInternshipCoursesMestradoChange":
+				draft.internshipCoursesMestradoValue = action.internshipCoursesMestradoChosen;
 				break;
 
-			case "catchElevatorChange":
-				draft.elevatorValue = action.elevatorChosen;
+			case "catchInternshipCoursesCEChange":
+				draft.internshipCoursesCEValue = action.internshipCoursesCEChosen;
 				break;
 
-			case "catchCctvChange":
-				draft.cctvValue = action.cctvChosen;
+			case "catchTotalHoursChange":
+				draft.totalHoursValue = action.totalHoursChosen;
 				break;
 
-			case "catchParkingChange":
-				draft.parkingValue = action.parkingChosen;
+			case "catchProgrammingLangPythonChange":
+				draft.programmingLangPythonValue = action.programmingLangPythonChosen;
+				break;
+
+			case "catchProgrammingLangJavaChange":
+				draft.programmingLangJavaValue = action.programmingLangJavaChosen;
+				break;
+
+			case "catchProgrammingLangC1Change":
+				draft.programmingLangC1Value = action.programmingLangC1Chosen;
+				break;
+
+			case "catchProgrammingLangC2Change":
+				draft.programmingLangC2Value = action.programmingLangC2Chosen;
+				break;
+
+			case "catchProgrammingLangJavaScriptChange":
+				draft.programmingLangJavaScriptValue = action.programmingLangJavaScriptChosen;
+				break;
+
+
+			case "catchProgrammingLangSQLChange":
+				draft.programmingLangSQLValue = action.programmingLangSQLChosen;
+				break;
+
+			case "catchProgrammingLangPHPChange":
+				draft.programmingLangPHPValue = action.programmingLangPHPChosen;
+				break;
+			
+			case "catchProgrammingLangGoChange":
+				draft.programmingLangGoValue = action.programmingLangGoChosen;
+				break;
+
+			case "catchProgrammingLangKotlinChange":
+				draft.programmingLangKotlinValue = action.programmingLangKotlinChosen;
+				break;
+
+			case "catchProgrammingLangMATLABChange":
+				draft.programmingLangMATLABValue = action.programmingLangMATLABChosen;
+				break;
+			
+			case "catchProgrammingLangSwiftChange":
+				draft.programmingLangSwiftValue = action.programmingLangSwiftChosen;
+				break;
+
+			case "catchProgrammingLangRustChange":
+				draft.programmingLangRustValue = action.programmingLangRustChosen;
+				break;
+				
+			case "catchProgrammingLangRubyChange":
+				draft.programmingLangRubyValue = action.programmingLangRubyChosen;
+				break;
+
+			case "catchProgrammingLangDartChange":
+				draft.programmingLangDartValue = action.programmingLangDartChosen;
+				break;
+			
+			case "catchProgrammingLangScalaChange":
+				draft.programmingLangScalaValue = action.programmingLangScalaChosen;
+				break;
+
+			case "catchProgrammingFWFrontEndAngularChange":
+				draft.programmingFWFrontEndAngularValue = action.programmingFWFrontEndAngularChosen;
+				break;
+
+			case "catchProgrammingFWFrontEndjQueryChange":
+				draft.programmingFWFrontEndjQueryValue = action.programmingFWFrontEndjQueryChosen;
+				break;
+				
+			case "catchProgrammingFWFrontEndReactChange":
+				draft.programmingFWFrontEndReactValue = action.programmingFWFrontEndReactChosen;
+				break;
+
+			case "catchProgrammingFWFrontEndRubyChange":
+				draft.programmingFWFrontEndRubyValue = action.programmingFWFrontEndRubyChosen;
+				break;
+			
+			case "catchProgrammingFWFrontEndVuejsChange":
+				draft.programmingFWFrontEndVuejsValue = action.programmingFWFrontEndVuejsChosen;
+				break;
+
+			case "catchProgrammingFWBackEndASPNetChange":
+				draft.programmingFWBackEndASPNetValue = action.programmingFWBackEndASPNetChosen;
+				break;
+
+			case "catchProgrammingFWBackEndDjangoChange":
+				draft.programmingFWBackEndDjangoValue = action.programmingFWBackEndDjangoChosen;
+				break;
+
+			case "catchProgrammingFWBackEndExpressChange":
+				draft.programmingFWBackEndExpressValue = action.programmingFWBackEndExpressChosen;
+				break;
+				
+			case "catchProgrammingFWBackEndLaravelChange":
+				draft.programmingFWBackEndLaravelValue = action.programmingFWBackEndLaravelChosen;
+				break;
+
+			case "catchProgrammingFWBackEndNodejsChange":
+				draft.programmingFWBackEndNodejsValue = action.programmingFWBackEndNodejsChosen;
+				break;
+			
+			case "catchProgrammingFWBackEndSpringChange":
+				draft.programmingFWBackEndSpringValue = action.programmingFWBackEndSpringChosen;
 				break;
 
 			case "catchPicture1Change":
@@ -485,14 +745,14 @@ function AddProperty() {
 			case "catchTitleErrors":
 				if (action.titleChosen.length === 0) {
 					draft.titleErrors.hasErrors = true;
-					draft.titleErrors.errorMessage = "This field must not be empty";
+					draft.titleErrors.errorMessage = "Este campo não deve estar vazio";
 				}
 				break;
 
 			case "catchListingTypeErrors":
 				if (action.listingTypeChosen.length === 0) {
 					draft.listingTypeErrors.hasErrors = true;
-					draft.listingTypeErrors.errorMessage = "This field must not be empty";
+					draft.listingTypeErrors.errorMessage = "Este campo não deve estar vazio";
 				}
 				break;
 
@@ -500,60 +760,60 @@ function AddProperty() {
 				if (action.propertyStatusChosen.length === 0) {
 					draft.propertyStatusErrors.hasErrors = true;
 					draft.propertyStatusErrors.errorMessage =
-						"This field must not be empty";
+					"Este campo não deve estar vazio";
 				}
 				break;
 
-			case "catchPriceErrors":
-				if (action.priceChosen.length === 0) {
-					draft.priceErrors.hasErrors = true;
-					draft.priceErrors.errorMessage = "This field must not be empty";
+			case "catchVacanciesErrors":
+				if (action.vacanciesChosen.length === 0 || action.vacanciesChosen.value <= 99) {
+					draft.vacanciesErrors.hasErrors = true;
+					draft.vacanciesErrors.errorMessage = "Este campo não deve estar vazio ou passar as 99 vagas";
 				}
 				break;
 
 			case "catchAreaErrors":
 				if (action.areaChosen.length === 0) {
 					draft.areaErrors.hasErrors = true;
-					draft.areaErrors.errorMessage = "This field must not be empty";
+					draft.areaErrors.errorMessage = "Este campo não deve estar vazio";
 				}
 				break;
 
 			case "catchBoroughErrors":
 				if (action.boroughChosen.length === 0) {
 					draft.boroughErrors.hasErrors = true;
-					draft.boroughErrors.errorMessage = "This field must not be empty";
+					draft.boroughErrors.errorMessage = "Este campo não deve estar vazio";
 				}
 				break;
 
 			case "emptyTitle":
 				draft.titleErrors.hasErrors = true;
-				draft.titleErrors.errorMessage = "This field must not be empty";
+				draft.titleErrors.errorMessage = "Este campo não deve estar vazio";
 				break;
 
 			case "emptyListingType":
 				draft.listingTypeErrors.hasErrors = true;
-				draft.listingTypeErrors.errorMessage = "This field must not be empty";
+				draft.listingTypeErrors.errorMessage = "Este campo não deve estar vazio";
 				break;
 
 			case "emptyPropertyStatus":
 				draft.propertyStatusErrors.hasErrors = true;
 				draft.propertyStatusErrors.errorMessage =
-					"This field must not be empty";
+				"Este campo não deve estar vazio";
 				break;
 
-			case "emptyPrice":
-				draft.priceErrors.hasErrors = true;
-				draft.priceErrors.errorMessage = "This field must not be empty";
+			case "emptyVacancies":
+				draft.vacanciesErrors.hasErrors = true;
+				draft.vacanciesErrors.errorMessage = "Este campo não deve estar vazio";
 				break;
 
 			case "emptyArea":
 				draft.areaErrors.hasErrors = true;
-				draft.areaErrors.errorMessage = "This field must not be empty";
+				draft.areaErrors.errorMessage = "Este campo não deve estar vazio";
 				break;
 
 			case "emptyBoroug":
 				draft.borougErrors.hasErrors = true;
-				draft.borougErrors.errorMessage = "This field must not be empty";
+				draft.borougErrors.errorMessage = "Este campo não deve estar vazio";
 				break;
 		}
 	}
@@ -966,7 +1226,7 @@ function AddProperty() {
 			!state.titleErrors.hasErrors &&
 			!state.listingTypeErrors.hasErrors &&
 			!state.propertyStatusErrors.hasErrors &&
-			!state.priceErrors.hasErrors &&
+			!state.vacanciesErrors.hasErrors &&
 			!state.areaErrors.hasErrors &&
 			!state.boroughErrors.hasErrors &&
 			state.latitudeValue &&
@@ -983,8 +1243,8 @@ function AddProperty() {
 		} else if (state.propertyStatusValue === "") {
 			dispatch({ type: "emptyPropertyStatus" });
 			window.scrollTo(0, 0);
-		} else if (state.priceValue === "") {
-			dispatch({ type: "emptyPrice" });
+		} else if (state.vacanciesValue === "") {
+			dispatch({ type: "emptyVacancies" });
 			window.scrollTo(0, 0);
 		} else if (state.areaValue === "") {
 			dispatch({ type: "emptyArea" });
@@ -1004,15 +1264,40 @@ function AddProperty() {
 				formData.append("area", state.areaValue);
 				formData.append("borough", state.boroughValue);
 				formData.append("listing_type", state.listingTypeValue);
-				formData.append("property_status", state.propertyStatusValue);
-				formData.append("price", state.priceValue);
-				formData.append("rental_frequency", state.rentalFrequencyValue);
-				formData.append("rooms", state.roomsValue);
-				formData.append("furnished", state.furnishedValue);
-				formData.append("pool", state.poolValue);
-				formData.append("elevator", state.elevatorValue);
-				formData.append("cctv", state.cctvValue);
-				formData.append("parking", state.parkingValue);
+				formData.append("internship_status", state.propertyStatusValue);
+				formData.append("vacancies", state.vacanciesValue);
+				formData.append("internship_bachelor", state.internshipBachelorValue);
+				formData.append("internship_courses_ctesp", state.internshipCoursesCTeSPValue);
+				formData.append("internship_courses_licenciatura", state.internshipCoursesLicenciaturaValue);
+				formData.append("internship_courses_mestrado", state.internshipCoursesMestradoValue);
+				formData.append("internship_courses_ce", state.internshipCoursesCEValue);
+				formData.append("total_hours", state.totalHoursValue);
+				formData.append("programming_lang_python", state.programmingLangPythonValue);
+				formData.append("programming_lang_java", state.programmingLangJavaValue);
+				formData.append("programming_lang_c_1", state.programmingLangC1Value);
+				formData.append("programming_lang_c_2", state.programmingLangC2Value);
+				formData.append("programming_lang_javascript", state.programmingLangJavaScriptValue);
+				formData.append("programming_lang_sql", state.programmingLangSQLValue);
+				formData.append("programming_lang_php", state.programmingLangPHPValue);
+				formData.append("programming_lang_go", state.programmingLangGoValue);
+				formData.append("programming_lang_kotlin", state.programmingLangKotlinValue);
+				formData.append("programming_lang_matlab", state.programmingLangMATLABValue);
+				formData.append("programming_lang_swift", state.programmingLangSwiftValue);
+				formData.append("programming_lang_rust", state.programmingLangRustValue);
+				formData.append("programming_lang_ruby", state.programmingLangRubyValue);
+				formData.append("programming_lang_dart", state.programmingLangDartValue);
+				formData.append("programming_lang_scala", state.programmingLangScalaValue);
+				formData.append("programming_fw_frontend_angular", state.programmingFWFrontEndAngularValue);
+				formData.append("programming_fw_frontend_jquery", state.programmingFWFrontEndjQueryValue);
+				formData.append("programming_fw_frontend_react", state.programmingFWFrontEndReactValue);
+				formData.append("programming_fw_frontend_ruby", state.programmingFWFrontEndRubyValue);
+				formData.append("programming_fw_frontend_vuejs", state.programmingFWFrontEndVuejsValue);
+				formData.append("programming_fw_backend_aspnet", state.programmingFWBackEndASPNetValue);
+				formData.append("programming_fw_backend_django", state.programmingFWBackEndDjangoValue);
+				formData.append("programming_fw_backend_express", state.programmingFWBackEndExpressValue);
+				formData.append("programming_fw_backend_laravel", state.programmingFWBackEndLaravelValue);
+				formData.append("programming_fw_backend_nodejs", state.programmingFWBackEndNodejsValue);
+				formData.append("programming_fw_backend_spring", state.programmingFWBackEndSpringValue);
 				formData.append("latitude", state.latitudeValue);
 				formData.append("longitude", state.longitudeValue);
 				formData.append("picture1", state.picture1Value);
@@ -1036,27 +1321,6 @@ function AddProperty() {
 			AddProperty();
 		}
 	}, [state.sendRequest]);
-
-	function PriceDisplay() {
-		if (
-			state.propertyStatusValue === "Rent" &&
-			state.rentalFrequencyValue === "Day"
-		) {
-			return "Price per Day*";
-		} else if (
-			state.propertyStatusValue === "Rent" &&
-			state.rentalFrequencyValue === "Week"
-		) {
-			return "Price per Week*";
-		} else if (
-			state.propertyStatusValue === "Rent" &&
-			state.rentalFrequencyValue === "Month"
-		) {
-			return "Price per Month*";
-		} else {
-			return "Price*";
-		}
-	}
 
 	function SubmitButtonDisplay() {
 		if (
@@ -1140,8 +1404,970 @@ function AddProperty() {
 		}
 	}, [state.openSnack]);
 
-	return (
-		<div
+	if (
+		GlobalState.userIsLogged &&
+		state.userProfile.agencyName !== null &&
+		state.userProfile.agencyName !== "" &&
+		state.userProfile.phoneNumber !== null &&
+		state.userProfile.phoneNumber !== ""
+	) {
+
+		return (
+			<div
+				style={{
+					width: "75%",
+					marginLeft: "auto",
+					marginRight: "auto",
+					marginTop: "3rem",
+					border: "5px solid black",
+					padding: "3rem",
+				}}
+			>
+				<form onSubmit={FormSubmit}>
+					<Grid item container justifyContent="center">
+						<Typography variant="h4">Adicionar Proposta de Estágio	</Typography>
+					</Grid>
+
+					<Grid item container style={{ marginTop: "1rem" }}>
+						<TextField
+							id="title"
+							label="Título da proposta*"
+							variant="standard"
+							fullWidth
+							value={state.titleValue}
+							onChange={(e) =>
+								dispatch({
+									type: "catchTitleChange",
+									titleChosen: e.target.value,
+								})
+							}
+							onBlur={(e) =>
+								dispatch({
+									type: "catchTitleErrors",
+									titleChosen: e.target.value,
+								})
+							}
+							error={state.titleErrors.hasErrors ? true : false}
+							helperText={state.titleErrors.errorMessage}
+						/>
+					</Grid>
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="listingType"
+								label="Tipo de Estágio*"
+								variant="standard"
+								fullWidth
+								value={state.listingTypeValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchListingTypeChange",
+										listingTypeChosen: e.target.value,
+									})
+								}
+								onBlur={(e) =>
+									dispatch({
+										type: "catchListingTypeErrors",
+										listingTypeChosen: e.target.value,
+									})
+								}
+								error={state.listingTypeErrors.hasErrors ? true : false}
+								helperText={state.listingTypeErrors.errorMessage}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{listingTypeOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+						</Grid>
+
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="propertyStatus"
+								label="Modelo de Trabalho*"
+								variant="standard"
+								fullWidth
+								value={state.propertyStatusValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchPropertyStatusChange",
+										propertyStatusChosen: e.target.value,
+									})
+								}
+								onBlur={(e) =>
+									dispatch({
+										type: "catchPropertyStatusErrors",
+										propertyStatusChosen: e.target.value,
+									})
+								}
+								error={state.propertyStatusErrors.hasErrors ? true : false}
+								helperText={state.propertyStatusErrors.errorMessage}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{propertyStatusOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+						</Grid>
+					</Grid>
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="internshipBachelor"
+								label="Grau Académico"
+								variant="standard"
+								fullWidth
+								value={state.internshipBachelorValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipBachelorChange",
+										internshipBachelorChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{internshipBachelorOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+						</Grid>
+
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+
+							{state.internshipBachelorValue === "CTeSP" 
+							? 	<TextField
+									id="internshipCoursesCTeSP"
+									label="Cursos CTeSP"
+									variant="standard"
+									fullWidth
+									value={state.internshipCoursesCTeSPValue}
+									onChange={(e) =>
+										dispatch({
+											type: "catchInternshipCoursesCTeSPChange",
+											internshipCoursesCTeSPChosen: e.target.value,
+										})
+									}
+									select
+									SelectProps={{
+										native: true,
+									}}
+									>
+									{internshipCoursesCTeSPOptions.map((option) => (
+										<option key={option.value} value={option.value}>
+											{option.label}
+										</option>
+									))}
+								</TextField>
+
+							: state.internshipBachelorValue === "Licenciatura"
+								? <TextField
+									id="internshipCoursesLicenciatura"
+									label="Cursos de Licenciatura"
+									variant="standard"
+									fullWidth
+									value={state.internshipCoursesLicenciaturaValue}
+									onChange={(e) =>
+										dispatch({
+											type: "catchInternshipCoursesLicenciaturaChange",
+											internshipCoursesLicenciaturaChosen: e.target.value,
+										})
+									}
+									select
+									SelectProps={{
+										native: true,
+									}}
+									>
+									{internshipCoursesLicenciaturaOptions.map((option) => (
+										<option key={option.value} value={option.value}>
+											{option.label}
+										</option>
+									))}
+								</TextField>
+
+							: state.internshipBachelorValue === "Mestrado"
+							? <TextField
+								id="internshipCoursesMestrado"
+								label="Cursos de Mestrado"
+								variant="standard"
+								fullWidth
+								value={state.internshipCoursesMestradoValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipCoursesMestradoChange",
+										internshipCoursesMestradoChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+								>
+								{internshipCoursesMestradoOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+							
+							: state.internshipBachelorValue === "Cursos de Especialização"
+							? <TextField
+								id="internshipCoursesCE"
+								label="Cursos de Especialização"
+								variant="standard"
+								fullWidth
+								value={state.internshipCoursesCEValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipCoursesCEChange",
+										internshipCoursesCEChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+								>
+								{internshipCoursesCEOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+							: <TextField
+								disabled
+								id="internshipCoursesDefault"
+								label="Curso"
+								variant="standard"
+								fullWidth
+								defaultValue="Selecione o Grau Académico primeiro"
+								>
+							</TextField>
+							}
+						</Grid>
+					</Grid>
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+								<TextField
+									id="vacancies"
+									type="number"
+									label="Vagas Disponíveis*"
+									variant="standard"
+									fullWidth
+									value={state.vacanciesValue}
+									onChange={(e) =>
+										dispatch({
+											type: "catchVacanciesChange",
+											vacanciesChosen: e.target.value,
+										})
+									}
+									onBlur={(e) =>
+										dispatch({
+											type: "catchVacanciesErrors",
+											vacanciesChosen: e.target.value,
+										})
+									}
+									error={state.vacanciesErrors.hasErrors ? true : false}
+									helperText={state.vacanciesErrors.errorMessage}
+								/>
+						</Grid>
+						<Grid item xs={5} container style={{ marginTop: "1rem" }}>
+							<TextField
+								id="totalHours"
+								label="Total de horas"
+								type="number"
+								variant="standard"
+								fullWidth
+								value={state.totalHoursValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchTotalHoursChange",
+										totalHoursChosen: e.target.value,
+									})
+								}
+							/>
+						</Grid>
+					</Grid>
+
+					<Grid item container style={{ marginTop: "1rem" }}>
+						<TextField
+							id="description"
+							label="Descrição"
+							variant="outlined"
+							multiline
+							rows={6}
+							fullWidth
+							value={state.descriptionValue}
+							onChange={(e) =>
+								dispatch({
+									type: "catchDescriptionChange",
+									descriptionChosen: e.target.value,
+								})
+							}
+						/>
+					</Grid>
+
+					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
+						<Typography variant="h5">Linguagens de Programação</Typography>
+					</Grid>
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangPythonValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangPythonChange",
+												programmingLangPythonChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Python"
+							/>
+						</Grid>
+
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangJavaValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangJavaChange",
+												programmingLangJavaChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Java"
+							/>
+						</Grid>
+
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangC1Value}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangC1Change",
+												programmingLangC1Chosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="C e C++"
+							/>
+						</Grid>
+
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangC2Value}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangC2Change",
+												programmingLangC2Chosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="C#"
+							/>
+						</Grid>
+
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangJavaScriptValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangJavaScriptChange",
+												programmingLangJavaScriptChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="JavaScript"
+							/>
+						</Grid>
+					</Grid>
+
+
+
+					<Grid item container justifyContent="space-between">
+
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangSQLValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangSQLChange",
+												programmingLangSQLChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="SQL"
+							/>
+						</Grid>
+
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangPHPValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangPHPChange",
+												programmingLangPHPChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="PHP"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangGoValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangGoChange",
+												programmingLangGoChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Go"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangKotlinValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangKotlinChange",
+												programmingLangKotlinChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Kotlin"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangMATLABValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangMATLABChange",
+												programmingLangMATLABChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="MATLAB"
+							/>
+						</Grid>
+					</Grid>
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangSwiftValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangSwiftChange",
+												programmingLangSwiftChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Swift"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangRustValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangRustChange",
+												programmingLangRustChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Rust"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangRubyValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangRubyChange",
+												programmingLangRubyChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Ruby"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangDartValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangDartChange",
+												programmingLangDartChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Dart"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangScalaValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangScalaChange",
+												programmingLangScalaChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Scala"
+							/>
+						</Grid>
+					</Grid>
+
+					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
+						<Typography variant="h5">Front-End Frameworks</Typography>
+					</Grid>
+					
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndAngularValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndAngularChange",
+												programmingFWFrontEndAngularChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Angular"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndjQueryValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndjQueryChange",
+												programmingFWFrontEndjQueryChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="jQuery"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndReactValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndReactChange",
+												programmingFWFrontEndReactChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="React"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndRubyValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndRubyChange",
+												programmingFWFrontEndRubyChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Ruby on Rails"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndVuejsValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndVuejsChange",
+												programmingFWFrontEndVuejsChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Vue.js"
+							/>
+						</Grid>
+					</Grid>
+
+
+					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
+						<Typography variant="h5">Back-End Frameworks</Typography>
+					</Grid>
+
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndASPNetValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndASPNetChange",
+												programmingFWBackEndASPNetChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="ASP.Net"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndDjangoValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndDjangoChange",
+												programmingFWBackEndDjangoChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Django"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndExpressValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndExpressChange",
+												programmingFWBackEndExpressChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Express"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndLaravelValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndLaravelChange",
+												programmingFWBackEndLaravelChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Laravel"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndNodejsValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndNodejsChange",
+												programmingFWBackEndNodejsChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Node.js"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndSpringValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndSpringChange",
+												programmingFWBackEndSpringChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Spring"
+							/>
+						</Grid>
+					</Grid>
+
+					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
+						<Typography variant="h5">Localização</Typography>
+					</Grid>
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="area"
+								label="Area*"
+								variant="standard"
+								fullWidth
+								value={state.areaValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchAreaChange",
+										areaChosen: e.target.value,
+									})
+								}
+								onBlur={(e) =>
+									dispatch({
+										type: "catchAreaErrors",
+										areaChosen: e.target.value,
+									})
+								}
+								error={state.areaErrors.hasErrors ? true : false}
+								helperText={state.areaErrors.errorMessage}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{areaOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+						</Grid>
+
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="borough"
+								label="Borough*"
+								variant="standard"
+								fullWidth
+								value={state.boroughValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchBoroughChange",
+										boroughChosen: e.target.value,
+									})
+								}
+								onBlur={(e) =>
+									dispatch({
+										type: "catchBoroughErrors",
+										boroughChosen: e.target.value,
+									})
+								}
+								error={state.boroughErrors.hasErrors ? true : false}
+								helperText={state.boroughErrors.errorMessage}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{state.areaValue === "Inner London"
+									? innerLondonOptions.map((option) => (
+											<option key={option.value} value={option.value}>
+												{option.label}
+											</option>
+									))
+									: ""}
+
+								{state.areaValue === "Outer London"
+									? outerLondonOptions.map((option) => (
+											<option key={option.value} value={option.value}>
+												{option.label}
+											</option>
+									))
+									: ""}
+							</TextField>
+						</Grid>
+					</Grid>
+
+					{/* Map */}
+					<Grid item style={{ marginTop: "1rem" }}>
+						{state.latitudeValue && state.longitudeValue ? (
+							<Alert severity="success">
+								You property is located @ {state.latitudeValue},{" "}
+								{state.longitudeValue}
+							</Alert>
+						) : (
+							<Alert severity="warning">
+								Locate your property on the map before submitting this form
+							</Alert>
+						)}
+					</Grid>
+					<Grid item container style={{ height: "35rem", marginTop: "1rem" }}>
+						<MapContainer
+							center={[51.505, -0.09]}
+							zoom={14}
+							scrollWheelZoom={true}
+						>
+							<TileLayer
+								attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+								url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+							/>
+
+							<TheMapComponent />
+							{BoroughDisplay()}
+							<Marker
+								draggable
+								eventHandlers={eventHandlers}
+								position={state.markerPosition}
+								ref={markerRef}
+							></Marker>
+						</MapContainer>
+					</Grid>
+
+					<Grid
+						item
+						container
+						xs={6}
+						style={{ marginTop: "1rem", marginLeft: "auto", marginRight: "auto" }}
+					>
+						<Button
+							variant="contained"
+							component="label"
+							fullWidth
+							style={{
+								backgroundColor: "blue",
+								color: "white",
+								fontSize: "0.8rem",
+								border: "1px solid black",
+								marginLeft: "1rem",
+							}}
+						>
+							UPLOAD PICTURES (MAX 5)
+							<input
+								type="file"
+								multiple
+								accept="image/png, image/gif, image/jpeg"
+								hidden
+								onChange={(e) =>
+									dispatch({
+										type: "catchUploadedPictures",
+										picturesChosen: e.target.files,
+									})
+								}
+							/>
+						</Button>
+					</Grid>
+
+					<Grid item container>
+						<ul>
+							{state.picture1Value ? <li>{state.picture1Value.name}</li> : ""}
+							{state.picture2Value ? <li>{state.picture2Value.name}</li> : ""}
+							{state.picture3Value ? <li>{state.picture3Value.name}</li> : ""}
+							{state.picture4Value ? <li>{state.picture4Value.name}</li> : ""}
+							{state.picture5Value ? <li>{state.picture5Value.name}</li> : ""}
+						</ul>
+					</Grid>
+
+					<Grid
+						item
+						container
+						xs={8}
+						style={{ marginTop: "1rem", marginLeft: "auto", marginRight: "auto" }}
+					>
+						{SubmitButtonDisplay()}
+					</Grid>
+				</form>
+
+				<Snackbar
+					open={state.openSnack}
+					message="You have successfully added your property!"
+					anchorOrigin={{
+						vertical: "bottom",
+						horizontal: "center",
+					}}
+				/>
+			</div>
+		);
+	} else if (
+		GlobalState.userIsLogged &&
+		(state.userProfile.agencyName === null ||
+			state.userProfile.agencyName === "" ||
+			state.userProfile.phoneNumber === null ||
+			state.userProfile.phoneNumber === "")
+	) {
+		return (
+			<div
 			style={{
 				width: "75%",
 				marginLeft: "auto",
@@ -1150,465 +2376,56 @@ function AddProperty() {
 				border: "5px solid black",
 				padding: "3rem",
 			}}
-		>
-			<form onSubmit={FormSubmit}>
-				<Grid item container justifyContent="center">
-					<Typography variant="h4">SUBMIT A PROPERTY</Typography>
-				</Grid>
-
-				<Grid item container style={{ marginTop: "1rem" }}>
-					<TextField
-						id="title"
-						label="Title*"
-						variant="standard"
-						fullWidth
-						value={state.titleValue}
-						onChange={(e) =>
-							dispatch({
-								type: "catchTitleChange",
-								titleChosen: e.target.value,
-							})
-						}
-						onBlur={(e) =>
-							dispatch({
-								type: "catchTitleErrors",
-								titleChosen: e.target.value,
-							})
-						}
-						error={state.titleErrors.hasErrors ? true : false}
-						helperText={state.titleErrors.errorMessage}
-					/>
-				</Grid>
-
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="listingType"
-							label="Listing Type*"
-							variant="standard"
-							fullWidth
-							value={state.listingTypeValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchListingTypeChange",
-									listingTypeChosen: e.target.value,
-								})
-							}
-							onBlur={(e) =>
-								dispatch({
-									type: "catchListingTypeErrors",
-									listingTypeChosen: e.target.value,
-								})
-							}
-							error={state.listingTypeErrors.hasErrors ? true : false}
-							helperText={state.listingTypeErrors.errorMessage}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{listingTypeOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-					</Grid>
-
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="propertyStatus"
-							label="Property Status*"
-							variant="standard"
-							fullWidth
-							value={state.propertyStatusValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchPropertyStatusChange",
-									propertyStatusChosen: e.target.value,
-								})
-							}
-							onBlur={(e) =>
-								dispatch({
-									type: "catchPropertyStatusErrors",
-									propertyStatusChosen: e.target.value,
-								})
-							}
-							error={state.propertyStatusErrors.hasErrors ? true : false}
-							helperText={state.propertyStatusErrors.errorMessage}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{propertyStatusOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-					</Grid>
-				</Grid>
-
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="rentalFrequency"
-							label="Rental Frequency"
-							variant="standard"
-							disabled={state.propertyStatusValue === "Sale" ? true : false}
-							fullWidth
-							value={state.rentalFrequencyValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchRentalFrequencyChange",
-									rentalFrequencyChosen: e.target.value,
-								})
-							}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{rentalFrequencyOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-					</Grid>
-
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="price"
-							type="number"
-							label={PriceDisplay()}
-							variant="standard"
-							fullWidth
-							value={state.priceValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchPriceChange",
-									priceChosen: e.target.value,
-								})
-							}
-							onBlur={(e) =>
-								dispatch({
-									type: "catchPriceErrors",
-									priceChosen: e.target.value,
-								})
-							}
-							error={state.priceErrors.hasErrors ? true : false}
-							helperText={state.priceErrors.errorMessage}
-						/>
-					</Grid>
-				</Grid>
-
-				<Grid item container style={{ marginTop: "1rem" }}>
-					<TextField
-						id="description"
-						label="Description"
-						variant="outlined"
-						multiline
-						rows={6}
-						fullWidth
-						value={state.descriptionValue}
-						onChange={(e) =>
-							dispatch({
-								type: "catchDescriptionChange",
-								descriptionChosen: e.target.value,
-							})
-						}
-					/>
-				</Grid>
-
-				{state.listingTypeValue === "Office" ? (
-					""
-				) : (
-					<Grid item xs={3} container style={{ marginTop: "1rem" }}>
-						<TextField
-							id="rooms"
-							label="Rooms"
-							type="number"
-							variant="standard"
-							fullWidth
-							value={state.roomsValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchRoomsChange",
-									roomsChosen: e.target.value,
-								})
-							}
-						/>
-					</Grid>
-				)}
-
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.furnishedValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchFurnishedChange",
-											furnishedChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Furnished"
-						/>
-					</Grid>
-
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.poolValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchPoolChange",
-											poolChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Pool"
-						/>
-					</Grid>
-
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.elevatorValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchElevatorChange",
-											elevatorChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Elevator"
-						/>
-					</Grid>
-
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.cctvValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchCctvChange",
-											cctvChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Cctv"
-						/>
-					</Grid>
-
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.parkingValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchParkingChange",
-											parkingChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Parking"
-						/>
-					</Grid>
-				</Grid>
-
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="area"
-							label="Area*"
-							variant="standard"
-							fullWidth
-							value={state.areaValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchAreaChange",
-									areaChosen: e.target.value,
-								})
-							}
-							onBlur={(e) =>
-								dispatch({
-									type: "catchAreaErrors",
-									areaChosen: e.target.value,
-								})
-							}
-							error={state.areaErrors.hasErrors ? true : false}
-							helperText={state.areaErrors.errorMessage}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{areaOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-					</Grid>
-
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="borough"
-							label="Borough*"
-							variant="standard"
-							fullWidth
-							value={state.boroughValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchBoroughChange",
-									boroughChosen: e.target.value,
-								})
-							}
-							onBlur={(e) =>
-								dispatch({
-									type: "catchBoroughErrors",
-									boroughChosen: e.target.value,
-								})
-							}
-							error={state.boroughErrors.hasErrors ? true : false}
-							helperText={state.boroughErrors.errorMessage}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{state.areaValue === "Inner London"
-								? innerLondonOptions.map((option) => (
-										<option key={option.value} value={option.value}>
-											{option.label}
-										</option>
-								  ))
-								: ""}
-
-							{state.areaValue === "Outer London"
-								? outerLondonOptions.map((option) => (
-										<option key={option.value} value={option.value}>
-											{option.label}
-										</option>
-								  ))
-								: ""}
-						</TextField>
-					</Grid>
-				</Grid>
-
-				{/* Map */}
-				<Grid item style={{ marginTop: "1rem" }}>
-					{state.latitudeValue && state.longitudeValue ? (
-						<Alert severity="success">
-							You property is located @ {state.latitudeValue},{" "}
-							{state.longitudeValue}
-						</Alert>
-					) : (
-						<Alert severity="warning">
-							Locate your property on the map before submitting this form
-						</Alert>
-					)}
-				</Grid>
-				<Grid item container style={{ height: "35rem", marginTop: "1rem" }}>
-					<MapContainer
-						center={[51.505, -0.09]}
-						zoom={14}
-						scrollWheelZoom={true}
-					>
-						<TileLayer
-							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-						/>
-
-						<TheMapComponent />
-						{BoroughDisplay()}
-						<Marker
-							draggable
-							eventHandlers={eventHandlers}
-							position={state.markerPosition}
-							ref={markerRef}
-						></Marker>
-					</MapContainer>
-				</Grid>
-
-				<Grid
-					item
-					container
-					xs={6}
-					style={{ marginTop: "1rem", marginLeft: "auto", marginRight: "auto" }}
-				>
-					<Button
-						variant="contained"
-						component="label"
-						fullWidth
-						style={{
+			>
+				<Button
+					variant="outlined"
+					fullWidth
+					style={{
+						backgroundColor: "green",
+						color: "white",
+						fontSize: "1.1rem",
+						marginLeft: "1rem",
+						"&:hover": {
 							backgroundColor: "blue",
-							color: "white",
-							fontSize: "0.8rem",
-							border: "1px solid black",
-							marginLeft: "1rem",
-						}}
-					>
-						UPLOAD PICTURES (MAX 5)
-						<input
-							type="file"
-							multiple
-							accept="image/png, image/gif, image/jpeg"
-							hidden
-							onChange={(e) =>
-								dispatch({
-									type: "catchUploadedPictures",
-									picturesChosen: e.target.files,
-								})
-							}
-						/>
-					</Button>
-				</Grid>
-
-				<Grid item container>
-					<ul>
-						{state.picture1Value ? <li>{state.picture1Value.name}</li> : ""}
-						{state.picture2Value ? <li>{state.picture2Value.name}</li> : ""}
-						{state.picture3Value ? <li>{state.picture3Value.name}</li> : ""}
-						{state.picture4Value ? <li>{state.picture4Value.name}</li> : ""}
-						{state.picture5Value ? <li>{state.picture5Value.name}</li> : ""}
-					</ul>
-				</Grid>
-
-				<Grid
-					item
-					container
-					xs={8}
-					style={{ marginTop: "1rem", marginLeft: "auto", marginRight: "auto" }}
+						},
+					}}
+					onClick={() => navigate("/profile")}
 				>
-					{SubmitButtonDisplay()}
-				</Grid>
-			</form>
-
-			<Snackbar
-				open={state.openSnack}
-				message="You have successfully added your property!"
-				anchorOrigin={{
-					vertical: "bottom",
-					horizontal: "center",
-				}}
-			/>
-		</div>
-	);
+					COMPLETE YOUR PROFILE TO ADD A PROPERTY
+				</Button>
+			</div>
+		);
+	} else if (!GlobalState.userIsLogged) {
+		return (
+			<div
+			style={{
+				width: "75%",
+				marginLeft: "auto",
+				marginRight: "auto",
+				marginTop: "3rem",
+				border: "5px solid black",
+				padding: "3rem",
+			}}
+			>
+				<Button
+					variant="outlined"
+					fullWidth
+					onClick={() => navigate("/login")}
+					style={{
+						backgroundColor: "green",
+						color: "white",
+						fontSize: "1.1rem",
+						marginLeft: "1rem",
+						"&:hover": {
+							backgroundColor: "blue",
+						},
+					}}
+				>
+					SIGN IN TO ADD A PROPERTY
+				</Button>
+			</div>
+		);
+	}
 }
 
 export default AddProperty;
