@@ -107,9 +107,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'uaestagios_db',
+        'NAME': 'sig_teste',
         'USER': 'postgres',
-        'PASSWORD': 'peido4ever',
+        'PASSWORD': 'jacslam16',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }

@@ -1413,15 +1413,7 @@ function AddProperty() {
 	) {
 
 		return (
-			<div
-				style={{
-					width: "75%",
-					marginLeft: "auto",
-					marginRight: "auto",
-					marginTop: "3rem",
-					border: "5px solid black",
-					padding: "3rem",
-				}}
+			<div className="custom-body"
 			>
 				<form onSubmit={FormSubmit}>
 					<Grid item container justifyContent="center">
