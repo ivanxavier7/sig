@@ -310,8 +310,8 @@ const voluntarioIcon = new Icon({
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container className="custom-body-listings">
-        <Grid item xs={4}>
+      <Grid container>
+        <Grid item xs={4} className="custom-body-listings">
           {filteredResults.map((listing) => {
             return (
               <Card
@@ -374,7 +374,7 @@ const voluntarioIcon = new Icon({
           })}
         </Grid>
 
-        <Grid item xs={8} style={{ marginTop: "0.5rem", position: "relative" }}>
+        <Grid item xs={8} style={{ marginTop: "86px", position: "relative" }} >
           <AppBar position="sticky">
             <div style={{ height: "100vh" }}>
               <div className="filter-container">
