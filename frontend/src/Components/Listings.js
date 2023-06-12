@@ -310,7 +310,7 @@ const voluntarioIcon = new Icon({
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container>
+      <Grid container className="custom-body-listings">
         <Grid item xs={4}>
           {filteredResults.map((listing) => {
             return (
