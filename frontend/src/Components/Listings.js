@@ -278,7 +278,6 @@ function Listings() {
       console.error(error);
     }
   }
-  
 
   return (
     <ThemeProvider theme={theme}>
@@ -346,7 +345,7 @@ function Listings() {
           })}
         </Grid>
 
-        <Grid item xs={8} style={{ marginTop: "17px", position: "relative" }}>
+        <Grid item xs={8} style={{ position: "relative" }}>
           <AppBar position="sticky">
             <div style={{ height: "85vh" }}>
               <div className="filter-container">
