@@ -1,11 +1,12 @@
 .leaflet-container {
   height: 100%;
   width: 100%;
+  box-shadow: 1px 1px 1px 1px black;
 }
 
 :root {
-  --cor-contraste: rgb(115, 168, 0);
-  --cor-contraste-hover: rgb(93, 136, 0);
+  --cor-contraste: rgb(61, 155, 23);
+  --cor-contraste-hover: rgb(65, 182, 19);
   --cor-neutra: #ffff;
 }
 
@@ -18,6 +19,11 @@ Button.submit-button {
   border: none !important;
 }
 
+body,
+div.update-internship-background {
+  background-color: rgb(201, 206, 199) !important;
+}
+
 Button.submit-button:hover {
   border: none !important;
   background-color: var(--cor-contraste-hover);
@@ -28,7 +34,8 @@ Button.submit-button:hover {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
-  border: 5px solid black;
+  border: 2px solid black;
+  border-radius: 8px;
   padding: 3rem;
 }
 
@@ -55,11 +62,33 @@ Button.submit-button:hover {
   font-weight: bolder;
 }
 
-.profile-container {
+div.profile-container {
   margin-left: auto;
   margin-right: auto;
-  border: 5px solid black;
-  margin-top: 2rem;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-top: 6rem;
+  padding: 12px;
+  width: 21.7rem;
+}
+
+.image {
+  border-radius: 8px;
+}
+
+div.profile-container .profile-text {
+  text-align: center;
+}
+
+div.company-card {
+  box-shadow: 0 0 2px 0 black;
+}
+
+.mini-profile-picture {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 4px;
   padding: 12px;
 }
 
@@ -79,7 +108,8 @@ Button.submit-button:hover {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
-  border: 5px solid black;
+  border: 2px solid black;
+  border-radius: 8px;
   padding: 3rem;
 }
 /*Fim de Register.js*/
@@ -138,6 +168,9 @@ Button.submit-button:hover {
   background-color: var(--cor-contraste);
   margin-top: 10px;
 }
+#botao-ver-estagios-home:hover {
+  background-color: var(--cor-contraste-hover);
+}
 
 /*estagio (listings)*/
  .internship-info-card {
@@ -188,7 +221,8 @@ Button.submit-button:hover {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 3rem;
-	border: 3px solid black;
+  border: 2px solid black;
+  border-radius: 8px;
 	padding: 3rem;
 }
 #botao-submit-login{
@@ -270,15 +304,19 @@ div#root div.MuiGrid-root.MuiGrid-container[style=""],
 div#root div.custom-body-listings
 {
   margin-top: 80px;
+  margin-bottom: 11px;
 }
-div#root div.custom-body
+
+div.custom-body
 {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
-  border: 5px solid black;
+  border: 2px solid black;
+  border-radius: 8px;
   padding: 3rem;
+  margin-bottom: 25px
 }
 
 /*Footer*/
@@ -287,6 +325,7 @@ div#root footer {
   background-color: black;
   color: white;
   padding-top: 10vh;
+  box-shadow: 0 0 5px 0 black;
 }
 
 p.footer-text, h6.footer-text {
@@ -297,10 +336,6 @@ div#root div.container-home {
 
 }
 
-div#root span.footer-sig-name {
-  color: rgb(115, 168, 0);
-}
-
 div#root a.github-icon {
   margin-left: 12px;
   margin-right: 12px;
@@ -309,7 +344,54 @@ div#root a.github-icon {
 }
 
 div#root a.github-icon:hover,
-div#root a.copyrights-ua:hover {
-  color: rgb(115, 168, 0);
+div#root a.copyrights-ua:hover,
+div#root span.footer-sig-name {
+  color: var(--cor-contraste-hover);
 }
 
+button.custom-anchor-text,
+button.custom-anchor-text:visited,
+button.custom-submit-btn {
+  background-color: var(--cor-contraste);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+}
+
+button.custom-anchor-text:hover,
+button.custom-submit-btn:hover {
+  background-color: var(--cor-contraste-hover);
+}
+
+.custom-theme-title {
+  color: rgb(28, 78, 7);
+  margin-bottom: 16px !important;
+}
+
+button.cancel-btn {
+  background-color: rgb(230, 67, 67);
+}
+
+button.cancel-btn:hover {
+  background-color: rgb(224, 103, 103);
+}
+
+button.custom-warning-btn {
+  background-color: rgb(207, 112, 48);
+}
+
+button.custom-warning-btn:hover {
+  background-color: rgb(209, 133, 82);
+  border: none;
+}
+
+span.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate{
+  color:green;
+}

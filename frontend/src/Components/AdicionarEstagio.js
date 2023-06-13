@@ -1335,18 +1335,10 @@ function AddProperty() {
 					variant="contained"
 					fullWidth
 					type="submit"
-					style={{
-						backgroundColor: "green",
-						color: "white",
-						fontSize: "1.1rem",
-						marginLeft: "1rem",
-						"&:hover": {
-							backgroundColor: "blue",
-						},
-					}}
+					className="custom-submit-btn"
 					disabled={state.disabledBtn}
 				>
-					SUBMIT
+					Submeter
 				</Button>
 			);
 		} else if (
@@ -1360,18 +1352,10 @@ function AddProperty() {
 				<Button
 					variant="outlined"
 					fullWidth
-					style={{
-						backgroundColor: "green",
-						color: "white",
-						fontSize: "1.1rem",
-						marginLeft: "1rem",
-						"&:hover": {
-							backgroundColor: "blue",
-						},
-					}}
+					className="custom-submit-btn custom-warning-btn"
 					onClick={() => navigate("/profile")}
 				>
-					COMPLETE YOUR PROFILE TO ADD A PROPERTY
+					Complete o seu perfil para adicionar um Estágio!
 				</Button>
 			);
 		} else if (!GlobalState.userIsLogged) {
@@ -1380,17 +1364,9 @@ function AddProperty() {
 					variant="outlined"
 					fullWidth
 					onClick={() => navigate("/login")}
-					style={{
-						backgroundColor: "green",
-						color: "white",
-						fontSize: "1.1rem",
-						marginLeft: "1rem",
-						"&:hover": {
-							backgroundColor: "blue",
-						},
-					}}
+					className="custom-submit-btn custom-warning-btn"
 				>
-					SIGN IN TO ADD A PROPERTY
+					Crie a sua conta primeiro!
 				</Button>
 			);
 		}
@@ -1417,7 +1393,7 @@ function AddProperty() {
 			>
 				<form onSubmit={FormSubmit}>
 					<Grid item container justifyContent="center">
-						<Typography variant="h4">Adicionar Proposta de Estágio	</Typography>
+						<Typography variant="h4" className="custom-theme-title">Adicionar Proposta de Estágio	</Typography>
 					</Grid>
 
 					<Grid item container style={{ marginTop: "1rem" }}>
@@ -1716,8 +1692,8 @@ function AddProperty() {
 						/>
 					</Grid>
 
-					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
-						<Typography variant="h5">Linguagens de Programação</Typography>
+					<Grid item container justifyContent="left" style={{ marginTop: "3rem" }}>
+						<Typography variant="h5" className="custom-theme-title" >Linguagens de Programação</Typography>
 					</Grid>
 					<Grid item container justifyContent="space-between">
 						<Grid item xs={2} style={{ marginTop: "1rem" }}>
@@ -1976,8 +1952,8 @@ function AddProperty() {
 						</Grid>
 					</Grid>
 
-					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
-						<Typography variant="h5">Front-End Frameworks</Typography>
+					<Grid item container justifyContent="left" style={{ marginTop: "3rem" }}>
+						<Typography className="custom-theme-title" variant="h5">Front-End Frameworks</Typography>
 					</Grid>
 					
 					<Grid item container justifyContent="space-between">
@@ -2064,8 +2040,8 @@ function AddProperty() {
 					</Grid>
 
 
-					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
-						<Typography variant="h5">Back-End Frameworks</Typography>
+					<Grid item container justifyContent="left" style={{ marginTop: "3rem" }}>
+						<Typography className="custom-theme-title" variant="h5">Back-End Frameworks</Typography>
 					</Grid>
 
 
@@ -2168,8 +2144,8 @@ function AddProperty() {
 						</Grid>
 					</Grid>
 
-					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
-						<Typography variant="h5">Localização</Typography>
+					<Grid item container justifyContent="left" style={{ marginTop: "3rem" }}>
+						<Typography className="custom-theme-title" variant="h5">Localização</Typography>
 					</Grid>
 
 					<Grid item container justifyContent="space-between">
@@ -2273,7 +2249,7 @@ function AddProperty() {
 						>
 							<TileLayer
 								attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-								url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+								url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
 							/>
 
 							<TheMapComponent />
@@ -2359,61 +2335,27 @@ function AddProperty() {
 			state.userProfile.phoneNumber === "")
 	) {
 		return (
-			<div
-			style={{
-				width: "75%",
-				marginLeft: "auto",
-				marginRight: "auto",
-				marginTop: "3rem",
-				border: "5px solid black",
-				padding: "3rem",
-			}}
-			>
+			<div className="custom-body">
 				<Button
 					variant="outlined"
 					fullWidth
-					style={{
-						backgroundColor: "green",
-						color: "white",
-						fontSize: "1.1rem",
-						marginLeft: "1rem",
-						"&:hover": {
-							backgroundColor: "blue",
-						},
-					}}
+					className="custom-submit-btn custom-warning-btn"
 					onClick={() => navigate("/profile")}
 				>
-					COMPLETE YOUR PROFILE TO ADD A PROPERTY
+					Complete o seu perfil para adicionar um Estágio!
 				</Button>
 			</div>
 		);
 	} else if (!GlobalState.userIsLogged) {
 		return (
-			<div
-			style={{
-				width: "75%",
-				marginLeft: "auto",
-				marginRight: "auto",
-				marginTop: "3rem",
-				border: "5px solid black",
-				padding: "3rem",
-			}}
-			>
+			<div className="custom-body">
 				<Button
 					variant="outlined"
 					fullWidth
 					onClick={() => navigate("/login")}
-					style={{
-						backgroundColor: "green",
-						color: "white",
-						fontSize: "1.1rem",
-						marginLeft: "1rem",
-						"&:hover": {
-							backgroundColor: "blue",
-						},
-					}}
+					className="custom-submit-btn custom-warning-btn"
 				>
-					SIGN IN TO ADD A PROPERTY
+					Crie a sua conta primeiro!
 				</Button>
 			</div>
 		);

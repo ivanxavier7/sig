@@ -135,10 +135,10 @@ function Header() {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem className="profile" onClick={HandleProfile}>
+            <MenuItem className="profile custom-logout" onClick={HandleProfile}>
               Perfil
             </MenuItem>
-            <MenuItem className="profile" onClick={HandleLogout}>
+            <MenuItem className="profile custom-logout" onClick={HandleLogout}>
               Logout
             </MenuItem>
           </Menu>

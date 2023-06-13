@@ -137,9 +137,8 @@ function Profile() {
 				<Grid
 					container
 					className="profile-container"
-					sx={{ width: '50%'}}
 				>
-					<Grid item xs={4}>
+					<Grid item>
 						<img
 							className="image"
 							src={
@@ -150,7 +149,7 @@ function Profile() {
 						/>
 						<Typography
 								variant="h5"
-								className="welcome-text"
+								className="welcome-text profile-text"
 							>
 								Bem Vindo{" "}
 								<span className="highlight">
