@@ -346,7 +346,7 @@ function Listings() {
           })}
         </Grid>
 
-        <Grid item xs={8} style={{ marginTop: "86px", position: "relative" }}>
+        <Grid item xs={8} style={{ marginTop: "17px", position: "relative" }}>
           <AppBar position="sticky">
             <div style={{ height: "85vh" }}>
               <div className="filter-container">
@@ -560,7 +560,6 @@ function Listings() {
                       return profissionalIcon;
                     } else if (listing.listing_type === "Voluntário") {
                       return voluntarioIcon;
-                      return voluntarioIcon;
                     }
                   }
                   return (
@@ -594,7 +593,7 @@ function Listings() {
                     </Marker>
                   );
                 })}
-              
+
                 {userMarker && (
                   <Marker
                     position={[userMarker.latitude, userMarker.longitude]}
