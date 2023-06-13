@@ -12,14 +12,14 @@ class Listing(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField(null=True, blank=True)
     choices_area = (
-        ('Inner London', 'Inner London'),
-        ('Outer London', 'Outer London'),
+        ('Aveiro', 'Aveiro'),
+        ('Outros Distritos', 'Outros Distritos'),
     )
     area = models.CharField(max_length=20, blank=True, null=True, choices=choices_area)
     borough = models.CharField(max_length=50, blank=True, null=True)
     choices_listing_type = (
         ('Curricular', 'Curricular'),
-        ('Profissional ', 'Profissional '),
+        ('Profissional', 'Profissional'),
         ('Voluntário', 'Voluntário'),
     ) 
     listing_type = models.CharField(max_length=20, choices=choices_listing_type)

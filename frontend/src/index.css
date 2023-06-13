@@ -390,7 +390,24 @@ button.custom-warning-btn:hover {
   border: none;
 }
 
+label.custom-normal-btn {
+  background-color: rgb(51, 66, 49);
+}
+
+label.custom-normal-btn:hover {
+  background-color: rgb(51, 66, 49);
+}
+
 span.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
 .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
   color: green;
+}
+
+div.custom-spacer {
+  margin-top: 22rem;
+  margin-bottom: 24rem;
+}
+
+div.custom-spacer-warning {
+  margin-bottom: 24rem;
 }

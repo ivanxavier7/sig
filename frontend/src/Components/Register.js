@@ -228,12 +228,14 @@ function Register() {
     }
   }, [state.openSnack]);
 
-  return (
-    <div className="form-container">
-      <form onSubmit={FormSubmit}>
-        <Grid item container justifyContent="center">
-          <Typography variant="h4">CRIA UMA CONTA</Typography>
-        </Grid>
+	return (
+		<div
+			className="form-container custom-spacer"
+		>
+			<form onSubmit={FormSubmit}>
+				<Grid item container justifyContent="center">
+					<Typography variant="h4">CRIA UMA CONTA</Typography>
+				</Grid>
 
         {state.serverMessageUsername ? (
           <Alert severity="error">{state.serverMessageUsername}</Alert>

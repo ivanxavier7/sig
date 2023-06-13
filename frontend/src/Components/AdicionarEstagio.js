@@ -1336,25 +1336,29 @@ function AddProperty() {
 				state.userProfile.phoneNumber === "")
 		) {
 			return (
-				<Button
-					variant="outlined"
-					fullWidth
-					className="custom-submit-btn custom-warning-btn"
-					onClick={() => navigate("/profile")}
-				>
-					Complete o seu perfil para adicionar um Estágio!
-				</Button>
+				<div className="custom-spacer">
+					<Button
+						variant="outlined"
+						fullWidth
+						className="custom-submit-btn custom-warning-btn"
+						onClick={() => navigate("/profile")}
+					>
+						Complete o seu perfil para adicionar um Estágio!
+					</Button>
+				</div>
 			);
 		} else if (!GlobalState.userIsLogged) {
 			return (
-				<Button
-					variant="outlined"
-					fullWidth
-					onClick={() => navigate("/login")}
-					className="custom-submit-btn custom-warning-btn"
-				>
-					Crie a sua conta primeiro!
-				</Button>
+				<div className="custom-spacer">
+					<Button
+						variant="outlined"
+						fullWidth
+						onClick={() => navigate("/login")}
+						className="custom-submit-btn custom-warning-btn"
+					>
+						Crie a sua conta primeiro!
+					</Button>
+				</div>
 			);
 		}
 	}
@@ -2173,7 +2177,7 @@ function AddProperty() {
 						<Grid item xs={5} style={{ marginTop: "1rem" }}>
 							<TextField
 								id="borough"
-								label="Concelho*"
+								label={state.areaValue === "Outros Distritos" ? "Outros Distritos*" : "Concelho*"}
 								variant="standard"
 								fullWidth
 								value={state.boroughValue}
@@ -2254,21 +2258,16 @@ function AddProperty() {
 						item
 						container
 						xs={6}
-						style={{ marginTop: "1rem", marginLeft: "auto", marginRight: "auto" }}
+						className="custom-submit-btn custom-normal-btn"
+						style={{ marginTop: "2rem", marginLeft: "auto", marginRight: "auto" }}
 					>
 						<Button
 							variant="contained"
 							component="label"
 							fullWidth
-							style={{
-								backgroundColor: "blue",
-								color: "white",
-								fontSize: "0.8rem",
-								border: "1px solid black",
-								marginLeft: "1rem",
-							}}
+							className="custom-submit-btn custom-normal-btn"
 						>
-							UPLOAD DE FOTOS (MAX 5)
+							Carregar fotos (máximo 5)
 							<input
 								type="file"
 								multiple
@@ -2306,7 +2305,7 @@ function AddProperty() {
 
 				<Snackbar
 					open={state.openSnack}
-					message="You have successfully added your property!"
+					message="Estagio adicionado com sucesso!"
 					anchorOrigin={{
 						vertical: "bottom",
 						horizontal: "center",
@@ -2322,7 +2321,7 @@ function AddProperty() {
 			state.userProfile.phoneNumber === "")
 	) {
 		return (
-			<div className="custom-body">
+			<div className="custom-body custom-spacer">
 				<Button
 					variant="outlined"
 					fullWidth
@@ -2335,7 +2334,7 @@ function AddProperty() {
 		);
 	} else if (!GlobalState.userIsLogged) {
 		return (
-			<div className="custom-body">
+			<div className="custom-body custom-spacer">
 				<Button
 					variant="outlined"
 					fullWidth
