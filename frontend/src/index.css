@@ -117,7 +117,7 @@ div.company-card {
 .bg-verde {
   background-color: var(--cor-contraste);
 }
-.texto-contraste{
+.texto-contraste {
   color: var(--cor-contraste) !important;
 }
 
@@ -173,7 +173,7 @@ div.company-card {
 }
 
 /*estagio (listings)*/
- .internship-info-card {
+.internship-info-card {
   position: relative;
   height: 16rem;
   margin: 1rem;
@@ -216,25 +216,25 @@ div.company-card {
 }
 
 /*login*/
-.container-login{
+.container-login {
   width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
   border: 2px solid black;
   border-radius: 8px;
-	padding: 3rem;
+  padding: 3rem;
 }
-#botao-submit-login{
+#botao-submit-login {
   background-color: var(--cor-contraste);
-	color: var(--cor-neutra);
-	font-size: 1.1rem;
-	margin-left: 1rem;
+  color: var(--cor-neutra);
+  font-size: 1.1rem;
+  margin-left: 1rem;
 }
 /*nav-bar*/
 div#root header.custom-nav-bar {
   background-color: black;
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   left: 0;
@@ -301,14 +301,12 @@ div#root header.custom-nav-bar {
 
 /*Body*/
 div#root div.MuiGrid-root.MuiGrid-container[style=""],
-div#root div.custom-body-listings
-{
+div#root div.custom-body-listings {
   margin-top: 80px;
   margin-bottom: 11px;
 }
 
-div.custom-body
-{
+div.custom-body {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
@@ -316,7 +314,7 @@ div.custom-body
   border: 2px solid black;
   border-radius: 8px;
   padding: 3rem;
-  margin-bottom: 25px
+  margin-bottom: 25px;
 }
 
 /*Footer*/
@@ -328,12 +326,12 @@ div#root footer {
   box-shadow: 0 0 5px 0 black;
 }
 
-p.footer-text, h6.footer-text {
+p.footer-text,
+h6.footer-text {
   color: white;
 }
 
 div#root div.container-home {
-
 }
 
 div#root a.github-icon {
@@ -400,8 +398,9 @@ label.custom-normal-btn:hover {
   background-color: rgb(51, 66, 49);
 }
 
-span.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate{
-  color:green;
+span.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
+  color: green;
 }
 
 div.custom-spacer {

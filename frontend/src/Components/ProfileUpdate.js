@@ -248,13 +248,7 @@ function ProfileUpdate(props) {
 							variant="contained"
 							component="label"
 							fullWidth
-							style={{
-								backgroundColor: "blue",
-								color: "white",
-								fontSize: "0.8rem",
-								border: "1px solid black",
-								marginLeft: "1rem",
-							}}
+							className="custom-submit-btn custom-normal-btn"
 						>
 							FOTO DE PERFIL
 							<input

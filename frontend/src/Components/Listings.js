@@ -554,9 +554,12 @@ function Listings() {
                   function IconDisplay() {
                     if (listing.listing_type === "Curricular") {
                       return curricularIcon;
+                      return curricularIcon;
                     } else if (listing.listing_type === "Profissional") {
                       return profissionalIcon;
+                      return profissionalIcon;
                     } else if (listing.listing_type === "Voluntário") {
+                      return voluntarioIcon;
                       return voluntarioIcon;
                     }
                   }
@@ -591,7 +594,7 @@ function Listings() {
                     </Marker>
                   );
                 })}
-
+              
                 {userMarker && (
                   <Marker
                     position={[userMarker.latitude, userMarker.longitude]}
