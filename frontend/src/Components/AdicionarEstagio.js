@@ -2173,7 +2173,7 @@ function AddProperty() {
 						<Grid item xs={5} style={{ marginTop: "1rem" }}>
 							<TextField
 								id="borough"
-								label="Concelho*"
+								label={state.areaValue === "Outros Distritos" ? "Outros Distritos*" : "Concelho*"}
 								variant="standard"
 								fullWidth
 								value={state.boroughValue}
@@ -2306,7 +2306,7 @@ function AddProperty() {
 
 				<Snackbar
 					open={state.openSnack}
-					message="You have successfully added your property!"
+					message="Estagio adicionado com sucesso!"
 					anchorOrigin={{
 						vertical: "bottom",
 						horizontal: "center",

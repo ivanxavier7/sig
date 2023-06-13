@@ -1345,7 +1345,7 @@ function ListingUpdate(props) {
 				</Grid>
 				<Snackbar
 					open={state.openSnack}
-					message="You have successfully updated this listing!"
+					message="Estagio atualizado com sucesso!"
 					anchorOrigin={{
 						vertical: "bottom",
 						horizontal: "center",
