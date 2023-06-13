@@ -490,8 +490,8 @@ function AddProperty() {
 		picture5Value: "",
 		mapInstance: null,
 		markerPosition: {
-			lat: "51.505",
-			lng: "-0.09",
+			lat: "40.574436706354",
+			lng: "-8.44588251531503",
 		},
 		uploadedPictures: [],
 		sendRequest: 0,
@@ -2299,7 +2299,7 @@ function AddProperty() {
 					</Grid>
 					<Grid item container style={{ height: "35rem", marginTop: "1rem" }}>
 						<MapContainer
-							center={[51.505, -0.09]}
+							center={[40.574436706354, -8.44588251531503]}
 							zoom={14}
 							scrollWheelZoom={true}
 						>
@@ -2337,7 +2337,7 @@ function AddProperty() {
 								marginLeft: "1rem",
 							}}
 						>
-							UPLOAD PICTURES (MAX 5)
+							UPLOAD DE FOTOS (MAX 5)
 							<input
 								type="file"
 								multiple

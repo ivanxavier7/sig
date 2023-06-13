@@ -92,8 +92,8 @@ function DraggableMarker() {
       <Popup minWidth={90}>
         <span onClick={toggleDraggable}>
           {draggable
-            ? "Marker is draggable"
-            : "Click here to make marker draggable"}
+            ? "Já podes arrastar o marker"
+            : "Carrega aqui para arrastares o marker"}
         </span>
       </Popup>
     </Marker>
