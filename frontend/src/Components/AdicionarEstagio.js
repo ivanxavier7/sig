@@ -1023,11 +1023,11 @@ function AddProperty() {
 				changeLongitude: -7.8709038829775695,
 			});
 		} else if (state.boroughValue === "Santarém") {
-			state.mapInstance.setView([39.29359645660754, -8.477462578207927], 9);
+			state.mapInstance.setView([39.33701270639153, -8.729256309162057], 9);
 			dispatch({
 				type: "changeMarkerPosition",
-				changeLatitude: 39.29359645660754,
-				changeLongitude: -8.477462578207927,
+				changeLatitude: 39.33701270639153,
+				changeLongitude: -8.729256309162057,
 			});
 		} else if (state.boroughValue === "Portalegre") {
 			state.mapInstance.setView([39.19006181938354, -7.620444778782097], 9);

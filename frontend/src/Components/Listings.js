@@ -58,47 +58,6 @@ import img1 from "./Assets/img1.jpg";
 import myListings from "./Assets/Data/Dummydata";
 
 import { useCallback, useMemo, useRef } from "react";
-const center = {
-  lat: 40.574436706354,
-  lng: -8.44588251531503,
-};
-
-function DraggableMarker() {
-  const [draggable, setDraggable] = useState(false);
-  const [position, setPosition] = useState(center);
-  const markerRef = useRef(null);
-  const eventHandlers = useMemo(
-    () => ({
-      dragend() {
-        const marker = markerRef.current;
-        if (marker != null) {
-          setPosition(marker.getLatLng());
-        }
-      },
-    }),
-    []
-  );
-  const toggleDraggable = useCallback(() => {
-    setDraggable((d) => !d);
-  }, []);
-
-  return (
-    <Marker
-      draggable={draggable}
-      eventHandlers={eventHandlers}
-      position={position}
-      ref={markerRef}
-    >
-      <Popup minWidth={90}>
-        <span onClick={toggleDraggable}>
-          {draggable
-            ? "Já podes arrastar o marker"
-            : "Carrega aqui para arrastares o marker"}
-        </span>
-      </Popup>
-    </Marker>
-  );
-}
 
 function Listings() {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
@@ -150,17 +109,17 @@ function Listings() {
   const curricularIcon = new Icon({
     iconUrl: curricularIconPng,
     iconSize: [40, 40],
-});
+  });
 
-const profissionalIcon = new Icon({
+  const profissionalIcon = new Icon({
     iconUrl: profissionalIconPng,
     iconSize: [40, 40],
-});
+  });
 
-const voluntarioIcon = new Icon({
+  const voluntarioIcon = new Icon({
     iconUrl: voluntarioIconPng,
     iconSize: [40, 40],
-});
+  });
   const initialState = {
     mapInstance: null,
   };
@@ -239,6 +198,18 @@ const voluntarioIcon = new Icon({
     return `${value} minutos`;
   }
 
+  function FlyToUserMarker({ userMarker }) {
+    const map = useMap();
+
+    React.useEffect(() => {
+      if (userMarker) {
+        map.flyTo([userMarker.latitude, userMarker.longitude], map.getZoom());
+      }
+    }, [userMarker, map]);
+
+    return null;
+  }
+
   async function fetchMatrixData() {
     try {
       // dar fetch aos listings
@@ -307,6 +278,7 @@ const voluntarioIcon = new Icon({
       console.error(error);
     }
   }
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -374,7 +346,7 @@ const voluntarioIcon = new Icon({
           })}
         </Grid>
 
-        <Grid item xs={8} style={{ marginTop: "86px", position: "relative" }} >
+        <Grid item xs={8} style={{ marginTop: "86px", position: "relative" }}>
           <AppBar position="sticky">
             <div style={{ height: "85vh" }}>
               <div className="filter-container">
@@ -570,22 +542,22 @@ const voluntarioIcon = new Icon({
                 zoom={12}
                 scrollWheelZoom={true}
               >
+                <FlyToUserMarker userMarker={userMarker} />
                 <TileLayer
                   ref={ref}
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url={mapLayer ? normalMap : satelliteMap}
                 />
-                <DraggableMarker />
                 <TheMapComponent />
 
                 {filteredResults.map((listing) => {
                   function IconDisplay() {
                     if (listing.listing_type === "Curricular") {
-                        return curricularIcon;
+                      return curricularIcon;
                     } else if (listing.listing_type === "Profissional") {
-                        return profissionalIcon;
+                      return profissionalIcon;
                     } else if (listing.listing_type === "Voluntário") {
-                        return voluntarioIcon;
+                      return voluntarioIcon;
                     }
                   }
                   return (
@@ -619,15 +591,24 @@ const voluntarioIcon = new Icon({
                     </Marker>
                   );
                 })}
-              
+
                 {userMarker && (
                   <Marker
                     position={[userMarker.latitude, userMarker.longitude]}
+                    draggable={true}
+                    eventHandlers={{
+                      dragend: (event) => {
+                        const newLatLng = event.target.getLatLng();
+                        setUserMarker({
+                          latitude: newLatLng.lat,
+                          longitude: newLatLng.lng,
+                        });
+                      },
+                    }}
                   >
                     <Popup>A tua casa esta aqui!</Popup>
                   </Marker>
                 )}
-
               </MapContainer>
             </div>
           </AppBar>
