@@ -26,10 +26,15 @@ import Castelo_de_Paiva from "./Assets/Boroughs/Castelo_de_Paiva";
 import Oliveira_de_Azeméis from "./Assets/Boroughs/Oliveira_de_Azeméis";
 import Murtosa from "./Assets/Boroughs/Murtosa";
 import Albergaria_a_Velha from "./Assets/Boroughs/Albergaria_a_Velha";
-import Hamlets from "./Assets/Boroughs/Hamlets";
-import Wandsworth from "./Assets/Boroughs/Wandsworth";
-import Westminster from "./Assets/Boroughs/Westminster";
-import City_of_London from "./Assets/Boroughs/City_of_London";
+import Estarreja from "./Assets/Boroughs/Estarreja";
+import Ovar from "./Assets/Boroughs/Ovar";
+import Mealhada from "./Assets/Boroughs/Mealhada";
+import Santa_Maria_da_Feira from "./Assets/Boroughs/Santa_Maria_da_Feira";
+import Arouca from "./Assets/Boroughs/Arouca";
+import Oliveira_do_Bairro from "./Assets/Boroughs/Oliveira_do_Bairro";
+import Vagos from "./Assets/Boroughs/Vagos";
+import São_João_da_Madeira from "./Assets/Boroughs/São_João_da_Madeira";
+import Sever_do_Vouga from "./Assets/Boroughs/Sever_do_Vouga";
 import Coimbra from "./Assets/Boroughs/Coimbra";
 import Castelo_Branco from "./Assets/Boroughs/Castelo_Branco";
 import Guarda from "./Assets/Boroughs/Guarda";
@@ -125,20 +130,40 @@ const aveiroOptions = [
 		label: "Albergaria a Velha",
 	},
 	{
-		value: "Tower Hamlets",
-		label: "Tower Hamlets",
+		value: "Estarreja",
+		label: "Estarreja",
 	},
 	{
-		value: "Wandsworth",
-		label: "Wandsworth",
+		value: "Ovar",
+		label: "Ovar",
 	},
 	{
-		value: "Westminster",
-		label: "Westminster",
+		value: "Mealhada",
+		label: "Mealhada",
 	},
 	{
-		value: "City of London",
-		label: "City of London",
+		value: "Santa Maria da Feira",
+		label: "Santa Maria da Feira",
+	},
+	{
+		value: "Arouca",
+		label: "Arouca",
+	},
+	{
+		value: "Oliveira do Bairro",
+		label: "Oliveira do Bairro",
+	},
+	{
+		value: "Vagos",
+		label: "Vagos",
+	},
+	{
+		value: "Sever do Vouga",
+		label: "Sever do Vouga",
+	},
+	{
+		value: "São João da Madeira",
+		label: "São João da Madeira",
 	},
 ];
 
@@ -888,33 +913,68 @@ function AddProperty() {
 				changeLatitude: 40.70017811531499,
 				changeLongitude: -8.495510691830441,
 			});
-		} else if (state.boroughValue === "Tower Hamlets") {
-			state.mapInstance.setView([51.52222760075287, -0.03427379217816716], 11);
+		} else if (state.boroughValue === "Estarreja") {
+			state.mapInstance.setView([40.76138496687104, -8.575852512695551], 11);
 			dispatch({
 				type: "changeMarkerPosition",
-				changeLatitude: 51.52222760075287,
-				changeLongitude: -0.03427379217816716,
+				changeLatitude: 40.76138496687104,
+				changeLongitude: -8.575852512695551,
 			});
-		} else if (state.boroughValue === "Wandsworth") {
-			state.mapInstance.setView([51.45221859319854, -0.1910578642162311], 11);
+		} else if (state.boroughValue === "Ovar") {
+			state.mapInstance.setView([40.87621682061737, -8.619738494006493], 11);
 			dispatch({
 				type: "changeMarkerPosition",
-				changeLatitude: 51.45221859319854,
-				changeLongitude: -0.1910578642162311,
+				changeLatitude: 40.87621682061737,
+				changeLongitude: -8.619738494006493,
 			});
-		} else if (state.boroughValue === "Westminster") {
-			state.mapInstance.setView([51.51424692365236, -0.1557886924596714], 11);
+		} else if (state.boroughValue === "Mealhada") {
+			state.mapInstance.setView([40.35378622116512, -8.44101670618321], 11);
 			dispatch({
 				type: "changeMarkerPosition",
-				changeLatitude: 51.51424692365236,
-				changeLongitude: -0.1557886924596714,
+				changeLatitude: 40.35378622116512, 
+				changeLongitude: -8.44101670618321,
 			});
-		} else if (state.boroughValue === "City of London") {
-			state.mapInstance.setView([51.51464652711437, -0.09207257068971077], 11);
+		} else if (state.boroughValue === "Santa Maria da Feira") {
+			state.mapInstance.setView([40.9670634206, -8.510398965403327], 11);
 			dispatch({
 				type: "changeMarkerPosition",
-				changeLatitude: 51.51464652712437,
-				changeLongitude: -0.09207257068971077,
+				changeLatitude: 40.9670634206,
+				changeLongitude: -8.510398965403327,
+			});
+		} else if (state.boroughValue === "Arouca") {
+			state.mapInstance.setView([40.92874171302727, -8.251820767383897], 11);
+			dispatch({
+				type: "changeMarkerPosition",
+				changeLatitude: 40.92874171302727,
+				changeLongitude: -8.251820767383897,
+			});
+		} else if (state.boroughValue === "Oliveira do Bairro") {
+			state.mapInstance.setView([40.51579457704644, -8.55145307991501], 11);
+			dispatch({
+				type: "changeMarkerPosition",
+				changeLatitude: 40.51579457704644,
+				changeLongitude: -8.55145307991501 ,
+			});
+		} else if (state.boroughValue === "Vagos") {
+			state.mapInstance.setView([40.515438740098354, -8.689498993802456], 11);
+			dispatch({
+				type: "changeMarkerPosition",
+				changeLatitude: 40.515438740098354,
+				changeLongitude: -8.689498993802456,
+			});
+		} else if (state.boroughValue === "Sever do Vouga") {
+			state.mapInstance.setView([40.72396875325826, -8.351976587663556], 11);
+			dispatch({
+				type: "changeMarkerPosition",
+				changeLatitude: 40.72396875325826,
+				changeLongitude: -8.351976587663556,
+			});
+		} else if (state.boroughValue === "São João da Madeira") {
+			state.mapInstance.setView([40.89563309421154, -8.490512698158794], 11);
+			dispatch({
+				type: "changeMarkerPosition",
+				changeLatitude: 40.89563309421154, 
+				changeLongitude: -8.490512698158794,
 			});
 		} else if (state.boroughValue === "Coimbra") {
 			state.mapInstance.setView([40.20443214236321, -8.335749260779656], 9);
@@ -1073,16 +1133,26 @@ function AddProperty() {
 			return <Polygon positions={Murtosa} />;
 		} else if (state.boroughValue === "Albergaria a Velha") {
 			return <Polygon positions={Albergaria_a_Velha} />;
-		} else if (state.boroughValue === "Tower Hamlets") {
-			return <Polygon positions={Hamlets} />;
-		} else if (state.boroughValue === "Wandsworth") {
-			return <Polygon positions={Wandsworth} />;
-		} else if (state.boroughValue === "Westminster") {
-			return <Polygon positions={Westminster} />;
-		} else if (state.boroughValue === "City of London") {
-			return <Polygon positions={City_of_London} />;
+		} else if (state.boroughValue === "Estarreja") {
+			return <Polygon positions={Estarreja} />;
+		} else if (state.boroughValue === "Ovar") {
+			return <Polygon positions={Ovar} />;
+		} else if (state.boroughValue === "Mealhada") {
+			return <Polygon positions={Mealhada} />;
+		} else if (state.boroughValue === "Santa Maria da Feira") {
+			return <Polygon positions={Santa_Maria_da_Feira} />;
 		} else if (state.boroughValue === "Coimbra") {
-			return <Polygon positions={Coimbra} />;
+			return <Polygon positions={Coimbra} />;	
+		} else if (state.boroughValue === "Arouca") {
+			return <Polygon positions={Arouca} />;
+		} else if (state.boroughValue === "Oliveira do Bairro") {
+			return <Polygon positions={Oliveira_do_Bairro} />;
+		} else if (state.boroughValue === "Vagos") {
+			return <Polygon positions={Vagos} />;
+		} else if (state.boroughValue === "Sever do Vouga") {
+			return <Polygon positions={Sever_do_Vouga} />;
+		} else if (state.boroughValue === "São João da Madeira") {
+			return <Polygon positions={São_João_da_Madeira} />;
 		} else if (state.boroughValue === "Castelo Branco") {
 			return <Polygon positions={Castelo_Branco} />;
 		} else if (state.boroughValue === "Guarda") {
@@ -2242,12 +2312,12 @@ function AddProperty() {
 					<Grid item style={{ marginTop: "1rem" }}>
 						{state.latitudeValue && state.longitudeValue ? (
 							<Alert severity="success">
-								You property is located @ {state.latitudeValue},{" "}
+								O seu estagio está localizado nas seguintes coordenadas: {state.latitudeValue},{" "}
 								{state.longitudeValue}
 							</Alert>
 						) : (
 							<Alert severity="warning">
-								Locate your property on the map before submitting this form
+								Localize o seu estagio no mapa ao arrastar o marcador, antes de submeter o formulario.
 							</Alert>
 						)}
 					</Grid>
