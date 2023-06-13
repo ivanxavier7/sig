@@ -133,6 +133,7 @@ function Header() {
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
+            style={{ zIndex: 8001, position: "absolute" }}
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
