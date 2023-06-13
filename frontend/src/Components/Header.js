@@ -111,14 +111,16 @@ function Header() {
           </Button>
 
           {GlobalState.userIsLogged ? (
-            <Button className="texto-contraste botao-user-hover" onClick={handleClick}>
+            <Button
+              className="texto-contraste botao-user-hover"
+              onClick={handleClick}
+            >
               {GlobalState.userUsername}
             </Button>
           ) : (
-            <Button 
-            id="botao-login-navbar"
+            <Button
+              id="botao-login-navbar"
               variant="contained"
-            
               className="profile"
               onClick={() => navigate("/login")}
             >
