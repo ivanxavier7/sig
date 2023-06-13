@@ -150,17 +150,17 @@ function Listings() {
   const curricularIcon = new Icon({
     iconUrl: curricularIconPng,
     iconSize: [40, 40],
-});
+  });
 
-const profissionalIcon = new Icon({
+  const profissionalIcon = new Icon({
     iconUrl: profissionalIconPng,
     iconSize: [40, 40],
-});
+  });
 
-const voluntarioIcon = new Icon({
+  const voluntarioIcon = new Icon({
     iconUrl: voluntarioIconPng,
     iconSize: [40, 40],
-});
+  });
   const initialState = {
     mapInstance: null,
   };
@@ -374,7 +374,7 @@ const voluntarioIcon = new Icon({
           })}
         </Grid>
 
-        <Grid item xs={8} style={{ marginTop: "77px", position: "relative" }} >
+        <Grid item xs={8} style={{ position: "relative" }}>
           <AppBar position="sticky">
             <div style={{ height: "85vh" }}>
               <div className="filter-container">
@@ -581,11 +581,11 @@ const voluntarioIcon = new Icon({
                 {filteredResults.map((listing) => {
                   function IconDisplay() {
                     if (listing.listing_type === "Curricular") {
-                        return curricularIcon;
+                      return curricularIcon;
                     } else if (listing.listing_type === "Profissional") {
-                        return profissionalIcon;
+                      return profissionalIcon;
                     } else if (listing.listing_type === "Voluntário") {
-                        return voluntarioIcon;
+                      return voluntarioIcon;
                     }
                   }
                   return (
@@ -619,7 +619,7 @@ const voluntarioIcon = new Icon({
                     </Marker>
                   );
                 })}
-              
+
                 {userMarker && (
                   <Marker
                     position={[userMarker.latitude, userMarker.longitude]}
@@ -627,7 +627,6 @@ const voluntarioIcon = new Icon({
                     <Popup>A tua casa esta aqui!</Popup>
                   </Marker>
                 )}
-
               </MapContainer>
             </div>
           </AppBar>
