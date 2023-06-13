@@ -17,6 +17,7 @@ import {
 import StateContext from "../Contexts/StateContext";
 
 // Boroughs
+import Aveiro from "./Assets/Boroughs/Aveiro";
 import Agueda from "./Assets/Boroughs/Agueda";
 import Espinho from "./Assets/Boroughs/Espinho";
 import Vale_de_Cambra from "./Assets/Boroughs/Vale_de_Cambra";
@@ -48,12 +49,6 @@ import Santarém from "./Assets/Boroughs/Santarém";
 import Portalegre from "./Assets/Boroughs/Portalegre";
 import Lisboa from "./Assets/Boroughs/Lisboa";
 import Leiria from "./Assets/Boroughs/Leiria";
-import Merton from "./Assets/Boroughs/Merton";
-import Newham from "./Assets/Boroughs/Newham";
-import Redbridge from "./Assets/Boroughs/Redbridge";
-import Richmond from "./Assets/Boroughs/Richmond";
-import Sutton from "./Assets/Boroughs/Sutton";
-import Waltham from "./Assets/Boroughs/Waltham";
 
 // MUI
 import {
@@ -92,6 +87,10 @@ const aveiroOptions = [
 	{
 		value: "",
 		label: "",
+	},
+	{
+		value: "Aveiro",
+		label: "Aveiro",
 	},
 	{
 		value: "Agueda",
@@ -223,30 +222,6 @@ const outrosDistritosOptions = [
 	{
 		value: "Leiria",
 		label: "Leiria",
-	},
-	{
-		value: "Merton",
-		label: "Merton",
-	},
-	{
-		value: "Newham",
-		label: "Newham",
-	},
-	{
-		value: "Redbridge",
-		label: "Redbridge",
-	},
-	{
-		value: "Richmond upon Thames",
-		label: "Richmond upon Thames",
-	},
-	{
-		value: "Sutton",
-		label: "Sutton",
-	},
-	{
-		value: "Waltham Forest",
-		label: "Waltham Forest",
 	},
 ];
 
@@ -490,8 +465,8 @@ function AddProperty() {
 		picture5Value: "",
 		mapInstance: null,
 		markerPosition: {
-			lat: "51.505",
-			lng: "-0.09",
+			lat: "40.574436706354",
+			lng: "-8.44588251531503",
 		},
 		uploadedPictures: [],
 		sendRequest: 0,
@@ -857,6 +832,14 @@ function AddProperty() {
 			  changeLatitude: 40.585990757000125,
 			  changeLongitude: -8.395834105612362,
 			});
+		} else if (state.boroughValue === "Aveiro") {
+			state.mapInstance.setView([40.6422506508447, -8.628273955951457], 11);
+			dispatch({
+				type: "changeMarkerPosition",
+				changeLatitude: 40.6422506508447,
+				changeLongitude: -8.628273955951457,
+			});
+
 		} else if (state.boroughValue === "Espinho") {
 			state.mapInstance.setView([40.99474669678123, -8.625585358719585], 11);
 			dispatch({
@@ -1067,49 +1050,7 @@ function AddProperty() {
 				changeLatitude: 39.717773502707395,
 				changeLongitude: -8.774269769535048,
 			});
-		} else if (state.boroughValue === "Merton") {
-			state.mapInstance.setView([51.41148120353897, -0.18805584151013174], 12);
-			dispatch({
-				type: "changeMarkerPosition",
-				changeLatitude: 51.41148120353897,
-				changeLongitude: -0.18805584151013174,
-			});
-		} else if (state.boroughValue === "Newham") {
-			state.mapInstance.setView([51.533282275935306, 0.031692014878610064], 12);
-			dispatch({
-				type: "changeMarkerPosition",
-				changeLatitude: 51.533282275935306,
-				changeLongitude: 0.031692014878610064,
-			});
-		} else if (state.boroughValue === "Redbridge") {
-			state.mapInstance.setView([51.585885574074965, 0.07764760021283491], 12);
-			dispatch({
-				type: "changeMarkerPosition",
-				changeLatitude: 51.585885574074965,
-				changeLongitude: 0.07764760021283491,
-			});
-		} else if (state.boroughValue === "Richmond upon Thames") {
-			state.mapInstance.setView([51.450368976651696, -0.30801386088548505], 12);
-			dispatch({
-				type: "changeMarkerPosition",
-				changeLatitude: 51.450368976651696,
-				changeLongitude: -0.30801386088548505,
-			});
-		} else if (state.boroughValue === "Sutton") {
-			state.mapInstance.setView([51.363672040828504, -0.1702200806863363], 12);
-			dispatch({
-				type: "changeMarkerPosition",
-				changeLatitude: 51.363672040828504,
-				changeLongitude: -0.1702200806863363,
-			});
-		} else if (state.boroughValue === "Waltham Forest") {
-			state.mapInstance.setView([51.59466635701797, -0.012215840493378892], 12);
-			dispatch({
-				type: "changeMarkerPosition",
-				changeLatitude: 51.59466635701797,
-				changeLongitude: -0.012215840493378892,
-			});
-		}
+		};
 	}, [state.boroughValue]);
 
 	// Borough display function
@@ -1117,6 +1058,8 @@ function AddProperty() {
 	function BoroughDisplay() {
 		if (state.boroughValue === "Agueda") {
 			return <Polygon positions={Agueda} />;
+		} else if (state.boroughValue === "Aveiro") {
+			return <Polygon positions={Aveiro} />;
 		} else if (state.boroughValue === "Espinho") {
 			return <Polygon positions={Espinho} />;
 		} else if (state.boroughValue === "Vale de Cambra") {
@@ -1177,18 +1120,6 @@ function AddProperty() {
 			return <Polygon positions={Lisboa} />;
 		} else if (state.boroughValue === "Leiria") {
 			return <Polygon positions={Leiria} />;
-		} else if (state.boroughValue === "Merton") {
-			return <Polygon positions={Merton} />;
-		} else if (state.boroughValue === "Newham") {
-			return <Polygon positions={Newham} />;
-		} else if (state.boroughValue === "Redbridge") {
-			return <Polygon positions={Redbridge} />;
-		} else if (state.boroughValue === "Richmond upon Thames") {
-			return <Polygon positions={Richmond} />;
-		} else if (state.boroughValue === "Sutton") {
-			return <Polygon positions={Sutton} />;
-		} else if (state.boroughValue === "Waltham Forest") {
-			return <Polygon positions={Waltham} />;
 		}
 	}
 
@@ -1212,7 +1143,7 @@ function AddProperty() {
 		[]
 	);
 
-	// Catching picture fields
+	// imagens
 	useEffect(() => {
 		if (state.uploadedPictures[0]) {
 			dispatch({
@@ -2303,7 +2234,7 @@ function AddProperty() {
 					</Grid>
 					<Grid item container style={{ height: "35rem", marginTop: "1rem" }}>
 						<MapContainer
-							center={[51.505, -0.09]}
+							center={[40.574436706354, -8.44588251531503]}
 							zoom={14}
 							scrollWheelZoom={true}
 						>
