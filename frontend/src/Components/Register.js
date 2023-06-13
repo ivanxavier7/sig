@@ -229,7 +229,7 @@ function Register() {
 
 	return (
 		<div
-			className="form-container"
+			className="form-container custom-spacer"
 		>
 			<form onSubmit={FormSubmit}>
 				<Grid item container justifyContent="center">
