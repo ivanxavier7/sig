@@ -17,6 +17,7 @@ import {
 import StateContext from "../Contexts/StateContext";
 
 // Boroughs
+import Aveiro from "./Assets/Boroughs/Aveiro";
 import Agueda from "./Assets/Boroughs/Agueda";
 import Espinho from "./Assets/Boroughs/Espinho";
 import Vale_de_Cambra from "./Assets/Boroughs/Vale_de_Cambra";
@@ -86,6 +87,10 @@ const aveiroOptions = [
 	{
 		value: "",
 		label: "",
+	},
+	{
+		value: "Aveiro",
+		label: "Aveiro",
 	},
 	{
 		value: "Agueda",
@@ -827,6 +832,14 @@ function AddProperty() {
 			  changeLatitude: 40.585990757000125,
 			  changeLongitude: -8.395834105612362,
 			});
+		} else if (state.boroughValue === "Aveiro") {
+			state.mapInstance.setView([40.6422506508447, -8.628273955951457], 11);
+			dispatch({
+				type: "changeMarkerPosition",
+				changeLatitude: 40.6422506508447,
+				changeLongitude: -8.628273955951457,
+			});
+
 		} else if (state.boroughValue === "Espinho") {
 			state.mapInstance.setView([40.99474669678123, -8.625585358719585], 11);
 			dispatch({
@@ -1045,6 +1058,8 @@ function AddProperty() {
 	function BoroughDisplay() {
 		if (state.boroughValue === "Agueda") {
 			return <Polygon positions={Agueda} />;
+		} else if (state.boroughValue === "Aveiro") {
+			return <Polygon positions={Aveiro} />;
 		} else if (state.boroughValue === "Espinho") {
 			return <Polygon positions={Espinho} />;
 		} else if (state.boroughValue === "Vale de Cambra") {
