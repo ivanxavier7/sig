@@ -374,7 +374,7 @@ const voluntarioIcon = new Icon({
           })}
         </Grid>
 
-        <Grid item xs={8} style={{ marginTop: "86px", position: "relative" }} >
+        <Grid item xs={8} style={{ marginTop: "77px", position: "relative" }} >
           <AppBar position="sticky">
             <div style={{ height: "85vh" }}>
               <div className="filter-container">
