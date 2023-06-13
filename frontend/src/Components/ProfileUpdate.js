@@ -144,7 +144,7 @@ function ProfileUpdate(props) {
 	function ProfilePictureDisplay() {
 		if (typeof state.profilePictureValue !== "string") {
 			return (
-				<ul>
+				<ul className="mini-profile-picture">
 					{state.profilePictureValue ? (
 						<li>{state.profilePictureValue.name}</li>
 					) : (
@@ -156,6 +156,7 @@ function ProfileUpdate(props) {
 			return (
 				<Grid
 					item
+					className="mini-profile-picture"
 					style={{
 						marginTop: "0.5rem",
 						marginRight: "auto",
@@ -173,16 +174,7 @@ function ProfileUpdate(props) {
 
 	return (
 		<>
-			<div
-				style={{
-					width: "50%",
-					marginLeft: "auto",
-					marginRight: "auto",
-					marginTop: "3rem",
-					border: "5px solid black",
-					padding: "3rem",
-				}}
-			>
+			<div className="custom-body">
 				<form onSubmit={FormSubmit}>
 					<Grid item container justifyContent="center">
 						<Typography variant="h4">O MEU PERFIL</Typography>

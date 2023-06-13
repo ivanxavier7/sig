@@ -88,32 +88,40 @@ function Empresas() {
       container
       justifyContent="flex-start"
       spacing={2}
-      style={{padding: "13rem"}}
+      style={{
+        minHeight: "830px",
+        padding: "16rem",
+      }}
     >
       {state.empresasList.map((empresa) => {
-        function ImoveisDisplay() {
+        function CompaniesDisplay() {
           if (empresa.seller_listings.length === 0) {
             return (
-              <Button disabled size="small">
-                Sem Imóveis
+              <Button
+                disabled size="small"
+                className="custom-anchor-text"
+              >
+                Sem Estágios
               </Button>
             );
           } else if (empresa.seller_listings.length === 1) {
             return (
               <Button
+                className="custom-anchor-text"
                 size="small"
                 onClick={() => navigate(`/empresas/${empresa.seller}`)}
               >
-                Um Imóvel listado
+                Um Estágio listado
               </Button>
             );
           } else {
             return (
               <Button
+                className="custom-anchor-text"
                 size="small"
                 onClick={() => navigate(`/empresas/${empresa.seller}`)}
               >
-                {empresa.seller_listings.length} Imóveis
+                {empresa.seller_listings.length} Estágios
               </Button>
             );
           }
@@ -126,7 +134,7 @@ function Empresas() {
               item
               style={{ marginTop: "1rem", maxWidth: "20rem" }}
             >
-              <Card>
+              <Card className="company-card">
                 <CardMedia
                   component="img"
                   height="140"
@@ -138,14 +146,14 @@ function Empresas() {
                   alt="Foto de Perfil"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography className="custom-theme-title" gutterBottom variant="h5" component="div">
                     {empresa.agency_name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {empresa.bio.substring(0, 100)}...
                   </Typography>
                 </CardContent>
-                <CardActions>{ImoveisDisplay()}</CardActions>
+                <CardActions>{CompaniesDisplay()}</CardActions>
               </Card>
             </Grid>
           );

@@ -157,7 +157,7 @@ function AgencyDetail() {
 							item
 							style={{ marginTop: "1rem", maxWidth: "20rem" }}
 						>
-							<Card>
+							<Card className="company-card">
 								<CardMedia
 									component="img"
 									height="140"

@@ -75,18 +75,19 @@ const listingTypeOptions = [
 		label: "",
 	},
 	{
-		value: "Apartment",
-		label: "Apartment",
+		value: "Curricular",
+		label: "Curricular",
 	},
 	{
-		value: "House",
-		label: "House",
+		value: "Profissional",
+		label: "Profissional",
 	},
 	{
-		value: "Office",
-		label: "Office",
+		value: "Voluntário",
+		label: "Voluntário",
 	},
 ];
+
 
 const propertyStatusOptions = [
 	{
@@ -590,730 +591,745 @@ function ListingUpdate(props) {
 	}, [state.openSnack]);
 
 	return (
-		<div
-			style={{
-				width: "75%",
-				marginLeft: "auto",
-				marginRight: "auto",
-				marginTop: "3rem",
-				border: "5px solid black",
-				padding: "3rem",
-			}}
-		>
-			<form onSubmit={FormSubmit}>
-				<Grid item container justifyContent="center">
-					<Typography variant="h4">UPDATE LISTING</Typography>
-				</Grid>
+		<div className="update-internship-background">
+			<div className="custom-body">
+				<form onSubmit={FormSubmit}>
+					<Grid item container justifyContent="center">
+						<Typography className="custom-theme-title" variant="h4">Atualizar Estágio</Typography>
+					</Grid>
 
-				<Grid item container style={{ marginTop: "1rem" }}>
-					<TextField
-						id="title"
-						label="Title*"
-						variant="standard"
-						fullWidth
-						value={state.titleValue}
-						onChange={(e) =>
-							dispatch({
-								type: "catchTitleChange",
-								titleChosen: e.target.value,
-							})
-						}
-					/>
-				</Grid>
-
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
+					<Grid item container style={{ marginTop: "1rem" }}>
 						<TextField
-							id="listingType"
-							label="Listing Type*"
+							id="title"
+							label="Título da proposta*"
 							variant="standard"
 							fullWidth
-							value={state.listingTypeValue}
+							value={state.titleValue}
 							onChange={(e) =>
 								dispatch({
-									type: "catchListingTypeChange",
-									listingTypeChosen: e.target.value,
+									type: "catchTitleChange",
+									titleChosen: e.target.value,
 								})
 							}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{listingTypeOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
+						/>
 					</Grid>
 
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="propertyStatus"
-							label="Property Status*"
-							variant="standard"
-							fullWidth
-							value={state.propertyStatusValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchPropertyStatusChange",
-									propertyStatusChosen: e.target.value,
-								})
-							}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{propertyStatusOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-					</Grid>
-				</Grid>
-
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						<TextField
-							id="internshipBachelor"
-							label="Regime de Trabalho"
-							variant="standard"
-							fullWidth
-							value={state.internshipBachelorValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchInternshipBachelorChange",
-									internshipBachelorChosen: e.target.value,
-								})
-							}
-							select
-							SelectProps={{
-								native: true,
-							}}
-						>
-							{internshipBachelorOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-					</Grid>
-
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
-						{state.internshipBachelorValue === "CTeSP" 
-						? 	<TextField
-								id="internshipCoursesCTeSP"
-								label="Cursos CTeSP"
-								variant="standard"
-								fullWidth
-								value={state.internshipCoursesCTeSPValue}
-								onChange={(e) =>
-									dispatch({
-										type: "catchInternshipCoursesCTeSPChange",
-										internshipCoursesCTeSPChosen: e.target.value,
-									})
-								}
-								select
-								SelectProps={{
-									native: true,
-								}}
-								>
-								{internshipCoursesCTeSPOptions.map((option) => (
-									<option key={option.value} value={option.value}>
-										{option.label}
-									</option>
-								))}
-							</TextField>
-
-						: state.internshipBachelorValue === "Licenciatura"
-							? <TextField
-								id="internshipCoursesLicenciatura"
-								label="Cursos de Licenciatura"
-								variant="standard"
-								fullWidth
-								value={state.internshipCoursesLicenciaturaValue}
-								onChange={(e) =>
-									dispatch({
-										type: "catchInternshipCoursesLicenciaturaChange",
-										internshipCoursesLicenciaturaChosen: e.target.value,
-									})
-								}
-								select
-								SelectProps={{
-									native: true,
-								}}
-								>
-								{internshipCoursesLicenciaturaOptions.map((option) => (
-									<option key={option.value} value={option.value}>
-										{option.label}
-									</option>
-								))}
-							</TextField>
-
-						: state.internshipBachelorValue === "Mestrado"
-						? <TextField
-							id="internshipCoursesMestrado"
-							label="Cursos de Mestrado"
-							variant="standard"
-							fullWidth
-							value={state.internshipCoursesMestradoValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchInternshipCoursesMestradoChange",
-									internshipCoursesMestradoChosen: e.target.value,
-								})
-							}
-							select
-							SelectProps={{
-								native: true,
-							}}
-							>
-							{internshipCoursesMestradoOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-
-						: state.internshipBachelorValue === "Cursos de Especialização"
-						? <TextField
-							id="internshipCoursesCE"
-							label="Cursos de Especialização"
-							variant="standard"
-							fullWidth
-							value={state.internshipCoursesCEValue}
-							onChange={(e) =>
-								dispatch({
-									type: "catchInternshipCoursesCEChange",
-									internshipCoursesCEChosen: e.target.value,
-								})
-							}
-							select
-							SelectProps={{
-								native: true,
-							}}
-							>
-							{internshipCoursesCEOptions.map((option) => (
-								<option key={option.value} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</TextField>
-						: <TextField
-							id="internshipCoursesDefault"
-							label="Curso"
-							variant="standard"
-							fullWidth
-							>
-								Selecione o grau primeiro
-						</TextField>
-						}
-					</Grid>
-				</Grid>
-
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={5} style={{ marginTop: "1rem" }}>
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
 							<TextField
-								id="vacancies"
-								type="number"
-								label="Vagas Disponíveis*"
+								id="listingType"
+								label="Tipo de Estágio*"
 								variant="standard"
 								fullWidth
-								value={state.vacanciesValue}
+								value={state.listingTypeValue}
 								onChange={(e) =>
 									dispatch({
-										type: "catchVacanciesChange",
-										vacanciesChosen: e.target.value,
+										type: "catchListingTypeChange",
+										listingTypeChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{listingTypeOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+						</Grid>
+
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="propertyStatus"
+								label="Modelo de Trabalho*"
+								variant="standard"
+								fullWidth
+								value={state.propertyStatusValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchPropertyStatusChange",
+										propertyStatusChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{propertyStatusOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+						</Grid>
+					</Grid>
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							<TextField
+								id="internshipBachelor"
+								label="Regime de Trabalho"
+								variant="standard"
+								fullWidth
+								value={state.internshipBachelorValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipBachelorChange",
+										internshipBachelorChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+							>
+								{internshipBachelorOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+						</Grid>
+
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+							{state.internshipBachelorValue === "CTeSP" 
+							? 	<TextField
+									id="internshipCoursesCTeSP"
+									label="Cursos CTeSP"
+									variant="standard"
+									fullWidth
+									value={state.internshipCoursesCTeSPValue}
+									onChange={(e) =>
+										dispatch({
+											type: "catchInternshipCoursesCTeSPChange",
+											internshipCoursesCTeSPChosen: e.target.value,
+										})
+									}
+									select
+									SelectProps={{
+										native: true,
+									}}
+									>
+									{internshipCoursesCTeSPOptions.map((option) => (
+										<option key={option.value} value={option.value}>
+											{option.label}
+										</option>
+									))}
+								</TextField>
+
+							: state.internshipBachelorValue === "Licenciatura"
+								? <TextField
+									id="internshipCoursesLicenciatura"
+									label="Cursos de Licenciatura"
+									variant="standard"
+									fullWidth
+									value={state.internshipCoursesLicenciaturaValue}
+									onChange={(e) =>
+										dispatch({
+											type: "catchInternshipCoursesLicenciaturaChange",
+											internshipCoursesLicenciaturaChosen: e.target.value,
+										})
+									}
+									select
+									SelectProps={{
+										native: true,
+									}}
+									>
+									{internshipCoursesLicenciaturaOptions.map((option) => (
+										<option key={option.value} value={option.value}>
+											{option.label}
+										</option>
+									))}
+								</TextField>
+
+							: state.internshipBachelorValue === "Mestrado"
+							? <TextField
+								id="internshipCoursesMestrado"
+								label="Cursos de Mestrado"
+								variant="standard"
+								fullWidth
+								value={state.internshipCoursesMestradoValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipCoursesMestradoChange",
+										internshipCoursesMestradoChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+								>
+								{internshipCoursesMestradoOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+
+							: state.internshipBachelorValue === "Cursos de Especialização"
+							? <TextField
+								id="internshipCoursesCE"
+								label="Cursos de Especialização"
+								variant="standard"
+								fullWidth
+								value={state.internshipCoursesCEValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchInternshipCoursesCEChange",
+										internshipCoursesCEChosen: e.target.value,
+									})
+								}
+								select
+								SelectProps={{
+									native: true,
+								}}
+								>
+								{internshipCoursesCEOptions.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</TextField>
+							: <TextField
+								id="internshipCoursesDefault"
+								label="Curso"
+								variant="standard"
+								fullWidth
+								>
+									Selecione o grau primeiro
+							</TextField>
+							}
+						</Grid>
+					</Grid>
+
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={5} style={{ marginTop: "1rem" }}>
+								<TextField
+									id="vacancies"
+									type="number"
+									label="Vagas Disponíveis*"
+									variant="standard"
+									fullWidth
+									value={state.vacanciesValue}
+									onChange={(e) =>
+										dispatch({
+											type: "catchVacanciesChange",
+											vacanciesChosen: e.target.value,
+										})
+									}
+								/>
+						</Grid>
+						<Grid item xs={5} container style={{ marginTop: "1rem" }}>
+							<TextField
+								id="totalHours"
+								label="Total de horas"
+								type="number"
+								variant="standard"
+								fullWidth
+								value={state.totalHoursValue}
+								onChange={(e) =>
+									dispatch({
+										type: "catchTotalHoursChange",
+										totalHoursChosen: e.target.value,
 									})
 								}
 							/>
+						</Grid>
 					</Grid>
-					<Grid item xs={5} container style={{ marginTop: "1rem" }}>
+
+					<Grid item container style={{ marginTop: "1rem" }}>
 						<TextField
-							id="totalHours"
-							label="Total de horas"
-							type="number"
-							variant="standard"
+							id="description"
+							label="Descrição"
+							variant="outlined"
+							multiline
+							rows={6}
 							fullWidth
-							value={state.totalHoursValue}
+							value={state.descriptionValue}
 							onChange={(e) =>
 								dispatch({
-									type: "catchTotalHoursChange",
-									totalHoursChosen: e.target.value,
+									type: "catchDescriptionChange",
+									descriptionChosen: e.target.value,
 								})
 							}
 						/>
 					</Grid>
-				</Grid>
 
-				<Grid item container style={{ marginTop: "1rem" }}>
-					<TextField
-						id="description"
-						label="Descrição"
-						variant="outlined"
-						multiline
-						rows={6}
-						fullWidth
-						value={state.descriptionValue}
-						onChange={(e) =>
-							dispatch({
-								type: "catchDescriptionChange",
-								descriptionChosen: e.target.value,
-							})
-						}
-					/>
-				</Grid>
+					<Grid item container justifyContent="left" style={{ marginTop: "3rem" }}>
+						<Typography className="custom-theme-title" variant="h5">Linguagens de Programação</Typography>
+					</Grid>
+					<Grid item container justifyContent="space-between">
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangPythonValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangPythonChange",
+												programmingLangPythonChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Python"
+							/>
+						</Grid>
 
-				<Grid item container justifyContent="space-between">
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangPythonValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangPythonChange",
-											programmingLangPythonChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Python"
-						/>
-					</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangJavaValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangJavaChange",
+												programmingLangJavaChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Java"
+							/>
+						</Grid>
 
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangJavaValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangJavaChange",
-											programmingLangJavaChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Java"
-						/>
-					</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangC1Value}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangC1Change",
+												programmingLangC1Chosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="C e C++"
+							/>
+						</Grid>
 
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangC1Value}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangC1Change",
-											programmingLangC1Chosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="C e C++"
-						/>
-					</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangC2Value}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangC2Change",
+												programmingLangC2Chosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="C#"
+							/>
+						</Grid>
 
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangC2Value}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangC2Change",
-											programmingLangC2Chosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="C#"
-						/>
-					</Grid>
-
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangJavaScriptValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangJavaScriptChange",
-											programmingLangJavaScriptChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="JavaScript"
-						/>
-					</Grid>
-				</Grid>
-
-				<Grid item container justifyContent="space-between">
-
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangSQLValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangSQLChange",
-											programmingLangSQLChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="SQL"
-						/>
-					</Grid>
-
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangPHPValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangPHPChange",
-											programmingLangPHPChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="PHP"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangGoValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangGoChange",
-											programmingLangGoChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Go"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangKotlinValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangKotlinChange",
-											programmingLangKotlinChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Kotlin"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangMATLABValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangMATLABChange",
-											programmingLangMATLABChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="MATLAB"
-						/>
-					</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangJavaScriptValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangJavaScriptChange",
+												programmingLangJavaScriptChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="JavaScript"
+							/>
+						</Grid>
 					</Grid>
 
 					<Grid item container justifyContent="space-between">
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangSwiftValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangSwiftChange",
-											programmingLangSwiftChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Swift"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangRustValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangRustChange",
-											programmingLangRustChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Rust"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangRubyValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangRubyChange",
-											programmingLangRubyChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Ruby"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangDartValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangDartChange",
-											programmingLangDartChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Dart"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingLangScalaValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingLangScalaChange",
-											programmingLangScalaChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Scala"
-						/>
-					</Grid>
-					</Grid>
 
-					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
-					<Typography variant="h5">Front-End Frameworks</Typography>
-					</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangSQLValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangSQLChange",
+												programmingLangSQLChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="SQL"
+							/>
+						</Grid>
 
-					<Grid item container justifyContent="space-between">
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWFrontEndAngularValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWFrontEndAngularChange",
-											programmingFWFrontEndAngularChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Angular"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWFrontEndjQueryValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWFrontEndjQueryChange",
-											programmingFWFrontEndjQueryChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="jQuery"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWFrontEndReactValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWFrontEndReactChange",
-											programmingFWFrontEndReactChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="React"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWFrontEndRubyValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWFrontEndRubyChange",
-											programmingFWFrontEndRubyChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Ruby on Rails"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWFrontEndVuejsValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWFrontEndVuejsChange",
-											programmingFWFrontEndVuejsChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Vue.js"
-						/>
-					</Grid>
-					</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangPHPValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangPHPChange",
+												programmingLangPHPChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="PHP"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangGoValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangGoChange",
+												programmingLangGoChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Go"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangKotlinValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangKotlinChange",
+												programmingLangKotlinChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Kotlin"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangMATLABValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangMATLABChange",
+												programmingLangMATLABChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="MATLAB"
+							/>
+						</Grid>
+						</Grid>
 
-
-					<Grid item container justifyContent="left" style={{ marginTop: "1rem" }}>
-					<Typography variant="h5">Back-End Frameworks</Typography>
+						<Grid item container justifyContent="space-between">
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangSwiftValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangSwiftChange",
+												programmingLangSwiftChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Swift"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangRustValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangRustChange",
+												programmingLangRustChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Rust"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangRubyValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangRubyChange",
+												programmingLangRubyChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Ruby"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangDartValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangDartChange",
+												programmingLangDartChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Dart"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingLangScalaValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingLangScalaChange",
+												programmingLangScalaChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Scala"
+							/>
+						</Grid>
 					</Grid>
-
+							
+					<Grid item container justifyContent="left" style={{ marginTop: "3rem" }}>
+						<Typography className="custom-theme-title" variant="h5">Front-End Frameworks</Typography>
+					</Grid>
 
 					<Grid item container justifyContent="space-between">
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWBackEndASPNetValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWBackEndASPNetChange",
-											programmingFWBackEndASPNetChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="ASP.Net"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWBackEndDjangoValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWBackEndDjangoChange",
-											programmingFWBackEndDjangoChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Django"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWBackEndExpressValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWBackEndExpressChange",
-											programmingFWBackEndExpressChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Express"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWBackEndLaravelValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWBackEndLaravelChange",
-											programmingFWBackEndLaravelChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Laravel"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWBackEndNodejsValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWBackEndNodejsChange",
-											programmingFWBackEndNodejsChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Node.js"
-						/>
-					</Grid>
-					<Grid item xs={2} style={{ marginTop: "1rem" }}>
-						<FormControlLabel
-							control={
-								<Checkbox
-									checked={state.programmingFWBackEndSpringValue}
-									onChange={(e) =>
-										dispatch({
-											type: "catchProgrammingFWBackEndSpringChange",
-											programmingFWBackEndSpringChosen: e.target.checked,
-										})
-									}
-								/>
-							}
-							label="Spring"
-						/>
-					</Grid>
-				</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndAngularValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndAngularChange",
+												programmingFWFrontEndAngularChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Angular"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndjQueryValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndjQueryChange",
+												programmingFWFrontEndjQueryChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="jQuery"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndReactValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndReactChange",
+												programmingFWFrontEndReactChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="React"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndRubyValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndRubyChange",
+												programmingFWFrontEndRubyChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Ruby on Rails"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWFrontEndVuejsValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWFrontEndVuejsChange",
+												programmingFWFrontEndVuejsChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Vue.js"
+							/>
+						</Grid>
+						</Grid>
 
+
+						<Grid item container justifyContent="left" style={{ marginTop: "3rem" }}>
+						<Typography className="custom-theme-title" variant="h5">Back-End Frameworks</Typography>
+						</Grid>
+
+
+						<Grid item container justifyContent="space-between">
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndASPNetValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndASPNetChange",
+												programmingFWBackEndASPNetChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="ASP.Net"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndDjangoValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndDjangoChange",
+												programmingFWBackEndDjangoChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Django"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndExpressValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndExpressChange",
+												programmingFWBackEndExpressChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Express"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndLaravelValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndLaravelChange",
+												programmingFWBackEndLaravelChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Laravel"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndNodejsValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndNodejsChange",
+												programmingFWBackEndNodejsChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Node.js"
+							/>
+						</Grid>
+						<Grid item xs={2} style={{ marginTop: "1rem" }}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={state.programmingFWBackEndSpringValue}
+										onChange={(e) =>
+											dispatch({
+												type: "catchProgrammingFWBackEndSpringChange",
+												programmingFWBackEndSpringChosen: e.target.checked,
+											})
+										}
+									/>
+								}
+								label="Spring"
+							/>
+						</Grid>
+					</Grid>
+
+					<Grid
+						item
+						container
+						xs={8}
+						style={{ marginTop: "1rem", marginLeft: "auto", marginRight: "auto" }}
+					>
+						<Button
+							variant="contained"
+							fullWidth
+							type="submit"
+							className="custom-submit-btn"
+							style={{
+								marginTop: "1rem",
+							}}
+							disabled={state.disabledBtn}
+						>
+							Atualizar
+						</Button>
+					</Grid>
+				</form>
 				<Grid
 					item
 					container
@@ -1321,39 +1337,25 @@ function ListingUpdate(props) {
 					style={{ marginTop: "1rem", marginLeft: "auto", marginRight: "auto" }}
 				>
 					<Button
-						variant="contained"
 						fullWidth
-						type="submit"
-						style={{
-							backgroundColor: "green",
-							color: "white",
-							fontSize: "1.1rem",
-							marginLeft: "1rem",
-							// "&:hover": {
-							// 	backgroundColor: "blue",
-							// },
-						}}
-						disabled={state.disabledBtn}
+						className="custom-submit-btn cancel-btn"
+						variant="contained"
+						onClick={props.closeDialog}
 					>
-						UPDATE
+						Cancelar
 					</Button>
 				</Grid>
-			</form>
-			<Button variant="contained" onClick={props.closeDialog}>
-				CANCEL
-			</Button>
-			<Snackbar
-				open={state.openSnack}
-				message="You have successfully updated this listing!"
-				anchorOrigin={{
-					vertical: "bottom",
-					horizontal: "center",
-				}}
-			/>
+				<Snackbar
+					open={state.openSnack}
+					message="You have successfully updated this listing!"
+					anchorOrigin={{
+						vertical: "bottom",
+						horizontal: "center",
+					}}
+				/>
+			</div>
 		</div>
 	);
 }
 
 export default ListingUpdate;
-
-//falta fazer no backend
