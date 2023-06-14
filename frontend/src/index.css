@@ -175,12 +175,17 @@ div.company-card {
 /*estagio (listings)*/
 .internship-info-card {
   position: relative;
-  height: 16rem;
+  min-height: 18rem;
+  max-height: 24rem;
   margin: 1rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 10px !important;
+}
+
+.css-185gdzj-MuiCardHeader-root {
+  padding-bottom: 0 !important;
 }
 
 .internship-info-card::before {
@@ -409,4 +414,113 @@ div.custom-spacer {
 
 div.custom-spacer-warning {
   margin-bottom: 24rem;
+}
+
+.chip-text-color {
+  color: var(--cor-neutra) !important;
+}
+
+.python {
+  background-color: #3776ab !important;
+}
+
+.java {
+  background-color: #007396 !important;
+}
+
+.c {
+  background-color: #a8b9cc !important;
+}
+
+.csharp {
+  background-color: #178600 !important;
+}
+
+.javascript {
+  background-color: #f0db4f !important;
+  color: black !important;
+}
+
+.sql {
+  background-color: #4169e1 !important;
+}
+
+.php {
+  background-color: #777bb4 !important;
+}
+
+.go {
+  background-color: #00add8 !important;
+}
+
+.kotlin {
+  background-color: #0095d5 !important;
+}
+
+.matlab {
+  background-color: #bb92ac !important;
+}
+
+.swift {
+  background-color: #fa7343 !important;
+}
+
+.rust {
+  background-color: #000000 !important;
+}
+
+.ruby {
+  background-color: #cc342d !important;
+}
+
+.dart {
+  background-color: #0175c2 !important;
+}
+
+.scala {
+  background-color: #dc322f !important;
+}
+
+.angular {
+  background-color: #dd0031 !important;
+}
+
+.jquery {
+  background-color: #0769ad !important;
+}
+
+.react {
+  background-color: #61dafb !important;
+}
+
+.rubyonrails {
+  background-color: #cc0000 !important;
+}
+
+.vuejs {
+  background-color: #4fc08d !important;
+}
+
+.aspnet {
+  background-color: #0095d5 !important;
+}
+
+.django {
+  background-color: #092d1f !important;
+}
+
+.express {
+  background-color: #000000 !important;
+}
+
+.laravel {
+  background-color: #ff2d20 !important;
+}
+
+.nodejs {
+  background-color: #689f63 !important;
+}
+
+.spring {
+  background-color: #6db33f !important;
 }

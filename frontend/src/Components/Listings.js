@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useImmerReducer } from "use-immer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // React leaflet
 import {
   MapContainer,
@@ -83,11 +83,40 @@ function Listings() {
       console.error("Geolocation is not supported by this browser.");
     }
   };
-
+  let counter = 0;
+  const limit = 11;
+  const params = useParams();
   //Funcao do button group dos filtros, mudar para mostrar os tempos diferentes - Tomás
   const ref = React.useRef(null);
   const [alignment, setAlignment] = React.useState("web");
-
+  const skillMapping = {
+    programming_lang_python: "Python",
+    programming_lang_java: "Java",
+    programming_lang_c_1: "C e C++",
+    programming_lang_c_2: "C#",
+    programming_lang_javascript: "JavaScript",
+    programming_lang_sql: "SQL",
+    programming_lang_php: "PHP",
+    programming_lang_go: "Go",
+    programming_lang_kotlin: "Kotlin",
+    programming_lang_matlab: "MATLAB",
+    programming_lang_swift: "Swift",
+    programming_lang_rust: "Rust",
+    programming_lang_ruby: "Ruby",
+    programming_lang_dart: "Dart",
+    programming_lang_scala: "Scala",
+    programming_fw_frontend_angular: "Angular",
+    programming_fw_frontend_jquery: "jQuery",
+    programming_fw_frontend_react: "React",
+    programming_fw_frontend_ruby: "Ruby on Rails",
+    programming_fw_frontend_vuejs: "Vue.js",
+    programming_fw_backend_aspnet: "ASP.Net",
+    programming_fw_backend_django: "Django",
+    programming_fw_backend_express: "Express",
+    programming_fw_backend_laravel: "Laravel",
+    programming_fw_backend_nodejs: "Node.js",
+    programming_fw_backend_spring: "Spring",
+  };
   const normalMap =
     "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png";
   const satelliteMap =
@@ -164,6 +193,22 @@ function Listings() {
     return () => {
       source.cancel();
     };
+  }, []);
+
+  useEffect(() => {
+    async function GetListingInfo() {
+      try {
+        const response = await Axios.get(
+          `http://www.localhost:8000/api/listings/${params.id}/`
+        );
+
+        dispatch({
+          type: "catchListingInfo",
+          listingObject: response.data,
+        });
+      } catch (e) {}
+    }
+    GetListingInfo();
   }, []);
 
   if (dataIsLoading === true) {
@@ -284,12 +329,15 @@ function Listings() {
       <Grid container>
         <Grid item xs={4} className="custom-body-listings">
           {filteredResults.map((listing) => {
+            let counter = 0;
             return (
               <Card
                 className="internship-info-card"
                 key={listing.id}
                 style={{
                   backgroundImage: `url(${listing.picture1})`,
+                  display: "flex", // Set the Card as a flex container
+                  flexDirection: "column", // Set direction of elements inside card as column
                 }}
               >
                 <CardHeader
@@ -308,14 +356,24 @@ function Listings() {
                     </IconButton>
                   }
                   title={
-                    <Typography
-                      className="internship-card-title"
-                      onClick={() => navigate(`/listings/${listing.id}`)}
-                      variant="h5"
-                      color="secondary"
-                    >
-                      {listing.title}
-                    </Typography>
+                    <Box>
+                      <Typography
+                        className="internship-card-title"
+                        onClick={() => navigate(`/listings/${listing.id}`)}
+                        variant="h4"
+                        color="secondary"
+                      >
+                        {listing.seller_agency_name}
+                      </Typography>
+                      <Typography
+                        className="internship-card-subtitle"
+                        onClick={() => navigate(`/listings/${listing.id}`)}
+                        variant="h5"
+                        color="secondary"
+                      >
+                        {listing.title}
+                      </Typography>
+                    </Box>
                   }
                 />
                 {/* 
@@ -328,6 +386,7 @@ function Listings() {
                 />
                 */}
                 <CardContent
+                  style={{ flexGrow: 1 }}
                   onClick={() => navigate(`/listings/${listing.id}`)}
                 >
                   <Typography variant="body1">
@@ -337,8 +396,8 @@ function Listings() {
                     {listing.internship_status}
                   </Typography>
                   <Typography variant="body2">
-                    {listing.description.length > 200
-                      ? `${listing.description.substring(0, 200)}...`
+                    {listing.description.length > 100
+                      ? `${listing.description.substring(0, 100)}...`
                       : listing.description}
                   </Typography>
                 </CardContent>
@@ -351,7 +410,36 @@ function Listings() {
                     {listing.seller_agency_name}
                   </IconButton>
                   */}
-                  <Chip label="React" color="primary" className="react" />
+                  <Grid container spacing={1}>
+                    {Object.keys(skillMapping).map((skill) => {
+                      if (counter >= limit) return null;
+                      if (listing[skill]) {
+                        counter++;
+                        return (
+                          <Grid item>
+                            <Chip
+                              label={skillMapping[skill]}
+                              color="primary"
+                              className={`${skillMapping[skill]
+                                .toLowerCase()
+                                .replace(/\s+/g, "")
+                                .replace(/\./g, "")} chip-text-color`}
+                            />
+                          </Grid>
+                        );
+                      }
+                      return null;
+                    })}
+                    {counter === limit ? (
+                      <Grid item>
+                        <Chip
+                          label="..."
+                          color="primary"
+                          className="chip-text-color"
+                        />
+                      </Grid>
+                    ) : null}
+                  </Grid>
                 </CardActions>
               </Card>
             );
