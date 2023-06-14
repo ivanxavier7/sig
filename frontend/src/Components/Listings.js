@@ -448,7 +448,7 @@ function Listings() {
 
         <Grid item xs={8} style={{ position: "relative" }}>
           <AppBar position="sticky">
-            <div style={{ height: "85vh" }}>
+            <div style={{ height: "100vh" }}>
               <div className="filter-container">
                 <div id="filter-sub-container">
                   <Card className="filter-card">
