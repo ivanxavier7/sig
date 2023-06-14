@@ -319,7 +319,6 @@ function Listings() {
                   }
                 />
                 {/* 
-                  <ArrowForwardIosIcon sx={{ ml: 1 }} />
                 <CardMedia
                   className="internship-card-image"
                   component="img"
@@ -328,7 +327,9 @@ function Listings() {
                   onClick={() => navigate(`/listings/${listing.id}`)}
                 />
                 */}
-                <CardContent>
+                <CardContent
+                  onClick={() => navigate(`/listings/${listing.id}`)}
+                >
                   <Typography variant="body1">
                     Estágio {listing.listing_type} - {listing.total_hours} horas
                   </Typography>
@@ -341,7 +342,10 @@ function Listings() {
                       : listing.description}
                   </Typography>
                 </CardContent>
-                <CardActions disableSpacing>
+                <CardActions
+                  onClick={() => navigate(`/listings/${listing.id}`)}
+                  disableSpacing
+                >
                   {/* 
                   <IconButton aria-label="add to favorites">
                     {listing.seller_agency_name}
