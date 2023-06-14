@@ -315,11 +315,11 @@ function Listings() {
                       color="secondary"
                     >
                       {listing.title}
-                      <ArrowForwardIosIcon sx={{ ml: 1 }} />
                     </Typography>
                   }
                 />
                 {/* 
+                  <ArrowForwardIosIcon sx={{ ml: 1 }} />
                 <CardMedia
                   className="internship-card-image"
                   component="img"
@@ -329,16 +329,25 @@ function Listings() {
                 />
                 */}
                 <CardContent>
-                  <Typography variant="body2">
-                    {listing.description.substring(0, 200)}
+                  <Typography variant="body1">
+                    Estágio {listing.listing_type} - {listing.total_hours} horas
                   </Typography>
-                  <Chip label="React" color="error" className="react" />
-                  <Chip label="Angular" color="error" className="angular" />
+                  <Typography variant="body1">
+                    {listing.internship_status}
+                  </Typography>
+                  <Typography variant="body2">
+                    {listing.description.length > 200
+                      ? `${listing.description.substring(0, 200)}...`
+                      : listing.description}
+                  </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
+                  {/* 
                   <IconButton aria-label="add to favorites">
                     {listing.seller_agency_name}
                   </IconButton>
+                  */}
+                  <Chip label="React" color="primary" className="react" />
                 </CardActions>
               </Card>
             );
@@ -561,6 +570,7 @@ function Listings() {
                       return voluntarioIcon;
                     }
                   }
+
                   return (
                     <Marker
                       key={listing.id}
