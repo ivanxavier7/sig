@@ -310,7 +310,7 @@ const internshipCoursesCTeSPOptions = [
 	},
 	{
 		value: "Programação de Sistemas de Informação",
-		label: "rogramação de Sistemas de Informação",
+		label: "Programação de Sistemas de Informação",
 	},
 	{
 		value: "Redes e Sistemas Informáticos",
@@ -1627,7 +1627,7 @@ function AddProperty() {
 								<TextField
 									id="vacancies"
 									type="number"
-									label="Vagas Disponíveis*"
+									label="Vagas Disponíveis (max:99)*"
 									variant="standard"
 									fullWidth
 									value={state.vacanciesValue}

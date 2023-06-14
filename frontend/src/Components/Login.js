@@ -250,7 +250,7 @@ function Login() {
       </Grid>
       <Snackbar
         open={state.openSnack}
-        message="You have successfully logged in"
+        message="Entrou com sucesso!"
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center",

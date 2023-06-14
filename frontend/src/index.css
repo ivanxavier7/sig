@@ -21,7 +21,7 @@ Button.submit-button {
 
 body,
 div.update-internship-background {
-  background-color: rgb(231, 231, 231) !important;
+  background-color: rgb(209, 209, 209) !important;
 }
 
 Button.submit-button:hover {
@@ -67,7 +67,7 @@ div.profile-container {
   margin-right: auto;
   border: 2px solid black;
   border-radius: 8px;
-  margin-top: 6rem;
+  margin-top: 2rem;
   padding: 12px;
   width: 21.7rem;
 }
@@ -108,9 +108,10 @@ div.company-card {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
-  border: 2px solid black;
+  border: none;
   border-radius: 8px;
   padding: 3rem;
+  background-color: white;
 }
 /*Fim de Register.js*/
 
@@ -226,9 +227,10 @@ div.company-card {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
-  border: 2px solid black;
+  border: none;
   border-radius: 8px;
   padding: 3rem;
+  background-color: white;
 }
 #botao-submit-login {
   background-color: var(--cor-contraste);
@@ -314,11 +316,24 @@ div.custom-body {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
-  border: 2px solid black;
+  margin-top: 40px;
+  border:  none;
   border-radius: 8px;
   padding: 3rem;
   margin-bottom: 25px;
+  background-color: white;
+}
+
+div.custom-details-body {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 15px;
+  background-color: white;
 }
 
 /*Footer*/
@@ -333,9 +348,6 @@ div#root footer {
 p.footer-text,
 h6.footer-text {
   color: white;
-}
-
-div#root div.container-home {
 }
 
 div#root a.github-icon {
@@ -377,6 +389,10 @@ button.custom-submit-btn:hover {
   margin-bottom: 16px !important;
 }
 
+.primary-theme-color {
+  color: rgb(28, 78, 7) !important;
+}
+
 button.cancel-btn {
   background-color: rgb(230, 67, 67);
 }
@@ -408,8 +424,8 @@ span.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
 }
 
 div.custom-spacer {
-  margin-top: 22rem;
-  margin-bottom: 24rem;
+  margin-top: 9rem;
+  margin-bottom: 17rem;
 }
 
 div.custom-spacer-warning {
@@ -523,4 +539,52 @@ div.custom-spacer-warning {
 
 .spring {
   background-color: #6db33f !important;
+}
+
+/* Internship Details */
+.internship-details-image {
+  width: 55rem;
+  height: 33rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 2px 0 black;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.internship-image-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+svg.internship-details-image-btn {
+  position: absolute;
+  cursor: pointer;
+  font-size: 3rem;
+  color: black;
+  right: 27.5%;
+  filter: drop-shadow(0px 0px 4px rgb(187, 187, 187));
+  border: none;
+}
+
+svg.internship-details-image-btn:hover {
+  color: rgb(43, 42, 42);
+  filter: drop-shadow(0px 0px 4px rgb(226, 226, 226));
+}
+
+.internship-image-with-btns-container {
+  width: 55rem;
+}
+
+div.internship-details-map-container {
+  width: 100%;
+  height: 40rem;
+}
+
+div.internship-details-spacer {
+  margin-bottom: 19px;
+}
+
+h5.internship-details-title-spacer {
+  margin-top: 2rem;
 }

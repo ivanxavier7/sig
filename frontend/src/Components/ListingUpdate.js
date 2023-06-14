@@ -810,7 +810,7 @@ function ListingUpdate(props) {
 								<TextField
 									id="vacancies"
 									type="number"
-									label="Vagas Disponíveis*"
+									label="Vagas Disponíveis (max:99)*"
 									variant="standard"
 									fullWidth
 									value={state.vacanciesValue}

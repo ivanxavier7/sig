@@ -229,10 +229,8 @@ function ListingDetail() {
 		);
 	}
 	return (
-		<div
-			style={{ marginLeft: "2rem", marginRight: "2rem", marginBottom: "2rem" }}
-		>
-			<Grid item style={{ marginTop: "1rem" }}>
+		<div>
+			<Grid item style={{ marginLeft: "1rem", marginTop: "1rem" }}>
 				<Breadcrumbs aria-label="breadcrumb">
 					<Link
 						underline="hover"
@@ -240,10 +238,10 @@ function ListingDetail() {
 						onClick={() => navigate("/listings")}
 						style={{ cursor: "pointer" }}
 					>
-						Listings
+						Estágios
 					</Link>
 
-					<Typography color="text.primary">
+					<Typography className="primary-theme-color">
 						{state.listingInfo.title}
 					</Typography>
 				</Breadcrumbs>
@@ -251,55 +249,49 @@ function ListingDetail() {
 
 			{/* Image slider */}
 			{listingPictures.length > 0 ? (
+				<div className="internship-image-container"> 
 				<Grid
 					item
 					container
 					justifyContent="center"
-					style={{ position: "relative", marginTop: "1rem" }}
+					style={{ position: "relative", marginTop: "1rem"}}
 				>
-					{listingPictures.map((picture, index) => {
-						return (
-							<div key={index}>
-								{index === currentPicture ? (
-									<img
-										src={picture}
-										style={{ width: "45rem", height: "35rem" }}
-									/>
-								) : (
-									""
-								)}
-							</div>
-						);
-					})}
-					<ArrowCircleLeftIcon
-						onClick={PreviousPicture}
-						style={{
-							position: "absolute",
-							cursor: "pointer",
-							fontSize: "3rem",
-							color: "white",
-							top: "50%",
-							left: "27.5%",
-							// "&:hover": {
-							// 	backgroundColor: "green",
-							// },
-						}}
-					/>
-					<ArrowCircleRightIcon
-						onClick={NextPicture}
-						style={{
-							position: "absolute",
-							cursor: "pointer",
-							fontSize: "3rem",
-							color: "white",
-							top: "50%",
-							right: "27.5%",
-							// "&:hover": {
-							// 	backgroundColor: "green",
-							// },
-						}}
-					/>
+					<div className="internship-image-with-btns-container">
+						{listingPictures.map((picture, index) => {
+							return (
+								<div key={index}>
+									{index === currentPicture ? (
+										<img className="internship-details-image" src={picture}/>
+									) : (
+										""
+									)}
+								</div>
+							)
+						})}
+						<ArrowCircleLeftIcon
+							onClick={PreviousPicture}
+							className="internship-details-image-btn"
+							style={{
+								position: "sticky",
+								left: "27.5%",
+								bottom: "57%",
+							}}
+						/>
+						<ArrowCircleRightIcon
+							onClick={NextPicture}
+							className="internship-details-image-btn"
+							style={{
+								position: "sticky",
+								marginLeft: "89%",
+								bottom: "57%",
+								// "&:hover": {
+								// 	backgroundColor: "green",
+								// },
+							}}
+						/>
+					</div>
 				</Grid>
+				</div>
 			) : (
 				""
 			)}
@@ -309,49 +301,110 @@ function ListingDetail() {
 			<Grid
 				item
 				container
-				style={{
-					padding: "1rem",
-					border: "1px solid black",
-					marginTop: "1rem",
-				}}
+				className="custom-details-body"
 			>
-				<Grid item container xs={7} direction="column" spacing={1}>
+				<Grid className="teste" item container xs={2} direction="column" spacing={1}>
 					<Grid item>
-						<Typography variant="h5">{state.listingInfo.title}</Typography>
+						<Typography className="custom-theme-title" variant="h5">{state.listingInfo.title}</Typography>
 					</Grid>
+					<Grid className="teste" item container xs={4} direction="line">
 					<Grid item>
 						<RoomIcon />{" "}
+					</Grid>
+					<Grid item direction="line" >
 						<Typography varaiant="h6">{state.listingInfo.borough}</Typography>
 					</Grid>
 					<Grid item>
-						<Typography varaiant="subtitle1">{formattedDate}</Typography>
+						<Typography varaiant="subtitle1">, {formattedDate}</Typography>
 					</Grid>
 				</Grid>
-				<Grid item container xs={5} alignItems="center">
-					<Typography
-						variant="h6"
-						style={{ fontWeight: "bolder", color: "green" }}
-					>
-						{state.listingInfo.listing_type} |{" "}
-						{`$${state.listingInfo.vacancies
-									.toString()
-									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/${
-									state.listingInfo.internship_bachelor
-							  }`}
-					</Typography>
 				</Grid>
-				<Grid item container xs={5} alignItems="center">
-					<Typography
-						variant="h6"
-						style={{ fontWeight: "bolder", color: "green" }}
-					>
-						{state.listingInfo.internship_bachelor === "CTeSP" ? state.listingInfo.internship_courses_ctesp
-							: state.listingInfo.internship_bachelor === "Licenciatura" ? state.listingInfo.internship_courses_licenciatura
-							: state.listingInfo.internship_bachelor === "Mestrado" ? state.listingInfo.internship_courses_mestrado
-							: state.listingInfo.internship_bachelor === "Cursos de Especialização" ? state.listingInfo.internship_courses_ce
-							: " "
-						}
-					</Typography>
+				<Grid item container xs={3} direction="column"> 
+					<Grid item>
+						<Grid item container xs={4}>
+							<Typography
+								variant="caption"
+							>Tipo de Estágio
+							</Typography>
+						</Grid>
+						<Grid item container xs={2}>
+							<Typography
+								variant="h6"
+							>
+								{state.listingInfo.listing_type}
+							</Typography>
+						</Grid>
+					</Grid>
+					<Grid item>
+						<Grid item container xs={4}>
+							<Typography
+								variant="caption"
+							>Número de Vagas
+							</Typography>
+						</Grid>
+						<Grid item container xs={2}>
+							<Typography
+								variant="h6"
+							>
+							{state.listingInfo.vacancies
+										.toString()
+										.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+							</Typography>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item container xs={3} direction="column">
+					<Grid item>
+						<Grid item container xs={4}>
+							<Typography
+								variant="caption"
+							>
+								Curso
+							</Typography>
+						</Grid>
+						<Grid item container xs={4} className="internship-details-spacer">
+							<Typography
+								variant="h6"
+							>
+								{state.listingInfo.internship_bachelor === "CTeSP" ? state.listingInfo.internship_courses_ctesp
+									: state.listingInfo.internship_bachelor === "Licenciatura" ? state.listingInfo.internship_courses_licenciatura
+									: state.listingInfo.internship_bachelor === "Mestrado" ? state.listingInfo.internship_courses_mestrado
+									: state.listingInfo.internship_bachelor === "Cursos de Especialização" ? state.listingInfo.internship_courses_ce
+									: " "
+								}
+							</Typography>
+						</Grid>
+					</Grid>
+					<Grid item>
+						<Grid item container xs={5}>
+							<Typography
+								variant="caption"
+							>Grau Académico
+							</Typography>
+						</Grid>
+						<Grid item container xs={2}>
+							<Typography
+								variant="h6"
+							>
+								{state.listingInfo.internship_bachelor}
+							</Typography>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item container xs={4} direction="column">
+					<Grid item>
+							<Grid item container xs={5}>
+								<Typography
+									variant="caption"
+								>Total de horas
+								</Typography>
+							</Grid>
+							<Grid item xs={2}>
+								<Typography variant="h6">
+									{state.listingInfo.total_hours}
+								</Typography>
+							</Grid>
+					</Grid>
 				</Grid>
 			</Grid>
 
@@ -359,367 +412,363 @@ function ListingDetail() {
 				item
 				container
 				justifyContent="flex-start"
-				style={{
-					padding: "1rem",
-					border: "1px solid black",
-					marginTop: "1rem",
-				}}
+				className="custom-details-body"
 			>
+				<Grid item container xs={12} direction="column">
+					<Grid item>
+							<Grid item container xs={12}>
+								<Typography className="custom-theme-title" variant="h5">Linguagens de Programação</Typography>
+							</Grid>
 
-				{state.listingInfo.total_hours == 1 ?
-				(
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<Typography variant="h6">
-							{state.listingInfo.total_hours} hora
-						</Typography>
-					</Grid>
-				) : state.listingInfo.total_hours ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<Typography variant="h6">
-							{state.listingInfo.total_hours} horas
-						</Typography>
-					</Grid>
-				) : (
-					""
-				)}
+							{state.listingInfo.programming_lang_python ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Python</Typography>
+								</Grid>
+							) : (
+								""
+							)}
 
-				<Grid item>
-					<Typography variant="h5">Linguagens de Programação</Typography>
+							{state.listingInfo.programming_lang_python ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Java</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_c_1 ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">C e C++</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_c_2 ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">C#</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_javascript ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">JavaScript</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							
+							{state.listingInfo.programming_lang_sql ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">SQL</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_php ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">PHP</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_go ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Go</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_kotlin ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Kotlin</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_matlab ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">MATLAB</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_swift ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Swift</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+			{				state.listingInfo.programming_lang_rust ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Rust</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+			{				state.listingInfo.programming_lang_ruby ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Ruby</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_dart ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Dart</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_lang_scala ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Scala</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+					</Grid>
+					<Grid item>
+							<Grid item container xs={12}>
+							<Grid item>
+								<Typography className="custom-theme-title internship-details-title-spacer" variant="h5">Front-End FrameWorks</Typography>
+							</Grid>
+							</Grid>
+							{state.listingInfo.programming_fw_frontend_angular ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Angular</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_frontend_jquery ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">jQuery</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_frontend_react ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">React</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_frontend_ruby ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Ruby on Rails</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_frontend_vuejs ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Vue.js</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+					</Grid>
+					<Grid item>
+							<Grid item container xs={12}>
+								<Typography className="custom-theme-title internship-details-title-spacer" variant="h5">Back-End FrameWorks</Typography>
+							</Grid>
+							{state.listingInfo.programming_fw_backend_aspnet ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">ASP.Net</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_backend_django ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Django</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_backend_express ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Express</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_backend_laravel ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Laravel</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_backend_nodejs ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Node.js</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+
+							{state.listingInfo.programming_fw_backend_spring ? (
+								<Grid item xs={2} style={{ display: "flex" }}>
+									<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
+									<Typography variant="h6">Spring</Typography>
+								</Grid>
+							) : (
+								""
+							)}
+					</Grid>
 				</Grid>
-
-				{state.listingInfo.programming_lang_python ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Python</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_python ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Java</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_c_1 ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">C e C++</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_c_2 ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">C#</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_javascript ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">JavaScript</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				
-				{state.listingInfo.programming_lang_sql ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">SQL</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_php ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">PHP</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_go ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Go</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_kotlin ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Kotlin</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_matlab ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">MATLAB</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_swift ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Swift</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-{				state.listingInfo.programming_lang_rust ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Rust</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-{				state.listingInfo.programming_lang_ruby ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Ruby</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_dart ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Dart</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_lang_scala ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Scala</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				<Grid item>
-					<Typography variant="h5">Front-End FrameWorks</Typography>
-				</Grid>
-
-				{state.listingInfo.programming_fw_frontend_angular ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Angular</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_frontend_jquery ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">jQuery</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_frontend_react ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">React</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_frontend_ruby ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Ruby on Rails</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_frontend_vuejs ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Vue.js</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				<Grid item>
-					<Typography variant="h5">Back-End FrameWorks</Typography>
-				</Grid>
-
-				{state.listingInfo.programming_fw_backend_aspnet ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">ASP.Net</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_backend_django ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Django</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_backend_express ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Express</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_backend_laravel ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Laravel</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_backend_nodejs ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Node.js</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
-				{state.listingInfo.programming_fw_backend_spring ? (
-					<Grid item xs={2} style={{ display: "flex" }}>
-						<CheckBoxIcon style={{ color: "green", fontSize: "2rem" }} />{" "}
-						<Typography variant="h6">Spring</Typography>
-					</Grid>
-				) : (
-					""
-				)}
-
 			</Grid>
 
 			{/* Description */}
 			{state.listingInfo.description ? (
 				<Grid
 					item
-					style={{
-						padding: "1rem",
-						border: "1px solid black",
-						marginTop: "1rem",
-					}}
+					className="custom-details-body"
 				>
-					<Typography variant="h5">Description</Typography>
+					<Typography className="custom-theme-title" variant="h5">Descrição</Typography>
 					<Typography variant="h6">{state.listingInfo.description}</Typography>
 				</Grid>
 			) : (
 				""
 			)}
 
-			{/* Seller Info */}
+			{/* Company Info */}
 			<Grid
 				container
-				style={{
-					width: "50%",
-					marginLeft: "auto",
-					marginRight: "auto",
-					border: "5px solid black",
-					marginTop: "1rem",
-					padding: "5px",
-				}}
+				className="custom-details-body"
 			>
-				<Grid item xs={6}>
-					<img
-						style={{ height: "10rem", width: "15rem", cursor: "pointer" }}
-						src={
-							state.sellerProfileInfo.profile_picture !== null
-								? state.sellerProfileInfo.profile_picture
-								: defaultProfilePicture
-						}
-						onClick={() =>
-							navigate(`/agencies/${state.sellerProfileInfo.seller}`)
-						}
-					/>
-				</Grid>
-				<Grid item container direction="column" justifyContent="center" xs={6}>
+				<Grid item container xs={8} direction="column">
 					<Grid item>
-						<Typography
-							variant="h5"
-							style={{ textAlign: "center", marginTop: "1rem" }}
-						>
-							<span style={{ color: "green", fontWeight: "bolder" }}>
-								{state.sellerProfileInfo.agency_name}
-							</span>
-						</Typography>
-					</Grid>
-					<Grid item>
-						<Typography
-							variant="h5"
-							style={{ textAlign: "center", marginTop: "1rem" }}
-						>
-							<IconButton>
-								<LocalPhoneIcon /> {state.sellerProfileInfo.phone_number}
-							</IconButton>
-						</Typography>
+							<Grid item container xs={5}>
+								<Typography
+									variant="caption"
+								>Dados da Empresa
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography
+									variant="h5"
+									style={{marginBottom: "1rem" }}
+								>
+									<span style={{ color: "green", fontWeight: "bolder" }}>
+										{state.sellerProfileInfo.agency_name}
+									</span>
+								</Typography>
+							</Grid>
+							<Grid item xs={6}>
+								<img
+									className="mini-profile-picture"
+									style={{ height: "10rem", width: "15rem", cursor: "pointer" }}
+									src={
+										state.sellerProfileInfo.profile_picture !== null
+											? state.sellerProfileInfo.profile_picture
+											: defaultProfilePicture
+									}
+									onClick={() =>
+										navigate(`/empresas/${state.sellerProfileInfo.seller}`)
+									}
+								/>
+							</Grid>
+							<Grid item>
+								<Typography
+									variant="h5"
+									style={{marginTop: "1rem" }}
+								>
+									<IconButton>
+										<LocalPhoneIcon style={{ marginRight: "8px" }}/>{state.sellerProfileInfo.phone_number}
+									</IconButton>
+								</Typography>
+							</Grid>
 					</Grid>
 				</Grid>
+				
 				{GlobalState.userId == state.listingInfo.seller ? (
-					<Grid item container justifyContent="space-around">
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={handleClickOpen}
-						>
-							Update
-						</Button>
-						<Button
-							variant="contained"
-							color="error"
-							onClick={DeleteHandler}
-							disabled={state.disabledBtn}
-						>
-							Delete
-						</Button>
-						<Dialog open={open} onClose={handleClose} fullScreen>
-							<ListingUpdate
-								listingData={state.listingInfo}
-								closeDialog={handleClose}
-							/>
-						</Dialog>
+				<Grid item container xs={4} direction="column">
+					<Grid item>
+							<Grid item container xs={5}>
+								<Typography
+									variant="caption"
+								>Editar Estágio
+								</Typography>
+							</Grid>
+							<Grid item xs={2}>
+								<Button
+									variant="contained"
+									color="primary"
+									onClick={handleClickOpen}
+									className="custom-submit-btn"
+								>
+									Alterar
+								</Button>
+							</Grid>
+							<Grid item xs={2}>
+								<Button
+									variant="contained"
+									color="error"
+									onClick={DeleteHandler}
+									disabled={state.disabledBtn}
+									className="cancel-btn"
+								>
+									Apagar
+								</Button>
+							</Grid>
+							<Dialog open={open} onClose={handleClose} fullScreen>
+								<ListingUpdate
+									listingData={state.listingInfo}
+									closeDialog={handleClose}
+								/>
+							</Dialog>
 					</Grid>
+				</Grid>
 				) : (
 					""
 				)}
@@ -729,63 +778,12 @@ function ListingDetail() {
 			<Grid
 				item
 				container
+				className="internship-details-map-container"
 				style={{ marginTop: "1rem" }}
 				spacing={1}
 				justifyContent="space-between"
 			>
-				<Grid item xs={3} style={{ overflow: "auto", height: "35rem" }}>
-					{state.listingInfo.listing_pois_within_10km.map((poi) => {
-						function DegreeToRadian(coordinate) {
-							return (coordinate * Math.PI) / 180;
-						}
-
-						function CalculateDistance() {
-							const latitude1 = DegreeToRadian(state.listingInfo.latitude);
-							const longitude1 = DegreeToRadian(state.listingInfo.longitude);
-
-							const latitude2 = DegreeToRadian(poi.location.coordinates[0]);
-							const longitude2 = DegreeToRadian(poi.location.coordinates[1]);
-							// The formula
-							const latDiff = latitude2 - latitude1;
-							const lonDiff = longitude2 - longitude1;
-							const R = 6371000 / 1000;
-
-							const a =
-								Math.sin(latDiff / 2) * Math.sin(latDiff / 2) +
-								Math.cos(latitude1) *
-									Math.cos(latitude2) *
-									Math.sin(lonDiff / 2) *
-									Math.sin(lonDiff / 2);
-							const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-							const d = R * c;
-
-							const dist =
-								Math.acos(
-									Math.sin(latitude1) * Math.sin(latitude2) +
-										Math.cos(latitude1) *
-											Math.cos(latitude2) *
-											Math.cos(lonDiff)
-								) * R;
-							return dist.toFixed(2);
-						}
-						return (
-							<div
-								key={poi.id}
-								style={{ marginBottom: "0.5rem", border: "1px solid black" }}
-							>
-								<Typography variant="h6">{poi.name}</Typography>
-								<Typography variant="subtitle1">
-									{poi.type} |{" "}
-									<span style={{ fontWeight: "bolder", color: "green" }}>
-										{CalculateDistance()} Kilometers
-									</span>
-								</Typography>
-							</div>
-						);
-					})}
-				</Grid>
-				<Grid item xs={9} style={{ height: "35rem" }}>
+				<Grid item xs={14}>
 					<MapContainer
 						center={[state.listingInfo.latitude, state.listingInfo.longitude]}
 						zoom={14}
@@ -803,35 +801,12 @@ function ListingDetail() {
 						>
 							<Popup>{state.listingInfo.title}</Popup>
 						</Marker>
-						{state.listingInfo.listing_pois_within_10km.map((poi) => {
-							function PoiIcon() {
-								if (poi.type === "Stadium") {
-									return stadiumIcon;
-								} else if (poi.type === "Hospital") {
-									return hospitalIcon;
-								} else if (poi.type === "University") {
-									return universityIcon;
-								}
-							}
-							return (
-								<Marker
-									key={poi.id}
-									position={[
-										poi.location.coordinates[0],
-										poi.location.coordinates[1],
-									]}
-									icon={PoiIcon()}
-								>
-									<Popup>{poi.name}</Popup>
-								</Marker>
-							);
-						})}
 					</MapContainer>
 				</Grid>
 			</Grid>
 			<Snackbar
 				open={state.openSnack}
-				message="You have successfully deleted the property!"
+				message="Removeu o estágio com sucesso!"
 				anchorOrigin={{
 					vertical: "bottom",
 					horizontal: "center",
