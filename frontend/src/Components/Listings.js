@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useImmerReducer } from "use-immer";
 import { useNavigate, useParams } from "react-router-dom";
+
 // React leaflet
 import {
   MapContainer,
@@ -73,16 +74,27 @@ function Listings() {
           };
           setLocation(userLocation);
           setUserMarker(userLocation); // meter o marker
-          console.log("COORDS = " + position.coords.latitude);
+          console.log(
+            "COORDS = " +
+              position.coords.latitude +
+              "latitude:" +
+              position.coords.longitude
+          );
         },
         (error) => {
           console.error("Error occurred: " + error.message);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
         }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
     }
   };
+
   let counter = 0;
   const limit = 11;
   const params = useParams();
@@ -174,6 +186,9 @@ function Listings() {
   const [transportMode, setTransportMode] = useState("driving-car"); // define modo de transporte
   const [tempoViagem, setTempoViagem] = useState(30); // initial value
   const [filteredResults, setFilteredResults] = useState(allListings);
+  //mensagem de erro
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errorColor, setErrorColor] = useState("#9e9e9e");
 
   useEffect(() => {
     const source = Axios.CancelToken.source();
@@ -256,13 +271,21 @@ function Listings() {
   }
 
   async function fetchMatrixData() {
+    if (userMarker === null) {
+      setErrorMsg("Localização não definida!");
+      setErrorColor("#f44336");
+      return;
+    }
+    
     try {
+      setErrorMsg("O tempo de viagem é em minutos");
+      setErrorColor("#9e9e9e");
       // dar fetch aos listings
       const response = await Axios.get("http://localhost:8000/api/listings/");
       const listings = response.data;
 
-      // preparar dados para request
-      const locations = [[location.longitude, location.latitude]];
+      // preparar dados para request (posição do utilizador)
+      const locations = [[userMarker.longitude, userMarker.latitude]];
 
       console.log("LOCATION" + locations);
       const listingIDs = [];
@@ -297,23 +320,14 @@ function Listings() {
       // filtar por destino [0] e extrair tempo que demora
       const times = matrixResponse.data.durations[0];
       console.log(times);
+      console.log(transportMode);
 
       // filtar listings < tempo
       const filteredListings = listings.filter((listing, index) => {
         // converter de segundos para minutos
         const travelTimeMinutes = times[index + 1] / 60;
-        const travelTimeSeconds = times[index + 1] % 60;
-
-        console.log(
-          "Listing: " +
-            listing +
-            " Tempo:" +
-            travelTimeMinutes +
-            " Minutos " +
-            " Segundos " +
-            travelTimeSeconds
-        );
-        return travelTimeMinutes <= tempoViagem;
+        console.log("Listing: " + listing + " Tempo:" + travelTimeMinutes);
+        return travelTimeMinutes > 0 && travelTimeMinutes <= tempoViagem;
       });
 
       console.log("Listings Filtrados <= tempo " + filteredListings);
@@ -467,7 +481,7 @@ function Listings() {
                                 newTransportMode = "foot-walking"; //caminhar
                                 break;
                               case "bike":
-                                newTransportMode = "cycling-road"; //bicicleta
+                                newTransportMode = "cycling-regular"; //bicicleta
                                 break;
                               case "driving":
                                 newTransportMode = "driving-car"; //carro
@@ -556,18 +570,13 @@ function Listings() {
                           } // update the state when the value changes
                         />
                         <FormGroup>
-                          <FormControlLabel
-                            control={<Checkbox defaultChecked />}
-                            label={
-                              <Typography
-                                sx={{ fontSize: 14 }}
-                                variant="body1"
-                                color="text.secondary"
-                              >
-                                Ver empresas sem ofertas
-                              </Typography>
-                            }
-                          />
+                          <Typography
+                            sx={{ fontSize: 14 }}
+                            variant="body1"
+                            color={errorColor}
+                          >
+                          {errorMsg || "O tempo de viagem é em minutos"}
+                          </Typography>
                         </FormGroup>
                       </div>
                     </CardContent>
@@ -706,6 +715,11 @@ function Listings() {
                           latitude: newLatLng.lat,
                           longitude: newLatLng.lng,
                         });
+                        console.log(
+                          userMarker.latitude +
+                            "longitude:" +
+                            userMarker.longitude
+                        );
                       },
                     }}
                   >
