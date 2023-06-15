@@ -349,6 +349,7 @@ function Listings() {
                 className="internship-info-card component-box-shadow"
                 key={listing.id}
                 style={{
+                  cursor: "pointer",
                   backgroundImage: `url(${listing.picture1})`,
                   display: "flex", // Set the Card as a flex container
                   flexDirection: "column", // Set direction of elements inside card as column

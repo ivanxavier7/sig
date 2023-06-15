@@ -65,11 +65,10 @@ Button.submit-button:hover {
 div.profile-container {
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid black;
-  border-radius: 8px;
+
   margin-top: 2rem;
-  padding: 12px;
-  width: 21.7rem;
+
+  width: 40rem;
 }
 
 .image {
@@ -390,7 +389,7 @@ button.custom-anchor-text:visited,
 button.custom-submit-btn {
   background-color: var(--cor-contraste);
   border: none;
-  color: white;
+  color: white !important;
   padding: 8px 16px;
   text-align: center;
   text-decoration: none;

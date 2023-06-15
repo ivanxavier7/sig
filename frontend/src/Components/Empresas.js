@@ -88,19 +88,13 @@ function Empresas() {
       container
       justifyContent="flex-start"
       spacing={2}
-      style={{
-        minHeight: "830px",
-        padding: "16rem",
-      }}
+      style={{ padding: "30px" }}
     >
       {state.empresasList.map((empresa) => {
         function CompaniesDisplay() {
           if (empresa.seller_listings.length === 0) {
             return (
-              <Button
-                disabled size="small"
-                className="custom-anchor-text"
-              >
+              <Button disabled size="small" className="custom-anchor-text">
                 Sem Estágios
               </Button>
             );
@@ -129,12 +123,15 @@ function Empresas() {
 
         if (empresa.agency_name && empresa.phone_number)
           return (
-            <Grid
-              key={empresa.id}
-              item
-              style={{ marginTop: "1rem", maxWidth: "20rem" }}
-            >
-              <Card className="company-card">
+            <Grid key={empresa.id} item style={{ maxWidth: "20rem" }}>
+              <Card
+                className="company-card"
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
                 <CardMedia
                   component="img"
                   height="140"
@@ -146,7 +143,12 @@ function Empresas() {
                   alt="Foto de Perfil"
                 />
                 <CardContent>
-                  <Typography className="custom-theme-title" gutterBottom variant="h5" component="div">
+                  <Typography
+                    className="custom-theme-title"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                  >
                     {empresa.agency_name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
