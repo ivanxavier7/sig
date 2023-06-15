@@ -276,7 +276,7 @@ function Listings() {
       setErrorColor("#f44336");
       return;
     }
-    
+
     try {
       setErrorMsg("O tempo de viagem é em minutos");
       setErrorColor("#9e9e9e");
@@ -346,7 +346,7 @@ function Listings() {
             let counter = 0;
             return (
               <Card
-                className="internship-info-card"
+                className="internship-info-card component-box-shadow"
                 key={listing.id}
                 style={{
                   backgroundImage: `url(${listing.picture1})`,
@@ -404,7 +404,8 @@ function Listings() {
                   onClick={() => navigate(`/listings/${listing.id}`)}
                 >
                   <Typography variant="body1">
-                    Estágio {listing.listing_type} - {listing.total_hours} horas
+                    Estágio {listing.listing_type}{" "}
+                    {listing.total_hours && `- ${listing.total_hours} horas`}
                   </Typography>
                   <Typography variant="body1">
                     {listing.internship_status}
@@ -575,7 +576,7 @@ function Listings() {
                             variant="body1"
                             color={errorColor}
                           >
-                          {errorMsg || "O tempo de viagem é em minutos"}
+                            {errorMsg || "O tempo de viagem é em minutos"}
                           </Typography>
                         </FormGroup>
                       </div>

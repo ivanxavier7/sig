@@ -25,6 +25,9 @@ import {
   Checkbox,
   IconButton,
   CardActions,
+  Avatar,
+  Box,
+  Divider,
 } from "@mui/material";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
@@ -100,7 +103,51 @@ function AgencyDetail() {
       <Grid
         container
         style={{
-          width: "50%",
+          paddingTop: "20px ",
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
+        <Card className="component-box-shadow-no-hover" sx={{ width: "40rem" }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={
+              state.userProfile.profilePic !== null
+                ? state.userProfile.profilePic
+                : defaultProfilePicture
+            }
+            alt={state.userProfile.agencyName}
+          />
+          <CardContent>
+            <Box display="flex" alignItems="center">
+              <Box flex={1}>
+                <Typography gutterBottom variant="h5" component="div">
+                  {state.userProfile.agencyName}
+                </Typography>
+                <Box display="flex" alignItems="center">
+                  <LocalPhoneIcon
+                    style={{ fontSize: "inherit" }}
+                    sx={{ color: "text.secondary", mr: 0.5 }}
+                  />
+                  <Typography variant="body1" color="text.secondary">
+                    {state.userProfile.phoneNumber}
+                  </Typography>
+                </Box>
+              </Box>
+              <Divider orientation="vertical" flexItem />
+              <Box flex={2} style={{ padding: "10px" }}>
+                <Typography>{state.userProfile.bio}</Typography>
+              </Box>
+            </Box>
+          </CardContent>
+        </Card>
+      </Grid>
+      {/* 
+      <Grid
+        container
+        className="company-info-box"
+        style={{
           marginLeft: "auto",
           marginRight: "auto",
           border: "5px solid black",
@@ -110,7 +157,7 @@ function AgencyDetail() {
       >
         <Grid item xs={6}>
           <img
-            style={{ height: "10rem", width: "15rem" }}
+            style={{ height: "100%", width: "15rem" }}
             src={
               state.userProfile.profilePic !== null
                 ? state.userProfile.profilePic
@@ -134,9 +181,7 @@ function AgencyDetail() {
               variant="h5"
               style={{ textAlign: "center", marginTop: "1rem" }}
             >
-              <IconButton>
-                <LocalPhoneIcon /> {state.userProfile.phoneNumber}
-              </IconButton>
+              <LocalPhoneIcon /> {state.userProfile.phoneNumber}
             </Typography>
           </Grid>
         </Grid>
@@ -144,11 +189,12 @@ function AgencyDetail() {
           {state.userProfile.bio}
         </Grid>
       </Grid>
+      */}
       <Grid
         container
         justifyContent="flex-start"
         spacing={2}
-        style={{ padding: "10px" }}
+        style={{ padding: "10px 20px 30px 20px" }}
       >
         {state.userProfile.sellerListings.map((listing) => {
           return (
@@ -157,7 +203,13 @@ function AgencyDetail() {
               item
               style={{ marginTop: "1rem", maxWidth: "20rem" }}
             >
-              <Card className="company-card">
+              <Card
+                className="company-card component-box-shadow"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 <CardMedia
                   component="img"
                   height="140"
@@ -171,18 +223,20 @@ function AgencyDetail() {
                   style={{ cursor: "pointer" }}
                 />
 
-                <CardContent>
+                <CardContent style={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="div">
                     {listing.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {listing.description.substring(0, 100)}...
+                    {listing.description.length > 100
+                      ? `${listing.description.substring(0, 100)}...`
+                      : listing.description}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  {`${listing.listing_type}: $${listing.vacancies
+                  {`${listing.listing_type}: ${listing.vacancies
                     .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/${
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} horas /${
                     listing.internship_bachelor
                   }`}
                 </CardActions>
