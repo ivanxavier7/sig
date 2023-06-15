@@ -317,7 +317,7 @@ div.custom-body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-  border:  none;
+  border: none;
   border-radius: 8px;
   padding: 3rem;
   margin-bottom: 25px;
@@ -434,6 +434,12 @@ div.custom-spacer-warning {
 
 .chip-text-color {
   color: var(--cor-neutra) !important;
+}
+.chip-size-modifier {
+  padding: 0 12px !important; /* increase padding as needed */
+  height: 32px !important; /* increase height as needed */
+  font-size: 16px !important; /* increase font-size as needed */
+  line-height: 32px !important; /* match line-height to height */
 }
 
 .python {
